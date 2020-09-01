@@ -7,13 +7,13 @@
   background-color: #fafafa;
 }
 
-.app_header {
+.app__header {
   object-fit: contain;
   background-color: white;
   padding: 20px;
   border-bottom: 1px solid lightgrey;
 }
 
-.app_headerImage {
+.app__headerImage {
   width: 15%;
 }
