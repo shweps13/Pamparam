@@ -6,3 +6,13 @@
 .post__text {
     font-weight: normal;
 }
+
+.post__header {
+    display: flex;
+    align-items: center;
+    padding: 20px 10px;
+}
+
+.post__avatar {
+    margin-right: 10px;
+}

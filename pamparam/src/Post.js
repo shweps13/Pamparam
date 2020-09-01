@@ -5,11 +5,18 @@ import Avatar from '@material-ui/core/Avatar';
 function Post() {
     return (
         <div className="post">
-            <h3>Shweps</h3>
+            <div className="post__header">
+                <Avatar 
+                    className="post__avatar" 
+                    alt="Remy Sharp" 
+                    src="/static/images/avatar/1.jpg" 
+                />
+                <h3>Shweps</h3>
+            </div>
 
-            <img src="https://i.pinimg.com/564x/d4/c5/f7/d4c5f7f131d36a447c8baec15b083a32.jpg" 
+            <img src="https://www.mcgilltribune.com/wp-content/uploads/2014/01/doge.washingonexaminer.biz_-1000x500.jpg" 
             className="post__image" 
-            alt="Avatar" />
+            alt="Post" />
             
             <h4 className="post__text"><strong>Shweps</strong> Lorem ipsum dolor sit amet</h4>
 
