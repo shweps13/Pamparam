@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.png'
 import './App.css';
+import Post from './Post.js';
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
       <div className="app_header">
         <img src={logo} className="app_headerImage" alt='logo'/>
       </div>
-
+      <Post />
 
 
     </div>
