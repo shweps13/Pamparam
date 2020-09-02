@@ -19,5 +19,13 @@
 }
 
 .app__modalImage {
+  padding-top: 3%;
   width: 50%;
+}
+
+.app__signup {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 10% 10% 0 10%;
 }

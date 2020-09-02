@@ -51,6 +51,9 @@ function App() {
     })
   }, []);
 
+  const signUp = (event) => {
+
+  }
 
 
   return (
@@ -60,6 +63,8 @@ function App() {
         <div style={modalStyle} className={classes.paper}>
           <center>
             <img src={logo} className="app__modalImage" alt="logo"/>
+          </center>
+          <form className="app__signup">
             <Input
               placeholder="Username"
               type="text"
@@ -68,7 +73,7 @@ function App() {
             />
             <Input
               placeholder="Email"
-              type="text"
+              type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -78,7 +83,8 @@ function App() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-          </center>
+              <Button onClick={signUp}>Sign Up</Button>
+          </form>
         </div>
       </Modal>
 
