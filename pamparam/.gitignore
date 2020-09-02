@@ -102,3 +102,6 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+# Firebase parameters
+firebase.js
