@@ -1,10 +1,20 @@
+.post {
+    max-width: 500px;
+    background-color: white;
+    border: 1px solid lightgrey;
+    margin-bottom: 45px;
+}
+
 .post__image {
     width: 100%;
     object-fit: contain;
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
 }
 
 .post__text {
     font-weight: normal;
+    padding: 20px;
 }
 
 .post__header {
