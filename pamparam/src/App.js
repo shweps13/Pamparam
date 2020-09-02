@@ -47,12 +47,16 @@ function App() {
     })
   }, []);
 
+
+
   return (
     <div className="app">
 
       <Modal open={open} onClose={() => setOpen(false)}>
         <div style={modalStyle} className={classes.paper}>
-          <h3>Modal here</h3>
+          <center>
+            <img src={logo} className="app__modalImage" alt="logo"/>
+          </center>
         </div>
       </Modal>
 
@@ -60,7 +64,7 @@ function App() {
         <img src={logo} className="app__headerImage" alt="logo"/>
       </div>
       
-      <Button>Sign Up</Button>
+      <Button onClick={() => setOpen(true)}>Sign Up</Button>
 
       {
         posts.map(({ id, post }) => (
