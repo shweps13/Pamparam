@@ -44,14 +44,17 @@ function Post({ postId, username, caption, imageUrl }) {
             
             <h4 className="post__text"><strong>{username}</strong> {caption}</h4>
 
-        <div className="post__comments">
+        {comments.length == 0 ? (
+            <div></div>
+        ): (
+            <div className="post__comments">
             {comments.map((comment) => (
                 <p>
-                    <b>{comment.username}</b> {comment.text}
+                    <strong>{comment.username}</strong> {comment.text}
                 </p>
             ))}
         </div>
-
+        )}
 
         <form className="post__commentBox">
             <input 

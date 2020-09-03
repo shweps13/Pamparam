@@ -29,7 +29,12 @@
 
 .post__commentBox {
     display: flex;
-    margin-top: 10px;
+    margin-top: 5px;
+}
+
+.post__comments {
+    padding-left: 20px;
+    padding-bottom: 20px;
 }
 
 .post__input {
