@@ -3,6 +3,7 @@ import './Post.css'
 import Avatar from '@material-ui/core/Avatar';
 import { db } from '../materials/firebase';
 import firebase from 'firebase';
+import Comment from './Comment.js'
 
 function Post({ postId, username, user, caption, imageUrl }) {
     const [comments, setComments] = useState([]);
@@ -58,9 +59,7 @@ function Post({ postId, username, user, caption, imageUrl }) {
         ): (
             <div className="post__comments">
             {comments.map((comment) => (
-                <p>
-                    <strong>{comment.username}</strong> {comment.text}
-                </p>
+                <Comment key={comment.timestamp} username={comment.username} text={comment.text} />
             ))}
         </div>
         )}
