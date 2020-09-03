@@ -3,9 +3,10 @@ import logo from './materials/logo.png'
 import './App.css';
 import Post from './components/Post.js';
 import { db, auth } from './materials/firebase'
-import Modal from '@material-ui/core/Modal';
-import { Button, Input } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import { getModalStyle, useStyles } from './materials/modalStyles.js';
+import ModalSignup from './components/ModalSignup.js'
+import ModalSignin from './components/ModalSignin.js'
 
 
 function App() {
@@ -74,60 +75,12 @@ function App() {
     setOpenSignIn(false);
   }
 
-
   return (
     <div className="app">
 
-      <Modal open={open} onClose={() => setOpen(false)}>
-        <div style={modalStyle} className={classes.paper}>
-          <center>
-            <img src={logo} className="app__modalImage" alt="logo"/>
-          </center>
-          <form className="app__signup">
-            <Input
-              placeholder="Username"
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-            <Input
-              placeholder="Email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <Input
-              placeholder="Password"
-              type="text"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-              <Button type="submit" onClick={signUp}>Sign Up</Button>
-          </form>
-        </div>
-      </Modal>
-      <Modal open={openSignIn} onClose={() => setOpenSignIn(false)}>
-        <div style={modalStyle} className={classes.paper}>
-          <center>
-            <img src={logo} className="app__modalImage" alt="logo"/>
-          </center>
-          <form className="app__signup">
-            <Input
-              placeholder="Email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <Input
-              placeholder="Password"
-              type="text"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-              <Button type="submit" onClick={signIn}>Sign In</Button>
-          </form>
-        </div>
-      </Modal>
+
+      <ModalSignup open={open} setOpen={setOpen} modalStyle={modalStyle} classesStyle={classes.paper} username={username} setUsername={setUsername} email={email} setEmail={setEmail} password={password} setPassword={setPassword} signUp={signUp} />
+      <ModalSignin openSignIn={openSignIn} setOpenSignIn={setOpenSignIn} modalStyle={modalStyle} classesStyle={classes.paper} email={email} setEmail={setEmail} password={password} setPassword={setPassword} signIn={signIn} />
 
       <div className="app__header">
         <img src={logo} className="app__headerImage" alt="logo"/>
