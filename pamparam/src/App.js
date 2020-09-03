@@ -83,7 +83,6 @@ function App() {
   }
   // === end of auth functions ===
 
-
   return (
     <div className="app">
 
