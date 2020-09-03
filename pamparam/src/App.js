@@ -92,8 +92,7 @@ function App() {
 
       <div className="app__header">
         <img src={logo} className="app__headerImage" alt="logo"/>
-      </div>
-      
+
       {user ? (
         <Button onClick={() => auth.signOut()}>Logout</Button>
       ):(
@@ -102,6 +101,9 @@ function App() {
           <Button onClick={() => setOpen(true)}>Sign Up</Button>
         </div>
       )}
+      </div>
+      
+
 
       {
         posts.map(({ id, post }) => (
