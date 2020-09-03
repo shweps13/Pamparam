@@ -7,6 +7,7 @@ import { Button } from '@material-ui/core';
 import { getModalStyle, useStyles } from './materials/modalStyles.js';
 import ModalSignup from './components/ModalSignup.js'
 import ModalSignin from './components/ModalSignin.js'
+import ImageUpload from './components/ImageUpload.js'
 
 
 function App() {
@@ -31,7 +32,6 @@ function App() {
         setUser(null);
       }
     })
-
     return () => {
       // cleanup actions
       unsubscribe();
@@ -50,6 +50,7 @@ function App() {
     })
   }, []);
 
+  // ====== auth functions ======
   const cleanAfterLog = () => {
     // function that removing user data from hooks after login/signup
     setEmail('')
@@ -79,9 +80,14 @@ function App() {
     setOpenSignIn(false);
     cleanAfterLog();
   }
+  // === end of auth functions ===
+
+
 
   return (
     <div className="app">
+
+      <ImageUpload />
 
       <ModalSignup open={open} setOpen={setOpen} modalStyle={modalStyle} classesStyle={classes.paper} username={username} setUsername={setUsername} email={email} setEmail={setEmail} password={password} setPassword={setPassword} signUp={signUp} />
       <ModalSignin openSignIn={openSignIn} setOpenSignIn={setOpenSignIn} modalStyle={modalStyle} classesStyle={classes.paper} email={email} setEmail={setEmail} password={password} setPassword={setPassword} signIn={signIn} />
