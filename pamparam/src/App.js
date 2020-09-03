@@ -50,9 +50,15 @@ function App() {
     })
   }, []);
 
+  const cleanAfterLog = () => {
+    // function that removing user data from hooks after login/signup
+    setEmail('')
+    setPassword('')
+    setUsername('')
+  }
+
   const signUp = (event) => {
     event.preventDefault();
-    
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((authUser) => {
@@ -61,23 +67,21 @@ function App() {
         })
       })
       .catch((error) => alert(error.message));
-    
     setOpen(false);
+    cleanAfterLog();
   }
   
   const signIn = (event) => {
     event.preventDefault();
-    
     auth
       .signInWithEmailAndPassword(email, password)
       .catch((error) => alert(error.message));
-
     setOpenSignIn(false);
+    cleanAfterLog();
   }
 
   return (
     <div className="app">
-
 
       <ModalSignup open={open} setOpen={setOpen} modalStyle={modalStyle} classesStyle={classes.paper} username={username} setUsername={setUsername} email={email} setEmail={setEmail} password={password} setPassword={setPassword} signUp={signUp} />
       <ModalSignin openSignIn={openSignIn} setOpenSignIn={setOpenSignIn} modalStyle={modalStyle} classesStyle={classes.paper} email={email} setEmail={setEmail} password={password} setPassword={setPassword} signIn={signIn} />
