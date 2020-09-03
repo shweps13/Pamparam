@@ -21,6 +21,10 @@
   object-fit: contain;
 }
 
+.app__posts {
+  padding: 20px;
+}
+
 .app__modalImage {
   padding-top: 3%;
   width: 50%;
