@@ -41,7 +41,8 @@ function App() {
 
   // Pool data from the Firebase DB
   useEffect(() => {
-    db.collection('posts').onSnapshot(snapshot => {
+    // sorting our images with .orderBy
+    db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
       // pull data everytime when new post was added to the DB
       setPosts(snapshot.docs.map(doc => ({
         id: doc.id,
