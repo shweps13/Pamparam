@@ -1,9 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Post.css'
 import Avatar from '@material-ui/core/Avatar';
+import { db } from '../materials/firebase';
 
 function Post({ postId, username, caption, imageUrl }) {
     const [comments, setComments] = useState([]);
+
+    useEffect(() => {
+        let unsubscribe;
+        if (postId) {
+            unsubscribe = db
+                .collection('posts')
+                .doc(postId)
+                .collection('comments')
+                .onSnapshot((snapshot) => {
+                    setComments(snapshot.docs.map((doc) => doc.data()));
+                });
+        }
+    
+        return () => {
+            unsubscribe();
+        };
+    
+    }, [postId]);
 
     return (
         <div className="post">
@@ -20,6 +39,7 @@ function Post({ postId, username, caption, imageUrl }) {
             
             <h4 className="post__text"><strong>{username}</strong> {caption}</h4>
 
+            
         </div>
     )
 }
