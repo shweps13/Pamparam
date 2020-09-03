@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import logo from './logo.png'
 import './App.css';
 import Post from './Post.js';
-import { db } from './firebase'
+import { db, auth } from './firebase'
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { Button, Input } from '@material-ui/core';
@@ -38,6 +38,25 @@ function App() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        // user logged in
+        console.log(authUser)
+        setUser(authUser);
+      } else {
+        // user logged out
+        setUser(null);
+      }
+    })
+
+    return () => {
+      // cleanup actions
+      unsubscribe();
+    }
+  }, [username, user]);
 
 
   // Pool data from the Firebase DB
@@ -52,7 +71,16 @@ function App() {
   }, []);
 
   const signUp = (event) => {
+    event.preventDefault();
 
+    auth
+    .createUserWithEmailAndPassword(email, password)
+    .then((authUser) => {
+      return authUser.user.updateProfile({
+        displayName: username
+      })
+    })
+    .catch((error) => alert(error.message));
   }
 
 
@@ -83,7 +111,7 @@ function App() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-              <Button onClick={signUp}>Sign Up</Button>
+              <Button type="submit" onClick={signUp}>Sign Up</Button>
           </form>
         </div>
       </Modal>
