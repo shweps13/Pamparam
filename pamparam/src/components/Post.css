@@ -41,4 +41,7 @@
 
 .post__button {
     flex: 0;
+    border: none;
+    border-top: 1px solid lightgray;
+    background-color: transparent;
 }
