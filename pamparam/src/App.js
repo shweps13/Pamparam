@@ -13,6 +13,7 @@ function App() {
   const [modalStyle] = useState(getModalStyle);
   const [posts, setPosts] = useState([]);
   const [open, setOpen] = useState(false);
+  const [openSignIn, setOpenSignIn] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
@@ -50,15 +51,27 @@ function App() {
 
   const signUp = (event) => {
     event.preventDefault();
-
+    
     auth
-    .createUserWithEmailAndPassword(email, password)
-    .then((authUser) => {
-      return authUser.user.updateProfile({
-        displayName: username
+      .createUserWithEmailAndPassword(email, password)
+      .then((authUser) => {
+        return authUser.user.updateProfile({
+          displayName: username
+        })
       })
-    })
-    .catch((error) => alert(error.message));
+      .catch((error) => alert(error.message));
+    
+    setOpen(false);
+  }
+  
+  const signIn = (event) => {
+    event.preventDefault();
+    
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .catch((error) => alert(error.message));
+
+    setOpenSignIn(false);
   }
 
 
@@ -93,6 +106,28 @@ function App() {
           </form>
         </div>
       </Modal>
+      <Modal open={openSignIn} onClose={() => setOpenSignIn(false)}>
+        <div style={modalStyle} className={classes.paper}>
+          <center>
+            <img src={logo} className="app__modalImage" alt="logo"/>
+          </center>
+          <form className="app__signup">
+            <Input
+              placeholder="Email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <Input
+              placeholder="Password"
+              type="text"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+              <Button type="submit" onClick={signIn}>Sign In</Button>
+          </form>
+        </div>
+      </Modal>
 
       <div className="app__header">
         <img src={logo} className="app__headerImage" alt="logo"/>
@@ -101,7 +136,10 @@ function App() {
       {user ? (
         <Button onClick={() => auth.signOut()}>Logout</Button>
       ):(
-        <Button onClick={() => setOpen(true)}>Sign Up</Button>
+        <div className="app__loginContainer">
+          <Button onClick={() => setOpenSignIn(true)}>Sign In</Button>
+          <Button onClick={() => setOpen(true)}>Sign Up</Button>
+        </div>
       )}
 
       {
