@@ -5,9 +5,9 @@ import Post from './Post.js';
 import { db, auth } from '../materials/firebase'
 import { Button } from '@material-ui/core';
 import { getModalStyle, useStyles } from '../materials/modalStyles.js';
-import ModalSignup from './ModalSignup.js'
-import ModalSignin from './ModalSignin.js'
-import ImageUpload from './ImageUpload.js'
+import ModalSignup from './ModalSignup.js';
+import ModalSignin from './ModalSignin.js';
+import ImageUpload from './ImageUpload.js';
 
 
 function Main() {
