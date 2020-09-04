@@ -1,43 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import logo from '../materials/logo.png'
 import '../styles/Main.css';
 import Post from './Post.js';
-import { db, auth } from '../materials/firebase'
-import { Button } from '@material-ui/core';
-import { getModalStyle, useStyles } from '../materials/modalStyles.js';
-import ModalSignup from './ModalSignup.js';
-import ModalSignin from './ModalSignin.js';
+import { db } from '../materials/firebase'
 import ImageUpload from './ImageUpload.js';
 
 
-function Main() {
-  const classes = useStyles();
-  const [modalStyle] = useState(getModalStyle);
+function Main({ user }) {
   const [posts, setPosts] = useState([]);
-  const [open, setOpen] = useState(false);
-  const [openSignIn, setOpenSignIn] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [username, setUsername] = useState('');
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((authUser) => {
-      if (authUser) {
-        // user logged in
-        console.log(authUser)
-        setUser(authUser);
-      } else {
-        // user logged out
-        setUser(null);
-      }
-    })
-    return () => {
-      // cleanup actions
-      unsubscribe();
-    }
-  }, [username, user]);
-
 
   // Pool data from the Firebase DB
   useEffect(() => {
@@ -51,58 +20,9 @@ function Main() {
     })
   }, []);
 
-  // ====== auth functions ======
-  const cleanAfterLog = () => {
-    // function that removing user data from hooks after login/signup
-    setEmail('')
-    setPassword('')
-    setUsername('')
-  }
-
-  const signUp = (event) => {
-    event.preventDefault();
-    auth
-      .createUserWithEmailAndPassword(email, password)
-      .then((authUser) => {
-        return authUser.user.updateProfile({
-          displayName: username
-        })
-      })
-      .catch((error) => alert(error.message));
-    setOpen(false);
-    cleanAfterLog();
-  }
-  
-  const signIn = (event) => {
-    event.preventDefault();
-    auth
-      .signInWithEmailAndPassword(email, password)
-      .catch((error) => alert(error.message));
-    setOpenSignIn(false);
-    cleanAfterLog();
-  }
-  // === end of auth functions ===
-
   return (
     <div className="main">
 
-      <div className="main__header">
-      
-      <ModalSignup open={open} setOpen={setOpen} modalStyle={modalStyle} classesStyle={classes.paper} username={username} setUsername={setUsername} email={email} setEmail={setEmail} password={password} setPassword={setPassword} signUp={signUp} />
-      <ModalSignin openSignIn={openSignIn} setOpenSignIn={setOpenSignIn} modalStyle={modalStyle} classesStyle={classes.paper} email={email} setEmail={setEmail} password={password} setPassword={setPassword} signIn={signIn} />
-        
-        <img src={logo} className="main__headerImage" alt="logo"/>
-
-      {user ? (
-        <Button onClick={() => auth.signOut()}>Logout</Button>
-      ):(
-        <div className="main__loginContainer">
-          <Button onClick={() => setOpenSignIn(true)}>Sign In</Button>
-          <Button onClick={() => setOpen(true)}>Sign Up</Button>
-        </div>
-      )}
-      </div>
-      
       <div className="main__posts">
         {
           posts.map(({ id, post }) => (
