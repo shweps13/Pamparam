@@ -6,3 +6,24 @@
   height: 100vh;
   background-color: #fafafa;
 }
+
+.app__header {
+  position: sticky;
+  top: 0;
+  object-fit: contain;
+  background-color: white;
+  padding: 20px;
+  border-bottom: 1px solid lightgrey;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+.app__headerImage {
+  width: 25%;
+  object-fit: contain;
+}
+
+.react-icons {
+  background-color: red;
+}
