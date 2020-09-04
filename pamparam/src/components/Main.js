@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import logo from '../materials/logo.png'
-import './Main.css';
+import '../styles/Main.css';
 import Post from './Post.js';
 import { db, auth } from '../materials/firebase'
 import { Button } from '@material-ui/core';
@@ -8,8 +8,6 @@ import { getModalStyle, useStyles } from '../materials/modalStyles.js';
 import ModalSignup from './ModalSignup.js'
 import ModalSignin from './ModalSignin.js'
 import ImageUpload from './ImageUpload.js'
-
-// import Main from './components/Main.js'
 
 
 function Main() {
@@ -88,10 +86,11 @@ function Main() {
   return (
     <div className="main">
 
+      <div className="main__header">
+      
       <ModalSignup open={open} setOpen={setOpen} modalStyle={modalStyle} classesStyle={classes.paper} username={username} setUsername={setUsername} email={email} setEmail={setEmail} password={password} setPassword={setPassword} signUp={signUp} />
       <ModalSignin openSignIn={openSignIn} setOpenSignIn={setOpenSignIn} modalStyle={modalStyle} classesStyle={classes.paper} email={email} setEmail={setEmail} password={password} setPassword={setPassword} signIn={signIn} />
-
-      <div className="main__header">
+        
         <img src={logo} className="main__headerImage" alt="logo"/>
 
       {user ? (

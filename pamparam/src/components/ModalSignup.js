@@ -8,9 +8,9 @@ function ModalSignup({ open, setOpen, modalStyle, classesStyle, username, setUse
         <Modal open={open} onClose={() => setOpen(false)}>
         <div style={modalStyle} className={classesStyle}>
           <center>
-            <img src={logo} className="app__modalImage" alt="logo"/>
+            <img src={logo} className="modal__modalImage" alt="logo"/>
           </center>
-          <form className="app__signup">
+          <form className="modal__signup">
             <Input
               placeholder="Username"
               type="text"
