@@ -30,9 +30,14 @@ function App() {
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [user, setUser] = useState(null);
+  const [local, setLocal] = useState(null);
 
-
-  const info = 'ololo'
+  useEffect(
+    () => {
+      console.log(local)
+    },
+    [local]
+  )
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -83,7 +88,7 @@ function App() {
   }
   // === end of auth functions ===
   
-  var imglink = 'https://icon-library.net/images/small-icon-png/small-icon-png-6.jpg'
+
 
   return (
     <Router>
@@ -143,12 +148,18 @@ function App() {
         <Route exact path="/messenger"
             render={() => (
 							<Messenger
-								info={info}
+                setLocal={setLocal}
 							/>
 						)} />
-        <Route exact path="/discover" component={Discover} />
+        <Route exact path="/discover"
+            render={() => (
+              <Discover
+                setLocal={setLocal}
+              />
+            )} />
+
         <Route exact path="/likes" component={LikePage} />
-        <Route path="*" component={NotFound} />
+        {/* <Route path="*" component={NotFound} /> */}
 
         
 
