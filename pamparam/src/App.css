@@ -27,3 +27,11 @@
 .react-icons {
   background-color: red;
 }
+
+.navbar__linkActive {
+  background-color: red;
+}
+
+.navbar__link {
+  color: blue;
+}

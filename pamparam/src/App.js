@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, NavLink, Redirect } from "react-router-dom";
 
 import Main from './components/Main.js';
 import Messenger from './components/Messenger.js';
 import Discover from './components/Discover.js';
 import LikePage from './components/LikePage.js';
 import LoadPage from './components/LoadPage.js';
+import NotFound from './components/NotFound.js';
 
 import { Button } from '@material-ui/core';
 import ModalSignup from './components/ModalSignup.js';
@@ -81,7 +82,8 @@ function App() {
     cleanAfterLog();
   }
   // === end of auth functions ===
-
+  
+  var imglink = 'https://icon-library.net/images/small-icon-png/small-icon-png-6.jpg'
 
   return (
     <Router>
@@ -94,11 +96,28 @@ function App() {
           <img src={logo} className="app__headerImage" alt="logo"/>
           
           <div className="app__headerButtons">  
-            <Link to="/"><AiOutlineHome size={25} /></Link> 
-            <Link to="/post"><BsPlusCircle size={25} /></Link> 
-            <Link to="/messenger"><RiSendPlaneLine size={25} /></Link> 
-            <Link to="/discover"><AiOutlineCompass size={25} /></Link> 
-            <Link to="/likes"><AiOutlineHeart size={25} /> </Link> 
+            <NavLink 
+              className="navbar__link"
+              activeClassName="navbar__linkActive"
+              to="/feed">
+            <AiOutlineHome size={25} /></NavLink> 
+            <NavLink 
+              activeClassName="navbar__linkActive"
+              to="/post">
+            <BsPlusCircle size={25} /></NavLink> 
+            <NavLink 
+              to="/messenger"
+              activeClassName="navbar__linkActive">
+            <RiSendPlaneLine size={25} />
+            </NavLink> 
+            <NavLink 
+              to="/discover"
+              activeClassName="navbar__linkActive">
+            <AiOutlineCompass size={25} /></NavLink> 
+            <NavLink 
+              to="/likes"
+              activeClassName="navbar__linkActive">
+            <AiOutlineHeart size={25} /> </NavLink> 
           </div>
 
         {user ? (
@@ -110,8 +129,11 @@ function App() {
           </div>
         )}
         </div>
-        
-        <Route exact path="/"
+
+        <Route exact path="/">
+          <Redirect to="/feed" />
+        </Route>
+        <Route exact path="/feed"
             render={() => (
 							<Main
                 username={username} user={user}
@@ -126,6 +148,8 @@ function App() {
 						)} />
         <Route exact path="/discover" component={Discover} />
         <Route exact path="/likes" component={LikePage} />
+        <Route path="*" component={NotFound} />
+
         
 
       </div>
