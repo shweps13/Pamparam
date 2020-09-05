@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import Main from './components/Main.js';
 import Messenger from './components/Messenger.js';
+import Discover from './components/Discover.js';
+import LikePage from './components/LikePage.js';
+import LoadPage from './components/LoadPage.js';
 
 import { Button } from '@material-ui/core';
 import ModalSignup from './components/ModalSignup.js';
@@ -12,9 +15,10 @@ import { getModalStyle, useStyles } from './materials/modalStyles.js';
 import { auth } from './materials/firebase'
 import logo from './materials/logo.png'
 
+
 import { RiSendPlaneLine, RiSendPlaneFill } from 'react-icons/ri';
 import { BsPlusCircle, BsPlusCircleFill } from 'react-icons/bs';
-import { AiOutlineHome, AiFillHome, AiOutlineHeart, AiFillHeart} from 'react-icons/ai';
+import { AiOutlineHome, AiFillHome, AiOutlineHeart, AiFillHeart, AiOutlineCompass, AiFillCompass} from 'react-icons/ai';
 
 function App() {
   const classes = useStyles();
@@ -87,11 +91,14 @@ function App() {
         
           <ModalSignup open={open} setOpen={setOpen} modalStyle={modalStyle} classesStyle={classes.paper} username={username} setUsername={setUsername} email={email} setEmail={setEmail} password={password} setPassword={setPassword} signUp={signUp} />
           <ModalSignin openSignIn={openSignIn} setOpenSignIn={setOpenSignIn} modalStyle={modalStyle} classesStyle={classes.paper} email={email} setEmail={setEmail} password={password} setPassword={setPassword} signIn={signIn} />
-          
           <img src={logo} className="app__headerImage" alt="logo"/>
-          <div>
-            <RiSendPlaneLine size={25}/> <RiSendPlaneFill size={25}/>
-            <AiOutlineHome size={25}/> <AiFillHome size={25}/> <AiOutlineHeart size={25}/> <AiFillHeart size={25}/> <BsPlusCircle size={25}/> <BsPlusCircleFill size={25}/>
+          
+          <div className="app__headerButtons">  
+            <Link to="/"><AiOutlineHome size={25} /></Link> 
+            <Link to="/post"><BsPlusCircle size={25} /></Link> 
+            <Link to="/messenger"><RiSendPlaneLine size={25} /></Link> 
+            <Link to="/discover"><AiOutlineCompass size={25} /></Link> 
+            <Link to="/likes"><AiOutlineHeart size={25} /> </Link> 
           </div>
 
         {user ? (
@@ -104,22 +111,22 @@ function App() {
         )}
         </div>
         
-        <Route 
-            exact 
-            path="/"
+        <Route exact path="/"
             render={() => (
 							<Main
                 username={username} user={user}
 							/>
 						)} />
-        <Route 
-            exact 
-            path="/messenger"
+        <Route exact path="/post" component={LoadPage} />
+        <Route exact path="/messenger"
             render={() => (
 							<Messenger
 								info={info}
 							/>
 						)} />
+        <Route exact path="/discover" component={Discover} />
+        <Route exact path="/likes" component={LikePage} />
+        
 
       </div>
     </Router>
