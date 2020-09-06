@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/Main.css';
+import '../../styles/Main.css';
 import Post from './Post.js';
-import { db } from '../materials/firebase'
+import { db } from '../../materials/firebase'
 import ImageUpload from './ImageUpload.js';
 import { useLocation } from 'react-router-dom';
 

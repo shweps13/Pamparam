@@ -1,8 +1,8 @@
 import React from 'react'
-import logo from '../materials/logo.png'
+import logo from '../../materials/logo.png'
 import Modal from '@material-ui/core/Modal';
 import { Button, Input } from '@material-ui/core';
-import '../styles/Modal.css'
+import '../../styles/Modal.css'
 
 
 function ModalSignin({ openSignIn, setOpenSignIn, modalStyle, classesStyle, email, setEmail, password, setPassword, signIn }) {

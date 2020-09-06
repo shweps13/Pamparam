@@ -1,20 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Redirect, NavLink } from "react-router-dom";
-
-import Main from './components/Main.js';
-import Messenger from './components/Messenger.js';
-import Discover from './components/Discover.js';
-import LikePage from './components/LikePage.js';
-import LoadPage from './components/LoadPage.js';
-import NotFound from './components/NotFound.js';
-import MenuNavLink from './components/MenuNavLink.js';
-
 import { Button } from '@material-ui/core';
-import ModalSignup from './components/ModalSignup.js';
-import ModalSignin from './components/ModalSignin.js';
-import { getModalStyle, useStyles } from './materials/modalStyles.js';
 import { auth } from './materials/firebase'
+
+import MenuNavLink from './components/dependent/MenuNavLink.js';
+import Routes from './components/dependent/Routes.js'
+
+import { getModalStyle, useStyles } from './materials/modalStyles.js';
+import ModalSignup from './components/dependent/ModalSignup.js';
+import ModalSignin from './components/dependent/ModalSignin.js';
 import logo from './materials/logo.png'
 
 
@@ -102,43 +97,8 @@ function App() {
         )}
         </div>
 
-        <Route exact path="/">
-          <Redirect to="/feed" />
-        </Route>
-        <Route exact path="/feed"
-            render={() => (
-							<Main
-                username={username} user={user} setLocal={setLocal}
-							/>
-						)} />
-        <Route exact path="/post"
-            render={() => (
-							<LoadPage
-                setLocal={setLocal}
-							/>
-						)} />
-
-        <Route exact path="/messenger"
-            render={() => (
-							<Messenger
-                setLocal={setLocal}
-							/>
-						)} />
-        <Route exact path="/discover"
-            render={() => (
-              <Discover
-                setLocal={setLocal}
-              />
-            )} />
-        <Route exact path="/likes"
-            render={() => (
-              <LikePage
-                setLocal={setLocal}
-              />
-            )} />
-
+        <Routes Route={Route} Redirect={Redirect} setLocal={setLocal} user={user} username={username} />
         
-
       </div>
     </Router>
   );

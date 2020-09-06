@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../materials/logo.png'
+import logo from '../../materials/logo.png'
 import Modal from '@material-ui/core/Modal';
 import { Button, Input } from '@material-ui/core';
 
