@@ -103,26 +103,51 @@ function App() {
           <div className="app__headerButtons">  
             <NavLink 
               className="navbar__link"
-              activeClassName="navbar__linkActive"
               to="/feed">
-            <AiOutlineHome size={25} /></NavLink> 
+                {local === "/feed" ? (
+                    <AiFillHome size={25} />
+                  ): (
+                    <AiOutlineHome size={25} />
+                )}
+            </NavLink> 
             <NavLink 
-              activeClassName="navbar__linkActive"
+              className="navbar__link"
               to="/post">
-            <BsPlusCircle size={25} /></NavLink> 
+                {local === "/post" ? (
+                    <BsPlusCircleFill size={25} />
+                  ): (
+                    <BsPlusCircle size={25} />
+                )}
+            </NavLink> 
             <NavLink 
-              to="/messenger"
-              activeClassName="navbar__linkActive">
-            <RiSendPlaneLine size={25} />
+              className="navbar__link"
+              to="/messenger">
+                {local === "/messenger" ? (
+                    <RiSendPlaneFill size={25} />
+                  ): (
+                    <RiSendPlaneLine size={25} />
+                )}
+            
             </NavLink> 
             <NavLink 
               to="/discover"
-              activeClassName="navbar__linkActive">
-            <AiOutlineCompass size={25} /></NavLink> 
+              className="navbar__link">
+                {local === "/discover" ? (
+                    <AiFillCompass size={25} />
+                  ): (
+                    <AiOutlineCompass size={25} />
+                )}
+            </NavLink> 
+            
             <NavLink 
               to="/likes"
-              activeClassName="navbar__linkActive">
-            <AiOutlineHeart size={25} /> </NavLink> 
+              className="navbar__link">
+                {local === "/likes" ? (
+                    <AiFillHeart size={25} />
+                  ): (
+                    <AiOutlineHeart size={25} /> 
+                )}
+            </NavLink> 
           </div>
 
         {user ? (

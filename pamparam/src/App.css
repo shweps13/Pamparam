@@ -24,14 +24,11 @@
   object-fit: contain;
 }
 
-.react-icons {
-  background-color: red;
-}
-
-.navbar__linkActive {
-  background-color: red;
+.app__headerButtons {
+  margin-top: 1.1%;
 }
 
 .navbar__link {
-  color: blue;
+  color: black;
+  padding-right: 10px;
 }
