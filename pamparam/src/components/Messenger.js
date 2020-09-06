@@ -1,16 +1,15 @@
 import React, {useEffect} from 'react';
 import { useLocation } from 'react-router-dom';
 
-
-function Messenger(props) {
+function Messenger({ setLocal }) {
   let location = useLocation()
 
   useEffect(
     () => {
-      props.setLocal(location.pathname)
-    },
-    [location]
-  )
+      setLocal(location.pathname)
+      
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
   return (
     <div className="messenger">

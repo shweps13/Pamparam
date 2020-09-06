@@ -34,7 +34,7 @@ function App() {
 
   useEffect(
     () => {
-      console.log(local)
+      console.log('Active directory=>', local)
     },
     [local]
   )
@@ -141,10 +141,16 @@ function App() {
         <Route exact path="/feed"
             render={() => (
 							<Main
-                username={username} user={user}
+                username={username} user={user} setLocal={setLocal}
 							/>
 						)} />
-        <Route exact path="/post" component={LoadPage} />
+        <Route exact path="/post"
+            render={() => (
+							<LoadPage
+                setLocal={setLocal}
+							/>
+						)} />
+
         <Route exact path="/messenger"
             render={() => (
 							<Messenger
@@ -157,9 +163,12 @@ function App() {
                 setLocal={setLocal}
               />
             )} />
-
-        <Route exact path="/likes" component={LikePage} />
-        {/* <Route path="*" component={NotFound} /> */}
+        <Route exact path="/likes"
+            render={() => (
+              <LikePage
+                setLocal={setLocal}
+              />
+            )} />
 
         
 

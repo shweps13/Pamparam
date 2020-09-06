@@ -3,10 +3,11 @@ import '../styles/Main.css';
 import Post from './Post.js';
 import { db } from '../materials/firebase'
 import ImageUpload from './ImageUpload.js';
+import { useLocation } from 'react-router-dom';
 
-
-function Main({ user }) {
+function Main({ user, setLocal }) {
   const [posts, setPosts] = useState([]);
+  let location = useLocation()
 
   // Pool data from the Firebase DB
   useEffect(() => {
@@ -19,6 +20,13 @@ function Main({ user }) {
       })));
     })
   }, []);
+
+
+  useEffect(
+    () => {
+      setLocal(location.pathname)
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
   return (
     <div className="main">
