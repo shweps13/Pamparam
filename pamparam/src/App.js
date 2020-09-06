@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Link, NavLink, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect, NavLink } from "react-router-dom";
 
 import Main from './components/Main.js';
 import Messenger from './components/Messenger.js';
@@ -8,6 +8,7 @@ import Discover from './components/Discover.js';
 import LikePage from './components/LikePage.js';
 import LoadPage from './components/LoadPage.js';
 import NotFound from './components/NotFound.js';
+import MenuNavLink from './components/MenuNavLink.js';
 
 import { Button } from '@material-ui/core';
 import ModalSignup from './components/ModalSignup.js';
@@ -16,10 +17,6 @@ import { getModalStyle, useStyles } from './materials/modalStyles.js';
 import { auth } from './materials/firebase'
 import logo from './materials/logo.png'
 
-
-import { RiSendPlaneLine, RiSendPlaneFill } from 'react-icons/ri';
-import { BsPlusCircle, BsPlusCircleFill } from 'react-icons/bs';
-import { AiOutlineHome, AiFillHome, AiOutlineHeart, AiFillHeart, AiOutlineCompass, AiFillCompass} from 'react-icons/ai';
 
 function App() {
   const classes = useStyles();
@@ -31,13 +28,6 @@ function App() {
   const [username, setUsername] = useState('');
   const [user, setUser] = useState(null);
   const [local, setLocal] = useState(null);
-
-  useEffect(
-    () => {
-      console.log('Active directory=>', local)
-    },
-    [local]
-  )
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -100,56 +90,8 @@ function App() {
           <ModalSignin openSignIn={openSignIn} setOpenSignIn={setOpenSignIn} modalStyle={modalStyle} classesStyle={classes.paper} email={email} setEmail={setEmail} password={password} setPassword={setPassword} signIn={signIn} />
           <img src={logo} className="app__headerImage" alt="logo"/>
           
-          <div className="app__headerButtons">  
-            <NavLink 
-              className="navbar__link"
-              to="/feed">
-                {local === "/feed" ? (
-                    <AiFillHome size={25} />
-                  ): (
-                    <AiOutlineHome size={25} />
-                )}
-            </NavLink> 
-            <NavLink 
-              className="navbar__link"
-              to="/post">
-                {local === "/post" ? (
-                    <BsPlusCircleFill size={25} />
-                  ): (
-                    <BsPlusCircle size={25} />
-                )}
-            </NavLink> 
-            <NavLink 
-              className="navbar__link"
-              to="/messenger">
-                {local === "/messenger" ? (
-                    <RiSendPlaneFill size={25} />
-                  ): (
-                    <RiSendPlaneLine size={25} />
-                )}
-            
-            </NavLink> 
-            <NavLink 
-              to="/discover"
-              className="navbar__link">
-                {local === "/discover" ? (
-                    <AiFillCompass size={25} />
-                  ): (
-                    <AiOutlineCompass size={25} />
-                )}
-            </NavLink> 
-            
-            <NavLink 
-              to="/likes"
-              className="navbar__link">
-                {local === "/likes" ? (
-                    <AiFillHeart size={25} />
-                  ): (
-                    <AiOutlineHeart size={25} /> 
-                )}
-            </NavLink> 
-          </div>
-
+          <MenuNavLink local={local} NavLink={NavLink} />
+          
         {user ? (
           <Button onClick={() => auth.signOut()}>Logout</Button>
         ):(
