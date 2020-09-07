@@ -10,7 +10,7 @@
 }
 
 .imageupload h1 {
-    margin-bottom: 5vh;
+    margin-bottom: 3vh;
 }
 
 .imageupload__progress {
@@ -49,6 +49,19 @@
     text-align: center;
 }
 
+.imageupload__bottomBlock {
+    display: flex;
+    flex-direction: column;
+    /* background-color: teal; */
+    width: 100%;
+    max-width: 35vh;
+    position: absolute;
+    bottom: 0;
+    padding: 5vh;
+    /* border: 1px solid grey; */
+
+}
+
 .loader_loginMessageCat {
     border-radius: 50%;
     width: 20vh;
@@ -63,7 +76,9 @@
 .imageupload__placeholder {
     display: flex;
     justify-content: center;
+    width: 130%;
     max-height: 45vh;
+    max-width: 60vh;
     /* background-color: skyblue; */
     margin-bottom: 2vh;
 }
@@ -71,5 +86,4 @@
 .imageupload__previewPic {
     max-height: 45vh;
     margin-bottom: 2vh;
-
 }

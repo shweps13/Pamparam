@@ -77,9 +77,7 @@ function ImageUpload({ username }) {
         <div className='imageupload'>
 
             <h1>Post image</h1>
-            {/* <div className='imageupload__progress'>
-                <ProgressBar value={progress} />
-            </div> */}
+
             
             {preview !== null ?
                 <div className='imageupload__preview'>
@@ -90,43 +88,47 @@ function ImageUpload({ username }) {
                     <img src={previewHolder} className='imageupload__placeholderPic' alt="Place of preview image"/>
                 </div>}
             
-            <div className='imageupload__input'>
-                <TextField
-                    id="outlined-multiline-static"
-                    label="Enter a caption"
-                    multiline
-                    fullWidth={true}
-                    color='primary'
-                    rowsMax={5}
-                    variant="outlined"
-                    value={caption}
-                    onChange={event => setCaption(event.target.value)} 
-                />
-            </div>
-            
-            <div className='imageupload__file'>
-                <label htmlFor="upload-photo">
-                    <input type="file" 
-                        style={{ display: 'none' }}
-                        id="upload-photo"  
-                        accept="image/*" 
-                        onChange={handleChange} 
+            <div className='imageupload__bottomBlock'>
+                <div className='imageupload__input'>
+                    <TextField
+                        id="outlined-multiline-static"
+                        label="Enter a caption"
+                        multiline
+                        fullWidth={true}
+                        color='primary'
+                        rowsMax={5}
+                        variant="outlined"
+                        value={caption}
+                        onChange={event => setCaption(event.target.value)} 
                     />
-                    <Button variant="contained" size="small" component="span">
-                        Choose picture
-                    </Button>
-                </label>
+                </div>
+                
+                <div className='imageupload__file'>
+                    <label htmlFor="upload-photo">
+                        <input type="file" 
+                            style={{ display: 'none' }}
+                            id="upload-photo"  
+                            accept="image/*" 
+                            onChange={handleChange} 
+                        />
+                        <Button variant="contained" size="small" component="span">
+                            Choose picture
+                        </Button>
+                    </label>
+                </div>
+            
+                <Button color="secondary" 
+                    variant="contained" 
+                    component="span" 
+                    size="large"
+                    onClick={handleUpload}>
+                    Upload
+                </Button>
+
             </div>
 
 
-            <Button color="secondary" 
-                variant="contained" 
-                component="span" 
-                size="large"
-                onClick={handleUpload}
-            >
-                Upload
-            </Button>
+
             
         </div>
     )
