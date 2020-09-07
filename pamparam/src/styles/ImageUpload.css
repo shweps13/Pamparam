@@ -22,7 +22,7 @@
     /* background-color: gray; */
 }
 
-/* Stiles for the persenatage of progress */
+/* Styles for the persenatage of progress */
 #root > div > div.loader > div > div > div > div > div {
     font-size: large;
 }

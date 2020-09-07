@@ -44,7 +44,14 @@ function ImageUpload({ username }) {
             return false
         } else
         if (e.target.files[0]) {
-            setImage(e.target.files[0]);
+            // change original name to unique (to avoid issues in storage)
+            var fileType = e.target.files[0].name.split('.').map((type) => {return type.trim()}); // extracting name and type
+            var newFileName = fileType[0] + '_' + Math.round(new Date().getTime()/1000); // adding timestamp to the old file name
+            var blob = e.target.files[0].slice(0, e.target.files[0].size, `image/${fileType[1]}`);  // destruct old file
+            var fileToUpload = new File([blob], `${newFileName}.${fileType[1]}`, {type: `image/${fileType[1]}`}); // new file with new name and the same type
+            console.log(fileToUpload)
+
+            setImage(fileToUpload);
             // preview functions
             let reader = new FileReader()
             reader.addEventListener('load', () => {
