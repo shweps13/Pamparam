@@ -27,7 +27,23 @@
 
 .imageupload__file {
     margin-top: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
     display: flex;
     justify-content: center;
+}
+
+.loader_loginMessage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 70%;
+    height: 85vh;
+    margin: auto;
+    text-align: center;
+}
+
+.loader_loginMessageCat {
+    border-radius: 50%;
+    width: 20vh;
+    margin: 5vh auto;
 }

@@ -91,14 +91,21 @@ function ImageUpload({ username }) {
                         accept="image/*" 
                         onChange={handleChange} 
                     />
-                    <Button variant="contained" component="span">
+                    <Button variant="contained" size="small" component="span">
                         Choose picture
                     </Button>
                 </label>
             </div>
 
 
-            <Button onClick={handleUpload}>Upload</Button>
+            <Button color="secondary" 
+                variant="contained" 
+                component="span" 
+                size="large"
+                onClick={handleUpload}
+            >
+                Upload
+            </Button>
             
         </div>
     )

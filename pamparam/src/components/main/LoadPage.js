@@ -1,6 +1,8 @@
 import React, {useEffect} from 'react';
 import { useLocation } from 'react-router-dom';
+import loginPic from '../../materials/loginPlease.jpg';
 import ImageUpload from './ImageUpload.js';
+
 
 function LoadPage({ user, setLocal }) {
     let location = useLocation()
@@ -16,7 +18,10 @@ function LoadPage({ user, setLocal }) {
         {user?.displayName ? (
             <ImageUpload username={user.displayName} />
         ): (
-            <h3>Login to upload</h3>
+            <div className="loader_loginMessage"> 
+                <img src={loginPic} className="loader_loginMessageCat" alt="Cat asking you to login"/>
+                <h2>Login to post your pics</h2>
+            </div>
         )}
     </div>
     )

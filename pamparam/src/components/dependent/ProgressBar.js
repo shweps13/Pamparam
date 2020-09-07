@@ -35,9 +35,5 @@ CircularProgressWithLabel.propTypes = {
 };
 
 export default function CircularStatic(props) {
-  return <CircularProgressWithLabel value={85} />;
+  return <CircularProgressWithLabel value={props.value} />;
 }
-
-// export default function CircularStatic(props) {
-//   return <CircularProgressWithLabel value={props.value} />;
-// }
