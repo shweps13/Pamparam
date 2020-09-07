@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import firebase from 'firebase';
 import { Button } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 import { db, storage } from '../../materials/firebase.js';
 import '../../styles/ImageUpload.css';
 
@@ -67,8 +68,36 @@ function ImageUpload({ username }) {
             <div className='imageupload__progress'>
                 <ProgressBar value={progress} />
             </div>
-            <input type="text" placeholder='Enter a caption' onChange={event => setCaption(event.target.value)} value={caption}/>
-            <input type="file" onChange={handleChange} />
+
+            <div className='imageupload__input'>
+                <TextField
+                    id="outlined-multiline-static"
+                    label="Enter a caption"
+                    multiline
+                    fullWidth={true}
+                    color='primary'
+                    rowsMax={5}
+                    variant="outlined"
+                    value={caption}
+                    onChange={event => setCaption(event.target.value)} 
+                />
+            </div>
+            
+            <div className='imageupload__file'>
+                <label htmlFor="upload-photo">
+                    <input type="file" 
+                        style={{ display: 'none' }}
+                        id="upload-photo"  
+                        accept="image/*" 
+                        onChange={handleChange} 
+                    />
+                    <Button variant="contained" component="span">
+                        Choose picture
+                    </Button>
+                </label>
+            </div>
+
+
             <Button onClick={handleUpload}>Upload</Button>
             
         </div>

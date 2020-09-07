@@ -19,3 +19,15 @@
 #root > div > div.loader > div > div > div > div > div {
     font-size: larger;
 }
+
+.imageupload__input, .imageupload__file {
+    width: 100%;
+    /* background-color: gray; */
+}
+
+.imageupload__file {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+}
