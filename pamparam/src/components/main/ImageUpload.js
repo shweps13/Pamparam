@@ -87,6 +87,10 @@ function ImageUpload({ username }) {
                 <div className='imageupload__placeholder'>
                     <img src={previewHolder} className='imageupload__placeholderPic' alt="Place of preview image"/>
                 </div>}
+
+            <div className='imageupload__progress'>
+                <ProgressBar value={progress} />
+            </div>
             
             <div className='imageupload__bottomBlock'>
                 <div className='imageupload__input'>
@@ -96,7 +100,7 @@ function ImageUpload({ username }) {
                         multiline
                         fullWidth={true}
                         color='primary'
-                        rowsMax={5}
+                        rowsMax={3}
                         variant="outlined"
                         value={caption}
                         onChange={event => setCaption(event.target.value)} 

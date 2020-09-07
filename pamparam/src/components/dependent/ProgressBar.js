@@ -7,7 +7,7 @@ import Box from '@material-ui/core/Box';
 function CircularProgressWithLabel(props) {
   return (
     <Box position="relative" display="inline-flex">
-      <CircularProgress size={190} thickness={4} color='secondary' variant="static" {...props} />
+      <CircularProgress size={70} thickness={4} color='secondary' variant="static" {...props} />
       <Box
         top={0}
         left={0}
@@ -35,5 +35,5 @@ CircularProgressWithLabel.propTypes = {
 };
 
 export default function CircularStatic(props) {
-  return <CircularProgressWithLabel value={85} />;
+  return <CircularProgressWithLabel value={props.value} />;
 }

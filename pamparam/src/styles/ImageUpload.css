@@ -18,13 +18,13 @@
     display: flex;
     justify-content: center;
     /* padding: 10vh 0; */
-    margin: 10vh 0;
+    margin: 1vh 0;
     /* background-color: gray; */
 }
 
 /* Stiles for the persenatage of progress */
 #root > div > div.loader > div > div > div > div > div {
-    font-size: larger;
+    font-size: large;
 }
 
 .imageupload__input, .imageupload__file {
