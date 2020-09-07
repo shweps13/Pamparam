@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 import Main from '../main/Main.js';
 import Messenger from '../main/Messenger.js';
@@ -17,13 +17,13 @@ function Routes({ Route, Redirect, setLocal, user, username }) {
         <Route exact path="/feed"
             render={() => (
 							<Main
-                username={username} user={user} setLocal={setLocal}
+                user={user} setLocal={setLocal}
 							/>
 						)} />
         <Route exact path="/post"
             render={() => (
 							<LoadPage
-                setLocal={setLocal}
+                username={username} user={user} setLocal={setLocal}
 							/>
 						)} />
 

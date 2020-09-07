@@ -23,3 +23,17 @@ const storage = firebaseApp.storage();
 
 export { db, auth, storage };
 =======
+
+Receiving data from DB, based on snapshot condition:
+
+useEffect(() => {
+  // sorting our images with .orderBy
+  db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
+    // pull data everytime when new post was added to the DB
+    console.log('Here!!!')
+    setPosts(snapshot.docs.map(doc => ({
+      id: doc.id,
+      post: doc.data()
+    })));
+  })
+}, []);

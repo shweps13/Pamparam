@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../../styles/Main.css';
 import Post from './Post.js';
-import { db } from '../../materials/firebase'
-import ImageUpload from './ImageUpload.js';
+import { db } from '../../materials/firebase';
 import { useLocation } from 'react-router-dom';
 
 function Main({ user, setLocal }) {
@@ -12,15 +11,14 @@ function Main({ user, setLocal }) {
   // Pool data from the Firebase DB
   useEffect(() => {
     // sorting our images with .orderBy
-    db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
-      // pull data everytime when new post was added to the DB
+    db.collection('posts').orderBy('timestamp', 'desc').get().then(snapshot => {
+      // receiving all data from 'posts' collection
       setPosts(snapshot.docs.map(doc => ({
         id: doc.id,
         post: doc.data()
       })));
     })
   }, []);
-
 
   useEffect(
     () => {
@@ -38,14 +36,6 @@ function Main({ user, setLocal }) {
           ))
         }
       </div>
-      
-      {user?.displayName ? (
-        <ImageUpload username={user.displayName} />
-      ): (
-        <h3>Login to upload</h3>
-      )}
-
-
     </div>
   );
 }
