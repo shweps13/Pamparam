@@ -12,11 +12,19 @@ function ImageUpload({ username }) {
     const [caption, setCaption] = useState('');
     const [progress, setProgress] = useState(0);
     const [image, setImage] = useState(null);
+    const [preview, setPreview] = useState(null);
 
     // get the first file that was selected and put in to the hook
     const handleChange = (e) => {
         if (e.target.files[0]) {
             setImage(e.target.files[0]);
+            let reader = new FileReader()
+            reader.addEventListener('load', () => {
+                console.log(reader.result)
+                setPreview(reader.result)
+            }, false)
+
+            reader.readAsDataURL(e.target.files[0])
         }
     }
 
@@ -68,7 +76,8 @@ function ImageUpload({ username }) {
             <div className='imageupload__progress'>
                 <ProgressBar value={progress} />
             </div>
-
+            <img src={preview} alt="Cat asking you to login"/>
+            
             <div className='imageupload__input'>
                 <TextField
                     id="outlined-multiline-static"
