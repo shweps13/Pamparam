@@ -1,12 +1,21 @@
 .imageupload {
     display: flex;
     flex-direction: column;
-    width: 65%;
-    margin: 10px auto;
-    background-color: white;
+    align-items: center;
+    width: 66%;
+    margin: 10vh auto;
+    background-color: #fafafa;
+    /* border: 1px solid gray; */
 }
 
 .imageupload__progress {
     width: 100%;
-    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    padding: 20vh 0;
+}
+
+/* Stiles for the persenatage of progress */
+#root > div > div.loader > div > div > div > div > div {
+    font-size: larger;
 }
