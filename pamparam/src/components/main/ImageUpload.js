@@ -7,7 +7,6 @@ import '../../styles/ImageUpload.css';
 import previewHolder from '../../materials/previewHolder.png';
 import { FaCheckCircle } from 'react-icons/fa';
 
-
 import ProgressBar from '../dependent/ProgressBar.js';
 
 
@@ -19,8 +18,31 @@ function ImageUpload({ username }) {
     const [loading, setLoading] = useState(false);
     const [done, setDone] = useState(false);
 
+    // file verification block
+    const fileMaxSize = 25000000; // in bytes
+    const fileTypes = 'image/x-png, image/png, image/jpg, image/jpeg, image/gif';
+    const fileTypesArr = fileTypes.split(',').map((type) => {return type.trim()});
+
+    const verifyFile = (file) => {
+        if (file) {
+            if (file.size > fileMaxSize) {
+                alert('This file is not allowed. ' + file.size + 'bytes is too large.')
+                return false
+            }
+            if (!fileTypesArr.includes(file.type)) {
+                alert('This file is not allowed. Only images are allowed.')
+                return false
+            }
+            return true
+        }
+    }
+
     // get the first file that was selected and put in to the hook
     const handleChange = (e) => {
+
+        if (verifyFile(e.target.files[0]) === false) {
+            return false
+        } else
         if (e.target.files[0]) {
             setImage(e.target.files[0]);
             // preview functions
@@ -130,7 +152,7 @@ function ImageUpload({ username }) {
                         <input type="file" 
                             style={{ display: 'none' }}
                             id="upload-photo"  
-                            accept="image/*" 
+                            accept="image/*"
                             onChange={handleChange} 
                         />
                         <Button variant="contained" size="small" component="span">
