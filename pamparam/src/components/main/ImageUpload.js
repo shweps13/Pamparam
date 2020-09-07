@@ -4,6 +4,7 @@ import { Button } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { db, storage } from '../../materials/firebase.js';
 import '../../styles/ImageUpload.css';
+import previewHolder from '../../materials/previewHolder.png';
 
 import ProgressBar from '../dependent/ProgressBar.js';
 
@@ -18,9 +19,10 @@ function ImageUpload({ username }) {
     const handleChange = (e) => {
         if (e.target.files[0]) {
             setImage(e.target.files[0]);
+            // preview functions
             let reader = new FileReader()
             reader.addEventListener('load', () => {
-                console.log(reader.result)
+                // console.log(reader.result)
                 setPreview(reader.result)
             }, false)
 
@@ -73,10 +75,20 @@ function ImageUpload({ username }) {
 
     return (
         <div className='imageupload'>
-            <div className='imageupload__progress'>
+
+            <h1>Post image</h1>
+            {/* <div className='imageupload__progress'>
                 <ProgressBar value={progress} />
-            </div>
-            <img src={preview} alt="Cat asking you to login"/>
+            </div> */}
+            
+            {preview !== null ?
+                <div className='imageupload__preview'>
+                    <img src={preview} className='imageupload__previewPic' alt="Preview image"/>
+                </div>
+                    : 
+                <div className='imageupload__placeholder'>
+                    <img src={previewHolder} className='imageupload__placeholderPic' alt="Place of preview image"/>
+                </div>}
             
             <div className='imageupload__input'>
                 <TextField
