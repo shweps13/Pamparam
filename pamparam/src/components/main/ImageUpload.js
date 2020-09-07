@@ -5,6 +5,8 @@ import TextField from '@material-ui/core/TextField';
 import { db, storage } from '../../materials/firebase.js';
 import '../../styles/ImageUpload.css';
 import previewHolder from '../../materials/previewHolder.png';
+import { FaCheckCircle } from 'react-icons/fa';
+
 
 import ProgressBar from '../dependent/ProgressBar.js';
 
@@ -14,6 +16,8 @@ function ImageUpload({ username }) {
     const [progress, setProgress] = useState(0);
     const [image, setImage] = useState(null);
     const [preview, setPreview] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [done, setDone] = useState(false);
 
     // get the first file that was selected and put in to the hook
     const handleChange = (e) => {
@@ -31,6 +35,7 @@ function ImageUpload({ username }) {
     }
 
     const handleUpload = (e) => {
+        setLoading(true)
         // get reference from firebase and put there image
         const uploadTask = storage.ref(`images/${image.name}`).put(image);
 
@@ -62,11 +67,15 @@ function ImageUpload({ username }) {
                             imageUrl: url,
                             username: username
                         })
+                    .then(() => {
+                        setDone(true)
+                    })
 
                         // cleaning load form after process
                         setProgress(0);
                         setCaption('');
                         setImage(null);
+                        setLoading(false);
                     })
             }
         )
@@ -81,16 +90,25 @@ function ImageUpload({ username }) {
             
             {preview !== null ?
                 <div className='imageupload__preview'>
-                    <img src={preview} className='imageupload__previewPic' alt="Preview image"/>
+                    <img src={preview} className='imageupload__previewPic' alt="Preview"/>
                 </div>
                     : 
                 <div className='imageupload__placeholder'>
-                    <img src={previewHolder} className='imageupload__placeholderPic' alt="Place of preview image"/>
+                    <img src={previewHolder} className='imageupload__placeholderPic' alt="Place of preview"/>
                 </div>}
-
-            <div className='imageupload__progress'>
-                <ProgressBar value={progress} />
-            </div>
+            
+            {loading === true ?
+                <div className='imageupload__progress'>
+                    <ProgressBar value={progress} />
+                </div>
+                    : ''}
+            
+            {done === true ?
+                <div className='imageupload__done'>
+                    <FaCheckCircle className='imageupload__doneIcon' size={40}/>
+                    <h3>Picture uploaded!</h3>
+                </div>
+                    : ''}
             
             <div className='imageupload__bottomBlock'>
                 <div className='imageupload__input'>

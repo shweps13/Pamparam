@@ -87,3 +87,21 @@
     max-height: 45vh;
     margin-bottom: 2vh;
 }
+
+.imageupload__done {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    text-align: center;
+}
+
+.imageupload__done h3{
+    color: green;
+}
+
+.imageupload__doneIcon {
+    margin: auto;
+    color: green;
+    padding-bottom: 5px;
+}
