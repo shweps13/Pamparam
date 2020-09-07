@@ -89,6 +89,7 @@
 }
 
 .imageupload__done {
+    padding-top: 2vh;
     display: flex;
     flex-direction: column;
     justify-content: center;

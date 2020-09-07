@@ -57,6 +57,15 @@ function ImageUpload({ username }) {
     }
 
     const handleUpload = (e) => {
+        if (image === null) {
+            alert('You need to choose file before uploading.')
+            return false
+        } else
+        if (caption === '') {
+            alert('Do not leave caption field empty.')
+            return false
+        } else
+
         setLoading(true)
         // get reference from firebase and put there image
         const uploadTask = storage.ref(`images/${image.name}`).put(image);
