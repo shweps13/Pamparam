@@ -6,6 +6,7 @@ import { db, storage } from '../../materials/firebase.js';
 import '../../styles/ImageUpload.css';
 import previewHolder from '../../materials/previewHolder.png';
 import { FaCheckCircle } from 'react-icons/fa';
+import { useHistory } from "react-router-dom";
 
 import ProgressBar from '../dependent/ProgressBar.js';
 
@@ -17,6 +18,12 @@ function ImageUpload({ username }) {
     const [preview, setPreview] = useState(null);
     const [loading, setLoading] = useState(false);
     const [done, setDone] = useState(false);
+
+    // redirect function to main component after image posting
+    let history = useHistory();
+    const redirect = () => {
+        return history.push("/feed");
+    }
 
     // file verification block
     const fileMaxSize = 25000000; // in bytes
@@ -114,6 +121,7 @@ function ImageUpload({ username }) {
                         setCaption('');
                         setImage(null);
                         setLoading(false);
+                        setTimeout(redirect, 1500); // redirect func exec here
                     })
             }
         )
