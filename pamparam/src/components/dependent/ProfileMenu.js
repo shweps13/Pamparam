@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { CgProfile } from 'react-icons/cg';
-
+import '../../styles/ProfileMenu.css'
 
 class Card extends Component {
   constructor() {
@@ -22,10 +22,15 @@ class Card extends Component {
     });
   }
   
-  closeMenu() {
-    this.setState({ showMenu: false }, () => {
-      document.removeEventListener('click', this.closeMenu);
-    });
+  closeMenu(event) {
+    
+    if (!this.dropdownMenu.contains(event.target)) {
+      
+      this.setState({ showMenu: false }, () => {
+        document.removeEventListener('click', this.closeMenu);
+      });  
+      
+    }
   }
 
   render() {
@@ -36,10 +41,16 @@ class Card extends Component {
         {
           this.state.showMenu
             ? (
-              <div className="menu">
-                <button> Menu item 1 </button>
-                <button> Menu item 2 </button>
-                <button> Menu item 3 </button>
+              <div
+                className="profileDropMenu"
+                ref={(element) => {
+                  this.dropdownMenu = element;
+                }}> 
+                <div className="profileDropMenu__pop">   
+                    <div> <p>Menu item 1</p> </div>
+                    <div> <p>Menu item 2</p> </div>
+                    <div> <p>Menu item 3</p> </div>
+                </div>
               </div>
             )
             : (

@@ -1,0 +1,16 @@
+.profileDropMenu__pop {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    background-color: white;
+    margin: 1vh 0 0 70px;
+    padding: 5px;
+    width: 20vh;
+    border-radius: 6px;
+    border: 1px solid lightgray;
+}
+.profileDropMenu__pop div {
+    /* background-color: floralwhite; */
+    padding: 8px 16px;
+    text-align: left;
+}
