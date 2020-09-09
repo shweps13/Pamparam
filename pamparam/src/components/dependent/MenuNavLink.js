@@ -57,7 +57,7 @@ function MenuNavLink({ setOpenSignIn, setOpen, user, local, NavLink }) {
                 <AiOutlineHeart size={25} /> 
             )}
         </NavLink> 
-        <ProfileMenu setOpenSignIn={setOpenSignIn} setOpen={setOpen} user={user} />
+        <ProfileMenu NavLink={NavLink} setOpenSignIn={setOpenSignIn} setOpen={setOpen} user={user} />
       </div>
     )
 }
