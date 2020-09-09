@@ -56,29 +56,29 @@ class Card extends Component {
                     <div>
                         {this.props.user ? (
                             <div className="profileDropMenu__popLogged">
-                                <div>
                                     <this.props.NavLink 
                                         to="/profile">
-                                        <CgProfile size={20}/>
-                                        Profile
+                                        <div>
+                                            <CgProfile size={20}/>
+                                            Profile
+                                        </div>
                                     </this.props.NavLink> 
-                                </div>
-                                <div>
                                     <this.props.NavLink 
                                         to="/profile">
-                                        <RiFlag2Line size={20}/>
-                                        Saved
+                                        <div>
+                                            <RiFlag2Line size={20}/>
+                                            Saved
+                                        </div>
                                     </this.props.NavLink> 
-                                </div>
-                                <div>
                                     <this.props.NavLink 
                                         to="/profile">
-                                        <RiSettings3Line size={20}/>
-                                        Settings
+                                        <div>
+                                            <RiSettings3Line size={20}/>
+                                            Settings
+                                        </div>
                                     </this.props.NavLink> 
-                                    </div>
-                                <div>
-                                <Button onClick={() => auth.signOut()}>Logout</Button>
+                                <div onClick={() => auth.signOut()}>
+                                    Logout
                                 </div>
                                 
                             </div>

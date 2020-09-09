@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Redirect, NavLink, Switch } from "react-router-dom";
-import { Button } from '@material-ui/core';
 import { auth } from './materials/firebase';
 
 import MenuNavLink from './components/dependent/MenuNavLink.js';
