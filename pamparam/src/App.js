@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Redirect, NavLink, Switch } from "react-router-dom";
-import { auth } from './materials/firebase';
+import { auth, db } from './materials/firebase';
+import firebase from 'firebase';
 
 import MenuNavLink from './components/dependent/MenuNavLink.js';
 import Routes from './components/dependent/Routes.js'
@@ -48,14 +49,33 @@ function App() {
     setUsername('')
   }
 
+  const signUpDB = (userID, email, username) => {
+    db.collection('users').doc(userID).set({
+      userID: userID,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      username: username,
+      photoURL: null,
+      email: email,
+    });
+  }
+
   const signUp = (event) => {
     event.preventDefault();
     auth
       .createUserWithEmailAndPassword(email, password)
+      // .then(signUpDB(userID, email))
       .then((authUser) => {
         return authUser.user.updateProfile({
           displayName: username
         })
+      })
+      .then(() => {
+        firebase.auth().onAuthStateChanged((authUser) => {
+          if (authUser) {
+            // Creating collection with user data in db
+            signUpDB(authUser.uid, authUser.email, authUser.displayName)
+          } 
+        });
       })
       .catch((error) => alert(error.message));
     setOpen(false);
