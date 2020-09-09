@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { CgProfile } from 'react-icons/cg';
-import '../../styles/ProfileMenu.css'
+import '../../styles/ProfileMenu.css';
+import { Button } from '@material-ui/core';
+import { auth } from '../../materials/firebase';
+
+
 
 class Card extends Component {
   constructor() {
@@ -32,7 +36,7 @@ class Card extends Component {
       
     }
   }
-
+  
   render() {
     return (
       <>
@@ -48,7 +52,15 @@ class Card extends Component {
                 }}> 
                 <div className="profileDropMenu__pop">  
                     <div className="profileDropMenu__popCorner"></div> 
-                    <div> 
+                        <div> 
+                            {this.props.user ? (
+                                <Button onClick={() => auth.signOut()}>Logout</Button>
+                            ):(
+                            <div className="main__loginContainer">
+                                <Button onClick={() => this.props.setOpenSignIn(true)}>Sign In</Button>
+                                <Button onClick={() => this.props.setOpen(true)}>Sign Up</Button>
+                            </div>
+                            )}
                         <p>Menu item 1</p>
                         <p>Menu item 2</p>
                         <p>Menu item 3</p> 

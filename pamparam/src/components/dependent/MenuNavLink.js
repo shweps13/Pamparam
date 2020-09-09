@@ -6,7 +6,7 @@ import { AiOutlineHome, AiFillHome, AiOutlineHeart, AiFillHeart, AiOutlineCompas
 
 import ProfileMenu from './ProfileMenu.js';
 
-function MenuNavLink({ local, NavLink }) {
+function MenuNavLink({ setOpenSignIn, setOpen, user, local, NavLink }) {
 
     return (
         <div className="app__headerButtons">  
@@ -57,7 +57,7 @@ function MenuNavLink({ local, NavLink }) {
                 <AiOutlineHeart size={25} /> 
             )}
         </NavLink> 
-        <ProfileMenu />
+        <ProfileMenu setOpenSignIn={setOpenSignIn} setOpen={setOpen} user={user} />
       </div>
     )
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Redirect, NavLink, Switch } from "react-router-dom";
 import { Button } from '@material-ui/core';
-import { auth } from './materials/firebase'
+import { auth } from './materials/firebase';
 
 import MenuNavLink from './components/dependent/MenuNavLink.js';
 import Routes from './components/dependent/Routes.js'
@@ -10,7 +10,7 @@ import Routes from './components/dependent/Routes.js'
 import { getModalStyle, useStyles } from './materials/modalStyles.js';
 import ModalSignup from './components/dependent/ModalSignup.js';
 import ModalSignin from './components/dependent/ModalSignin.js';
-import logo from './materials/logo.png'
+import logo from './materials/logo.png';
 
 
 function App() {
@@ -85,16 +85,8 @@ function App() {
           <ModalSignin openSignIn={openSignIn} setOpenSignIn={setOpenSignIn} modalStyle={modalStyle} classesStyle={classes.paper} email={email} setEmail={setEmail} password={password} setPassword={setPassword} signIn={signIn} />
           <img src={logo} className="app__headerImage" alt="logo"/>
           
-          <MenuNavLink local={local} NavLink={NavLink} />
+          <MenuNavLink setOpenSignIn={setOpenSignIn} setOpen={setOpen} user={user} local={local} NavLink={NavLink} />
           
-        {user ? (
-          <Button onClick={() => auth.signOut()}>Logout</Button>
-        ):(
-          <div className="main__loginContainer">
-            <Button onClick={() => setOpenSignIn(true)}>Sign In</Button>
-            <Button onClick={() => setOpen(true)}>Sign Up</Button>
-          </div>
-        )}
         </div>
 
         <Routes Switch={Switch} Route={Route} Redirect={Redirect} setLocal={setLocal} user={user} username={username} />
