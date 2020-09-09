@@ -5,6 +5,7 @@ import Messenger from '../main/Messenger.js';
 import Discover from '../main/Discover.js';
 import LikePage from '../main/LikePage.js';
 import LoadPage from '../main/LoadPage.js';
+import Profile from '../main/Profile.js';
 import NotFound from './NotFound.js';
 
 function Routes({ Route, Redirect, Switch, setLocal, user, username }) {
@@ -42,6 +43,12 @@ function Routes({ Route, Redirect, Switch, setLocal, user, username }) {
         <Route exact path="/likes"
             render={() => (
               <LikePage
+                setLocal={setLocal}
+              />
+            )} />
+        <Route exact path="/profile"
+            render={() => (
+              <Profile
                 setLocal={setLocal}
               />
             )} />
