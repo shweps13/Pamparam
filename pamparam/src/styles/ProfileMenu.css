@@ -54,4 +54,11 @@
 
 .profileDropMenu__popLogged div:hover{
     background-color: rgb(247, 247, 247);
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.profileDropMenu__popLogged div:nth-child(1):hover{
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
 }
