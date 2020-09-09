@@ -6,6 +6,7 @@ import Discover from '../main/Discover.js';
 import LikePage from '../main/LikePage.js';
 import LoadPage from '../main/LoadPage.js';
 import Profile from '../main/Profile.js';
+import ProfileSettings from '../main/ProfileSettings.js';
 import NotFound from './NotFound.js';
 
 function Routes({ Route, Redirect, Switch, setLocal, user, username }) {
@@ -52,6 +53,9 @@ function Routes({ Route, Redirect, Switch, setLocal, user, username }) {
                 setLocal={setLocal}
               />
             )} />
+        <Route exact path="/settings">
+            <ProfileSettings />
+        </Route>
         <Route path="*">
             <NotFound />
         </Route>

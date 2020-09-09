@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '../../styles/ProfileMenu.css';
-import { Button } from '@material-ui/core';
 import { auth } from '../../materials/firebase';
 
 import { CgProfile } from 'react-icons/cg';
@@ -41,7 +40,7 @@ class Card extends Component {
   render() {
     return (
       <>
-        <CgProfile size={25} onClick={this.showMenu}/>
+        <CgProfile style={{cursor: "pointer"}} size={25} onClick={this.showMenu}/>
         
         {
           this.state.showMenu
@@ -71,7 +70,7 @@ class Card extends Component {
                                         </div>
                                     </this.props.NavLink> 
                                     <this.props.NavLink 
-                                        to="/profile">
+                                        to="/settings">
                                         <div>
                                             <RiSettings3Line size={20}/>
                                             Settings
@@ -83,9 +82,9 @@ class Card extends Component {
                                 
                             </div>
                         ):(
-                        <div className="profileDropMenu__popNotLogged">
-                            <Button onClick={() => this.props.setOpenSignIn(true)}>Sign In</Button>
-                            <Button onClick={() => this.props.setOpen(true)}>Sign Up</Button>
+                        <div className="profileDropMenu__popLogged">
+                            <div style={{cursor: "pointer"}} onClick={() => this.props.setOpenSignIn(true)}>Sign In</div>
+                            <div style={{cursor: "pointer"}} onClick={() => this.props.setOpen(true)}>Sign Up</div>
                         </div>
                         )}
                     </div>
