@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { CgProfile } from 'react-icons/cg';
 import { RiSendPlaneLine, RiSendPlaneFill } from 'react-icons/ri';
 import { BsPlusCircle, BsPlusCircleFill } from 'react-icons/bs';
 import { AiOutlineHome, AiFillHome, AiOutlineHeart, AiFillHeart, AiOutlineCompass, AiFillCompass} from 'react-icons/ai';
 
+import ProfileMenu from './ProfileMenu.js';
 
 function MenuNavLink({ local, NavLink }) {
 
@@ -57,7 +57,7 @@ function MenuNavLink({ local, NavLink }) {
                 <AiOutlineHeart size={25} /> 
             )}
         </NavLink> 
-        <CgProfile size={25} />
+        <ProfileMenu />
       </div>
     )
 }
