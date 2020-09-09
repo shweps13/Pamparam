@@ -7,10 +7,10 @@ import LikePage from '../main/LikePage.js';
 import LoadPage from '../main/LoadPage.js';
 import NotFound from './NotFound.js';
 
-function Routes({ Route, Redirect, setLocal, user, username }) {
+function Routes({ Route, Redirect, Switch, setLocal, user, username }) {
     
     return (
-    <>
+    <Switch>
         <Route exact path="/">
           <Redirect to="/feed" />
         </Route>
@@ -45,7 +45,10 @@ function Routes({ Route, Redirect, setLocal, user, username }) {
                 setLocal={setLocal}
               />
             )} />
-    </>
+        <Route path="*">
+            <NotFound />
+        </Route>
+    </Switch>
     )
 }
 

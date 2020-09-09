@@ -56,7 +56,7 @@ function ImageUpload({ username }) {
             var newFileName = fileType[0] + '_' + Math.round(new Date().getTime()/1000); // adding timestamp to the old file name
             var blob = e.target.files[0].slice(0, e.target.files[0].size, `image/${fileType[1]}`);  // destruct old file
             var fileToUpload = new File([blob], `${newFileName}.${fileType[1]}`, {type: `image/${fileType[1]}`}); // new file with new name and the same type
-            console.log(fileToUpload)
+            // console.log(fileToUpload)
 
             setImage(fileToUpload);
             // preview functions

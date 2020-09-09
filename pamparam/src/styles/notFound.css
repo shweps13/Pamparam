@@ -1,0 +1,16 @@
+.notFound {
+    /* background-color: greenyellow; */
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 75%;
+    height: 80vh;
+    margin: 0 auto; 
+    text-align: center;
+}
+
+.notFound__image {
+    max-height: 25vh;
+    object-fit: contain;
+    padding-bottom: 2vh;
+}
