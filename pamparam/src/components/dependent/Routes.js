@@ -53,9 +53,12 @@ function Routes({ Route, Redirect, Switch, setLocal, user, username }) {
                 setLocal={setLocal}
               />
             )} />
-        <Route exact path="/settings">
-            <ProfileSettings />
-        </Route>
+        <Route exact path="/settings"
+            render={() => (
+              <ProfileSettings
+                setLocal={setLocal} user={user}
+              />
+            )} />
         <Route path="*">
             <NotFound />
         </Route>
