@@ -46,10 +46,13 @@ class Card extends Component {
                 ref={(element) => {
                   this.dropdownMenu = element;
                 }}> 
-                <div className="profileDropMenu__pop">   
-                    <div> <p>Menu item 1</p> </div>
-                    <div> <p>Menu item 2</p> </div>
-                    <div> <p>Menu item 3</p> </div>
+                <div className="profileDropMenu__pop">  
+                    <div className="profileDropMenu__popCorner"></div> 
+                    <div> 
+                        <p>Menu item 1</p>
+                        <p>Menu item 2</p>
+                        <p>Menu item 3</p> 
+                    </div>
                 </div>
               </div>
             )
