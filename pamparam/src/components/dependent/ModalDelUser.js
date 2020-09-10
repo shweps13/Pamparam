@@ -1,7 +1,6 @@
 import React from 'react'
-import logo from '../../materials/logo.png';
+import deleteImg from '../../materials/userDelete.jpg';
 import Modal from '@material-ui/core/Modal';
-import { Button } from '@material-ui/core';
 import '../../styles/Modal.css'
 
 
@@ -15,10 +14,16 @@ function ModalDelUser({ openDel, setOpenDel, modalStyle, classesStyle }) {
     return (
         <Modal open={openDel} onClose={() => setOpenDel(false)}>
         <div style={modalStyle} className={classesStyle}>
-          <center>
-            <img src={logo} className="modal__modalImage" alt="logo"/>
-          </center>
-            <Button type="submit" onClick={delAction}>Sign In</Button>
+            <center>
+                <img src={deleteImg} className="modal__deleteImg" alt="logo"/>
+            </center>
+            <div className="modal__body">
+                <h2>Are you sure?</h2>
+                <div className="modal__body__buttons">
+                    <button className="secBtn" type="submit" onClick={delAction}>Delete</button>
+                    <button className="thirdBtn" onClick={()=>{setOpenDel(false)}}>Cancel</button>
+                </div>
+            </div>
         </div>
       </Modal>
     )

@@ -1,6 +1,15 @@
+  div:focus {outline: 0;} /* fixing blue borders in modal divs */
+  
   .modal__modalImage {
     padding-top: 3%;
     width: 50%;
+  }
+
+  .modal__deleteImg {
+    max-height: 15vh;
+    border-radius: 50%;
+    margin-bottom: 2vh;
+    margin-top: 2vh;
   }
   
   .modal__signup {
@@ -9,3 +18,23 @@
     text-align: center;
     padding: 10% 10% 0 10%;
   }
+
+  .modal__body {
+    /* background-color: lightgreen; */
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 1vh auto;
+  }
+
+  .modal__body h2 {
+    margin-bottom: 2vh;
+    text-align: center;
+  }
+
+  .modal__body__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  

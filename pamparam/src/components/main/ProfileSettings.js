@@ -136,7 +136,7 @@ function ProfileSettings({user}) {
                             value={newfullname}
                             onChange={(e) => setNewfullname(e.target.value)}
                             />
-                            <p>Help people discover your account by using the name you're known by: either your full name, nickname, or business name.</p>
+                            <p>Help people discover your account by using the name you're known.</p>
                         </div>
                     </Grid>
 
@@ -205,7 +205,7 @@ function ProfileSettings({user}) {
                     </Grid>
                     <Grid className="profileSet__leftColumn" item xs={5} />
                     <Grid className="profileSet__rightColumn" item xs={7}>
-                        <button>Submit</button>   
+                        <button className="mainBtn">Submit</button>   
                     </Grid>
 
                     <Grid className="profileSet__leftColumn" item xs={5}>
@@ -242,7 +242,7 @@ function ProfileSettings({user}) {
                     <Grid className="profileSet__leftColumn" item xs={5} />
                     <Grid className="profileSet__rightColumn" item xs={7}>
                         <div className="profileSet__changePass">
-                            <button type="submit" onClick={changePass}>Change</button>   
+                            <button className="mainBtn" type="submit" onClick={changePass}>Change</button>   
                             <button>Forgot password?</button>   
                         </div>
                     </Grid>
@@ -259,7 +259,7 @@ function ProfileSettings({user}) {
                         <label>Delete your account</label>
                     </Grid>
                     <Grid className="profileSet__rightColumn" item xs={7}>
-                        <button onClick={() => {setOpenDel(true)}}>Delete</button>   
+                        <button className="secBtn" onClick={() => {setOpenDel(true)}}>Delete</button>   
                     </Grid>
 
                     <ModalDelUser openDel={openDel} setOpenDel={setOpenDel} modalStyle={modalStyle} classesStyle={classes.paper} />
