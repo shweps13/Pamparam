@@ -1,12 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import userPic from '../../materials/loginPlease.jpg';
 import '../../styles/ProfileSettings.css';
 import firebase from 'firebase';
 import { auth, db } from '../../materials/firebase.js';
 
-
 import Grid from '@material-ui/core/Grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
+
+import ModalDelUser from '../../components/dependent/ModalDelUser.js';
+import { getModalStyle, useStyles } from '../../materials/modalStyles.js';
+
 
 
 function ProfileSettings({user}) {
@@ -21,6 +24,11 @@ function ProfileSettings({user}) {
     const [oldpass, setOldpass] = useState('');
     const [newpass, setNewpass] = useState('');
     const [checkNewpass, setCheckNewpass] = useState('');
+
+    const classes = useStyles();
+    const [modalStyle] = useState(getModalStyle);
+    const [openDel, setOpenDel] = useState(false);
+
 
 
     console.log(user)
@@ -83,6 +91,9 @@ function ProfileSettings({user}) {
         }
     }
 
+    const userDelete = () => {
+
+    }
 
     return (
     <div className="profileSet">
@@ -248,9 +259,10 @@ function ProfileSettings({user}) {
                         <label>Delete your account</label>
                     </Grid>
                     <Grid className="profileSet__rightColumn" item xs={7}>
-                        <button>Delete</button>   
+                        <button onClick={() => {setOpenDel(true)}}>Delete</button>   
                     </Grid>
 
+                    <ModalDelUser openDel={openDel} setOpenDel={setOpenDel} modalStyle={modalStyle} classesStyle={classes.paper} />
                 </Grid>
             )}
 
