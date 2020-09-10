@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import userPic from '../../materials/loginPlease.jpg';
 import '../../styles/ProfileSettings.css';
 import firebase from 'firebase';
@@ -10,14 +10,21 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 function ProfileSettings({user}) {
-    const [newUsername, setNewusername] = useState('')
-    
-    const [oldpass, setOldpass] = useState('')
-    const [newpass, setNewpass] = useState('')
-    const [checkNewpass, setCheckNewpass] = useState('')
+    const [newUsername, setNewusername] = useState('');
+    const [newfullname, setNewfullname] = useState('');
+    const [newpage, setNewpage] = useState('');
+    const [newbio, setNewbio] = useState('');
+    const [newemail, setNewemail] = useState('');
+    const [newphone, setNewphone] = useState('');
+    const [newgender, setNewgender] = useState('');
+
+    const [oldpass, setOldpass] = useState('');
+    const [newpass, setNewpass] = useState('');
+    const [checkNewpass, setCheckNewpass] = useState('');
 
 
     console.log(user)
+
     const cleanPass = () => {
         setOldpass('');
         setNewpass('');
@@ -99,7 +106,7 @@ function ProfileSettings({user}) {
                     <Grid className="profileSet__rightColumn" item xs={7}>
                         <div className="profileSet__rightBlock">
                             <input
-                            placeholder="Username"
+                            placeholder={user.displayName}
                             type="text"
                             value={newUsername}
                             onChange={(e) => setNewusername(e.target.value)}
@@ -115,8 +122,8 @@ function ProfileSettings({user}) {
                             <input
                             placeholder="Username"
                             type="text"
-                            value={newUsername}
-                            onChange={(e) => setNewusername(e.target.value)}
+                            value={newfullname}
+                            onChange={(e) => setNewfullname(e.target.value)}
                             />
                             <p>Help people discover your account by using the name you're known by: either your full name, nickname, or business name.</p>
                         </div>
@@ -129,8 +136,8 @@ function ProfileSettings({user}) {
                         <input
                         placeholder="Username"
                         type="text"
-                        value={newUsername}
-                        onChange={(e) => setNewusername(e.target.value)}
+                        value={newpage}
+                        onChange={(e) => setNewpage(e.target.value)}
                         />
                     </Grid>
 
@@ -142,8 +149,8 @@ function ProfileSettings({user}) {
                             <textarea
                             placeholder="Username"
                             type="text"
-                            value={newUsername}
-                            onChange={(e) => setNewusername(e.target.value)}
+                            value={newbio}
+                            onChange={(e) => setNewbio(e.target.value)}
                             rows="3"
                             />
                             <strong>Personal Information</strong>
@@ -155,10 +162,10 @@ function ProfileSettings({user}) {
                     </Grid>
                     <Grid className="profileSet__rightColumn" item xs={7}>
                         <input
-                        placeholder="Username"
-                        type="text"
-                        value={newUsername}
-                        onChange={(e) => setNewusername(e.target.value)}
+                        placeholder={user.email}
+                        type="email"
+                        value={newemail}
+                        onChange={(e) => setNewemail(e.target.value)}
                         />
                     </Grid>
 
@@ -167,10 +174,10 @@ function ProfileSettings({user}) {
                     </Grid>
                     <Grid className="profileSet__rightColumn" item xs={7}>
                         <input
-                        placeholder="Username"
+                        placeholder={user.phoneNumber}
                         type="text"
-                        value={newUsername}
-                        onChange={(e) => setNewusername(e.target.value)}
+                        value={newphone}
+                        onChange={(e) => setNewphone(e.target.value)}
                         />
                     </Grid>
 
@@ -181,8 +188,8 @@ function ProfileSettings({user}) {
                         <input
                         placeholder="Username"
                         type="text"
-                        value={newUsername}
-                        onChange={(e) => setNewusername(e.target.value)}
+                        value={newgender}
+                        onChange={(e) => setNewgender(e.target.value)}
                         />
                     </Grid>
                     <Grid className="profileSet__leftColumn" item xs={5} />
@@ -224,7 +231,7 @@ function ProfileSettings({user}) {
                     <Grid className="profileSet__leftColumn" item xs={5} />
                     <Grid className="profileSet__rightColumn" item xs={7}>
                         <div className="profileSet__changePass">
-                            <button onClick={changePass}>Change</button>   
+                            <button type="submit" onClick={changePass}>Change</button>   
                             <button>Forgot password?</button>   
                         </div>
                     </Grid>
