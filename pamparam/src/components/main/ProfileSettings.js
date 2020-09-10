@@ -160,6 +160,22 @@ function ProfileSettings({user}) {
                     <button>Forgot password?</button>   
                 </div>
             </Grid>
+
+            <Grid className="profileSet__leftColumn" item xs={5}>
+            </Grid>
+            <Grid className="profileSet__rightColumn" item xs={7}>
+                <div className="profileSet__rightBlock">
+                    <strong>Account delete</strong>
+                    <p>You can delete it and nobody will get your personal data anymore.</p>
+                </div>
+            </Grid>
+            <Grid className="profileSet__leftColumn" item xs={5}>
+                <label>Delete your account</label>
+            </Grid>
+            <Grid className="profileSet__rightColumn" item xs={7}>
+                <button>Delete</button>   
+            </Grid>
+
         </Grid>
         
     </div>
