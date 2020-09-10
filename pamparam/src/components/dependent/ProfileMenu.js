@@ -36,7 +36,7 @@ class Card extends Component {
       
     }
   }
-  
+
   render() {
     return (
       <>
@@ -76,7 +76,7 @@ class Card extends Component {
                                             Settings
                                         </div>
                                     </this.props.NavLink> 
-                                <div onClick={() => auth.signOut()}>
+                                <div onClick={() => {auth.signOut(); this.props.redirect();}}>
                                     Logout
                                 </div>
                                 

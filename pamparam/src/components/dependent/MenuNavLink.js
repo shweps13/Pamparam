@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from "react-router-dom";
 
 import { RiSendPlaneLine, RiSendPlaneFill } from 'react-icons/ri';
 import { BsPlusCircle, BsPlusCircleFill } from 'react-icons/bs';
@@ -7,6 +8,11 @@ import { AiOutlineHome, AiFillHome, AiOutlineHeart, AiFillHeart, AiOutlineCompas
 import ProfileMenu from './ProfileMenu.js';
 
 function MenuNavLink({ setOpenSignIn, setOpen, user, local, NavLink }) {
+
+  let history = useHistory();
+  const redirect = () => {
+      return history.push("/feed");
+  }
 
     return (
         <div className="app__headerButtons">  
@@ -57,7 +63,7 @@ function MenuNavLink({ setOpenSignIn, setOpen, user, local, NavLink }) {
                 <AiOutlineHeart size={25} /> 
             )}
         </NavLink> 
-        <ProfileMenu NavLink={NavLink} setOpenSignIn={setOpenSignIn} setOpen={setOpen} user={user} />
+        <ProfileMenu redirect={redirect} NavLink={NavLink} setOpenSignIn={setOpenSignIn} setOpen={setOpen} user={user} />
       </div>
     )
 }
