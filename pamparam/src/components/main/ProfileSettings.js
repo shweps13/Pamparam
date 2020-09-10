@@ -18,26 +18,64 @@ function ProfileSettings({user}) {
 
 
     console.log(user)
+    const cleanPass = () => {
+        setOldpass('');
+        setNewpass('');
+        setCheckNewpass('');
+    }
 
-    // function for repeat auth with pass
-    const reauthentication = (event) => {
+    const changePass = (event) => {
         event.preventDefault();
 
-        // receiving credentials for reauthentication
-        const credential = firebase.auth.EmailAuthProvider.credential(
-            user.email, 
-            oldpass
-        );
-        
-        // asking server for reauthentication
-        user.reauthenticateWithCredential(credential).then((res) => {
-            // console.log('Thats works!', res)
-            return true
-        }).catch((error) => {
-            // console.log('Some error', error)
-            return false
-        });
+        // check that all forms are filled
+        if (oldpass === '' || newpass === '' || checkNewpass === '') {
+            alert('Fill all passwords first!');
+        } else {
+            // check new passwords first
+            if (newpass !== checkNewpass) {
+                alert('New passwords are different. Please, retype it again!');
+                setNewpass('');
+                setCheckNewpass('');
+            } else {
+                // checking reauthentication here (old password)
+
+                // receiving credentials for reauthentication
+                let credential = firebase.auth.EmailAuthProvider.credential(
+                    user.email, 
+                    oldpass
+                );
+
+                // asking server for reauthentication
+                user.reauthenticateWithCredential(credential).then((res) => {
+                    // console.log('Thats works!', res);
+                    
+                    // old pass works => continue to change pass
+                    console.log(user)
+                    user.updatePassword(newpass).then(() => {
+                        // Update successful.
+                        console.log('Password chanched!');
+                        cleanPass()
+
+                      }).catch(function(error) {
+                        console.log('Some error happened', error);
+                        cleanPass()
+                      });
+                }).catch((error) => {
+                    if (error.code === 'auth/wrong-password') {
+                        alert('Old password is incorrect. Please, try again!');
+                        setOldpass('');
+                        return false
+                    } else {
+                        alert('Some trouble is happened. Please, try again later.');
+                        // console.log(error)
+                        return false   
+                    }
+                    // console.log('Some error', error);
+                });
+            }
+        }
     }
+
 
     return (
     <div className="profileSet">
@@ -186,7 +224,7 @@ function ProfileSettings({user}) {
                     <Grid className="profileSet__leftColumn" item xs={5} />
                     <Grid className="profileSet__rightColumn" item xs={7}>
                         <div className="profileSet__changePass">
-                            <button onClick={reauthentication}>Change</button>   
+                            <button onClick={changePass}>Change</button>   
                             <button>Forgot password?</button>   
                         </div>
                     </Grid>
