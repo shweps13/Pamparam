@@ -1,6 +1,9 @@
 import React, {useState} from 'react';
 import userPic from '../../materials/loginPlease.jpg';
 import '../../styles/ProfileSettings.css';
+import firebase from 'firebase';
+import { auth, db } from '../../materials/firebase.js';
+
 
 import Grid from '@material-ui/core/Grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -8,9 +11,33 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 function ProfileSettings({user}) {
     const [newUsername, setNewusername] = useState('')
+    
+    const [oldpass, setOldpass] = useState('')
+    const [newpass, setNewpass] = useState('')
+    const [checkNewpass, setCheckNewpass] = useState('')
 
 
     console.log(user)
+
+    // function for repeat auth with pass
+    const reauthentication = (event) => {
+        event.preventDefault();
+
+        // receiving credentials for reauthentication
+        const credential = firebase.auth.EmailAuthProvider.credential(
+            user.email, 
+            oldpass
+        );
+        
+        // asking server for reauthentication
+        user.reauthenticateWithCredential(credential).then((res) => {
+            // console.log('Thats works!', res)
+            return true
+        }).catch((error) => {
+            // console.log('Some error', error)
+            return false
+        });
+    }
 
     return (
     <div className="profileSet">
@@ -24,7 +51,7 @@ function ProfileSettings({user}) {
                     <Grid className="profileSet__header" item xs={12}>
                         <img src={userPic} className="profileSet__userImage" alt="logo"/>
                         <div>
-                            <h2>barsik</h2>
+                            <h2>{user.displayName}</h2>
                             <p>Change user avatar</p>
                         </div>
                     </Grid>
@@ -130,10 +157,9 @@ function ProfileSettings({user}) {
                     </Grid>
                     <Grid className="profileSet__rightColumn" item xs={7}>
                         <input
-                        placeholder="Username"
-                        type="text"
-                        value={newUsername}
-                        onChange={(e) => setNewusername(e.target.value)}
+                        type="password"
+                        value={oldpass}
+                        onChange={(e) => setOldpass(e.target.value)}
                         />
                     </Grid>
                     <Grid className="profileSet__leftColumn" item xs={5}>
@@ -141,10 +167,9 @@ function ProfileSettings({user}) {
                     </Grid>
                     <Grid className="profileSet__rightColumn" item xs={7}>
                         <input
-                        placeholder="Username"
-                        type="text"
-                        value={newUsername}
-                        onChange={(e) => setNewusername(e.target.value)}
+                        type="password"
+                        value={newpass}
+                        onChange={(e) => setNewpass(e.target.value)}
                         />
                     </Grid>
                     <Grid className="profileSet__leftColumn" item xs={5}>
@@ -152,17 +177,16 @@ function ProfileSettings({user}) {
                     </Grid>
                     <Grid className="profileSet__rightColumn" item xs={7}>
                         <input
-                        placeholder="Username"
-                        type="text"
-                        value={newUsername}
-                        onChange={(e) => setNewusername(e.target.value)}
+                        type="password"
+                        value={checkNewpass}
+                        onChange={(e) => setCheckNewpass(e.target.value)}
                         />
                     </Grid>
 
                     <Grid className="profileSet__leftColumn" item xs={5} />
                     <Grid className="profileSet__rightColumn" item xs={7}>
                         <div className="profileSet__changePass">
-                            <button>Change</button>   
+                            <button onClick={reauthentication}>Change</button>   
                             <button>Forgot password?</button>   
                         </div>
                     </Grid>
