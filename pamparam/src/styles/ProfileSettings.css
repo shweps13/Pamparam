@@ -26,3 +26,12 @@
     border-radius: 50%;
     margin-right: 30px;
 }
+
+.profileSet__leftColumn {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.profileSet__rightColumn input {
+    margin-left: 10px;
+}
