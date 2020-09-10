@@ -6,6 +6,11 @@
     margin-top: 1.5vh;
 }
 
+.profileSet__comments {
+    margin: auto;
+    margin-top: 30vh;
+}
+
 label {
     padding-top: 5px;
 }
