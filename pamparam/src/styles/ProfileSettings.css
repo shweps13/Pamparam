@@ -3,7 +3,7 @@
     margin: auto;
     display: flex;
     flex-direction: column;
-    margin-top: 2vh;
+    margin-top: 1.5vh;
 
 }
 
@@ -32,6 +32,37 @@
     justify-content: flex-end;
 }
 
-.profileSet__rightColumn input {
+.profileSet__rightBlock {
+    /* background-color: skyblue; */
+    display: flex;
+    flex-direction: column;
+}
+.profileSet__rightBlock p {
+    margin-top: 1vh;
+}
+
+.profileSet__rightColumn input, .profileSet__rightColumn p, strong {
     margin-left: 10px;
+    width: 80%;
+    font-size: 1rem;
+}
+
+.profileSet__rightColumn button {
+    margin-left: 10px;
+}
+
+.profileSet__rightColumn p {
+    color: grey;
+    font-size: smaller;
+}
+
+.profileSet__rightColumn strong{
+    color: grey;
+    margin-top: 3vh;
+}
+
+.profileSet__changePass {
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
 }

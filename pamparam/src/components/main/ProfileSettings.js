@@ -25,24 +25,30 @@ function ProfileSettings({user}) {
                 <label>User name</label>
             </Grid>
             <Grid className="profileSet__rightColumn" item xs={7}>
-                <input
-                placeholder="Username"
-                type="text"
-                value={newUsername}
-                onChange={(e) => setNewusername(e.target.value)}
-                />
+                <div className="profileSet__rightBlock">
+                    <input
+                    placeholder="Username"
+                    type="text"
+                    value={newUsername}
+                    onChange={(e) => setNewusername(e.target.value)}
+                    />
+                    <p>No worries, there is a lot of free nicknames.</p>
+                </div>
             </Grid>
 
             <Grid className="profileSet__leftColumn" item xs={5}>
                 <label>Full name</label>
             </Grid>
             <Grid className="profileSet__rightColumn" item xs={7}>
-                <input
-                placeholder="Username"
-                type="text"
-                value={newUsername}
-                onChange={(e) => setNewusername(e.target.value)}
-                />
+                <div className="profileSet__rightBlock">
+                    <input
+                    placeholder="Username"
+                    type="text"
+                    value={newUsername}
+                    onChange={(e) => setNewusername(e.target.value)}
+                    />
+                    <p>Help people discover your account by using the name you're known by: either your full name, nickname, or business name.</p>
+                </div>
             </Grid>
 
             <Grid className="profileSet__leftColumn" item xs={5}>
@@ -61,12 +67,16 @@ function ProfileSettings({user}) {
                 <label>Bio</label>
             </Grid>
             <Grid className="profileSet__rightColumn" item xs={7}>
-                <input
-                placeholder="Username"
-                type="text"
-                value={newUsername}
-                onChange={(e) => setNewusername(e.target.value)}
-                />
+                <div className="profileSet__rightBlock">
+                    <input
+                    placeholder="Username"
+                    type="text"
+                    value={newUsername}
+                    onChange={(e) => setNewusername(e.target.value)}
+                    />
+                    <strong>Personal Information</strong>
+                    <p>I would not recommend you to provide it. But you still can, if you want.</p>
+                </div>
             </Grid>
 
             <Grid className="profileSet__leftColumn" item xs={5}>
@@ -108,8 +118,50 @@ function ProfileSettings({user}) {
             <Grid className="profileSet__rightColumn" item xs={7}>
                 <button>Submit</button>   
             </Grid>
-        </Grid>
 
+            <Grid className="profileSet__leftColumn" item xs={5}>
+                <label>Old password</label>
+            </Grid>
+            <Grid className="profileSet__rightColumn" item xs={7}>
+                <input
+                placeholder="Username"
+                type="text"
+                value={newUsername}
+                onChange={(e) => setNewusername(e.target.value)}
+                />
+            </Grid>
+            <Grid className="profileSet__leftColumn" item xs={5}>
+                <label>New password</label>
+            </Grid>
+            <Grid className="profileSet__rightColumn" item xs={7}>
+                <input
+                placeholder="Username"
+                type="text"
+                value={newUsername}
+                onChange={(e) => setNewusername(e.target.value)}
+                />
+            </Grid>
+            <Grid className="profileSet__leftColumn" item xs={5}>
+                <label>Confirm new password</label>
+            </Grid>
+            <Grid className="profileSet__rightColumn" item xs={7}>
+                <input
+                placeholder="Username"
+                type="text"
+                value={newUsername}
+                onChange={(e) => setNewusername(e.target.value)}
+                />
+            </Grid>
+
+            <Grid className="profileSet__leftColumn" item xs={5} />
+            <Grid className="profileSet__rightColumn" item xs={7}>
+                <div className="profileSet__changePass">
+                    <button>Change</button>   
+                    <button>Forgot password?</button>   
+                </div>
+            </Grid>
+        </Grid>
+        
     </div>
     )
 }
