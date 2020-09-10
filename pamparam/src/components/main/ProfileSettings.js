@@ -32,7 +32,6 @@ function ProfileSettings({user}) {
                     value={newUsername}
                     onChange={(e) => setNewusername(e.target.value)}
                     />
-                    <p>No worries, there is a lot of free nicknames.</p>
                 </div>
             </Grid>
 
@@ -68,14 +67,14 @@ function ProfileSettings({user}) {
             </Grid>
             <Grid className="profileSet__rightColumn" item xs={7}>
                 <div className="profileSet__rightBlock">
-                    <input
+                    <textarea
                     placeholder="Username"
                     type="text"
                     value={newUsername}
                     onChange={(e) => setNewusername(e.target.value)}
+                    rows="3"
                     />
                     <strong>Personal Information</strong>
-                    <p>I would not recommend you to provide it. But you still can, if you want.</p>
                 </div>
             </Grid>
 
@@ -165,7 +164,7 @@ function ProfileSettings({user}) {
             </Grid>
             <Grid className="profileSet__rightColumn" item xs={7}>
                 <div className="profileSet__rightBlock">
-                    <strong>Account delete</strong>
+                    <strong>Account removal</strong>
                     <p>You can delete it and nobody will get your personal data anymore.</p>
                 </div>
             </Grid>

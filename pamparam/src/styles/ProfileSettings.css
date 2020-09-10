@@ -4,7 +4,13 @@
     display: flex;
     flex-direction: column;
     margin-top: 1.5vh;
+}
 
+label {
+    padding-top: 5px;
+}
+div:nth-child(28) > label {
+    padding-top: 1px;
 }
 
 .profileSet__header {
@@ -41,10 +47,16 @@
     margin-top: 1vh;
 }
 
-.profileSet__rightColumn input, .profileSet__rightColumn p, strong {
+.profileSet__rightColumn input, .profileSet__rightColumn p, strong, textarea {
     margin-left: 10px;
     width: 80%;
     font-size: 1rem;
+}
+.profileSet__rightColumn input, textarea {
+    border-radius: 3px;
+    border: 1px solid lightgray;
+    padding: 5px;
+    resize: vertical;
 }
 
 .profileSet__rightColumn button {
@@ -58,7 +70,7 @@
 
 .profileSet__rightColumn strong{
     color: grey;
-    margin-top: 3vh;
+    margin-top: 2vh;
 }
 
 .profileSet__changePass {
@@ -68,5 +80,5 @@
 }
 
 .profileSet__rightColumn strong:nth-child(1){
-    margin-top: 10px;
+    margin-top: 1vh;
 }
