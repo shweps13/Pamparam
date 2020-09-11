@@ -4,7 +4,7 @@ import Modal from '@material-ui/core/Modal';
 import '../../styles/Modal.css';
 
 import firebase from 'firebase';
-import { auth, db } from '../../materials/firebase.js';
+import { db } from '../../materials/firebase.js';
 
 
 function ModalDelUser({ user, openDel, setOpenDel, modalStyle, classesStyle }) {
@@ -29,17 +29,30 @@ function ModalDelUser({ user, openDel, setOpenDel, modalStyle, classesStyle }) {
             // asking server for reauthentication
             user.reauthenticateWithCredential(credential).then((res) => {
                 // console.log('Thats works!', res);
-                // old pass works => continue to change pass
+                // old pass works => continue to renove profile
 
-                user.delete().then(() => {
-                        // User deleted
-                        console.log('Deleted')
-                  }).catch(function(error) {
-                        // An error happened.
-                        // console.log('Error', error)
-                        alert('Something wrong happened, please try again...');
-                        return false
-                  });
+                // cleaning db document now
+                db.collection("users").doc(user.uid).delete().then(() => {
+                    // db document deleted, can remove profile now
+                    // console.log("Document successfully deleted!");
+
+                    user.delete().then(() => {
+                            // User deleted
+                            console.log('Deleted')
+                    }).catch(function(error) {
+                            // An error happened.
+                            // console.log('Error', error)
+                            alert('Something wrong happened, please try again...');
+                            return false
+                    });
+
+                }).catch((error) => {
+                    // console.error("Error removing document: ", error);
+                    alert('Something wrong happened, please try again...');
+                    return false
+                });
+
+
                 
             }).catch((error) => {
                 if (error.code === 'auth/wrong-password') {
