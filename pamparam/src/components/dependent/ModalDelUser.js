@@ -3,12 +3,58 @@ import deleteImg from '../../materials/userDelete.jpg';
 import Modal from '@material-ui/core/Modal';
 import '../../styles/Modal.css';
 
+import firebase from 'firebase';
+import { auth, db } from '../../materials/firebase.js';
 
-function ModalDelUser({ openDel, setOpenDel, modalStyle, classesStyle }) {
+
+function ModalDelUser({ user, openDel, setOpenDel, modalStyle, classesStyle }) {
 
     const [passField, setPassfield] = useState('');
-    const [passFieldq, setPassfieldq] = useState('');
     const [passdiv, setPassdiv] = useState(false);
+
+    const userDelete = (event) => {
+        event.preventDefault();
+
+        // check that all forms are filled
+        if (passField === '') {
+            alert('Fill password field first!');
+            return false
+        } else {
+            // receiving credentials for reauthentication
+            let credential = firebase.auth.EmailAuthProvider.credential(
+                user.email, 
+                passField
+            );
+
+            // asking server for reauthentication
+            user.reauthenticateWithCredential(credential).then((res) => {
+                console.log('Thats works!', res);
+                
+                // old pass works => continue to change pass
+                console.log(user)
+                
+            }).catch((error) => {
+                if (error.code === 'auth/wrong-password') {
+                    alert('Old password is incorrect. Please, try again!');
+                    setPassfield('');
+                    return false
+                } else {
+                    alert('Some trouble is happened. Please, try again later.');
+                    // console.log(error)
+                    return false   
+                }
+                // console.log('Some error', error);
+            });
+        }
+
+        user.delete().then(function() {
+          // User deleted
+            console.log('Deleted')
+        }).catch(function(error) {
+            // An error happened.
+            console.log('Error', error)
+        });
+    }
 
     return (
         <Modal open={openDel} onClose={() => setOpenDel(false)}>
@@ -27,9 +73,12 @@ function ModalDelUser({ openDel, setOpenDel, modalStyle, classesStyle }) {
                         onChange={(e) => setPassfield(e.target.value)}
                         />
                         <div className="modal__body__buttons">
-                            <button className="secBtn" onClick={()=>{setPassfieldq('qwdqwd')}} >Delete</button>
-                            <button className="thirdBtn" onClick={()=>{setOpenDel(false);
-                                setPassdiv(false);}}>Cancel</button>
+                            <button className="secBtn" onClick={userDelete} >Delete</button>
+                            <button className="thirdBtn" onClick={()=>{
+                                setOpenDel(false);
+                                setPassdiv(false);
+                                setPassfield('');
+                                }}>Cancel</button>
                         </div>
                 </div>     
                     ):(

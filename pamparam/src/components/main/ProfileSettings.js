@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import userPic from '../../materials/loginPlease.jpg';
 import '../../styles/ProfileSettings.css';
 import firebase from 'firebase';
-import { auth, db } from '../../materials/firebase.js';
 
 import Grid from '@material-ui/core/Grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -89,16 +88,6 @@ function ProfileSettings({user}) {
                 });
             }
         }
-    }
-
-    const userDelete = () => {
-        user.delete().then(function() {
-          // User deleted
-            console.log('Deleted')
-        }).catch(function(error) {
-            // An error happened.
-            console.log('Error', error)
-        });
     }
 
     return (
@@ -268,7 +257,7 @@ function ProfileSettings({user}) {
                         <button className="secBtn" onClick={() => {setOpenDel(true)}}>Delete</button>   
                     </Grid>
 
-                    <ModalDelUser openDel={openDel} setOpenDel={setOpenDel} modalStyle={modalStyle} classesStyle={classes.paper} />
+                    <ModalDelUser user={user} openDel={openDel} setOpenDel={setOpenDel} modalStyle={modalStyle} classesStyle={classes.paper} />
                 </Grid>
             )}
 
