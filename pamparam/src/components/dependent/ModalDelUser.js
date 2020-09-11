@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import deleteImg from '../../materials/userDelete.jpg';
+import almostDone from '../../materials/almostDone.jpg';
 import Modal from '@material-ui/core/Modal';
 import '../../styles/Modal.css';
 import { useHistory } from "react-router-dom";
@@ -81,7 +82,12 @@ function ModalDelUser({ user, openDel, setOpenDel, modalStyle, classesStyle }) {
         <Modal open={openDel} onClose={() => setOpenDel(false)}>
         <div style={modalStyle} className={classesStyle}>
             <center>
-                <img src={deleteImg} className="modal__deleteImg" alt="logo"/>
+            {passdiv ? (
+                    <img src={almostDone} className="modal__deleteImg" alt="Are you sure?"/>
+                ):(
+                    <img src={deleteImg} className="modal__deleteImg" alt="Delete profile?"/>
+                )
+            }
             </center>
             
             {passdiv ? (
