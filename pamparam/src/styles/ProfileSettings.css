@@ -88,6 +88,11 @@ div:nth-child(28) > label {
     margin-top: 1vh;
 }
 
+.profileSet__loaderChangePass{
+    margin-left: 35px;
+    margin-right: 35px;
+}
+
 /* Imported buttons styles */
 
 button:focus {outline: 0;} /* fixing blue borders on buttons */

@@ -47,11 +47,13 @@ function ProfileSettings({user}) {
         if (oldpass === '' || newpass === '' || checkNewpass === '') {
             alert('Fill all passwords first!');
         } else {
+            setChangingPass(true);
             // check new passwords first
             if (newpass !== checkNewpass) {
                 alert('New passwords are different. Please, retype it again!');
                 setNewpass('');
                 setCheckNewpass('');
+                setChangingPass(false);
             } else {
                 // checking reauthentication here (old password)
 
@@ -70,8 +72,9 @@ function ProfileSettings({user}) {
                     user.updatePassword(newpass).then(() => {
                         // Update successful.
                         console.log('Password chanched!');
-                        cleanPass()
-
+                        cleanPass();
+                        setChangingPass(false);
+                        setOpenChange(true);
                       }).catch(function(error) {
                         console.log('Some error happened', error);
                         cleanPass()
@@ -237,10 +240,18 @@ function ProfileSettings({user}) {
                     </Grid>
 
                     <Grid className="profileSet__leftColumn" item xs={5} />
-                    <Grid className="profileSet__rightColumn" item xs={7}>
+                    <Grid className="profileSet__rightColumn" item xs={7}>                        
                         <div className="profileSet__changePass">
+
+                        {changingPass ? (
+                            <div className="profileSet__loaderChangePass">
+                                <CircularProgress size={20} />
+                            </div>
+                            ): (
                             <button className="mainBtn" type="submit" onClick={changePass}>Change</button>   
-                            <button onClick={() => {setOpenChange(true)}} >Forgot password?</button>   
+                        )}
+
+                            <button>Forgot password?</button>   
                         </div>
                     </Grid>
 
