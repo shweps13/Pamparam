@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import deleteImg from '../../materials/userDelete.jpg';
 import Modal from '@material-ui/core/Modal';
 import '../../styles/Modal.css';
+import { useHistory } from "react-router-dom";
 
 import firebase from 'firebase';
 import { db } from '../../materials/firebase.js';
@@ -11,6 +12,11 @@ function ModalDelUser({ user, openDel, setOpenDel, modalStyle, classesStyle }) {
 
     const [passField, setPassfield] = useState('');
     const [passdiv, setPassdiv] = useState(false);
+
+    let history = useHistory();
+    const redirect = () => {
+        return history.push("/feed");
+    }
 
     const userDelete = (event) => {
         event.preventDefault();
@@ -38,7 +44,8 @@ function ModalDelUser({ user, openDel, setOpenDel, modalStyle, classesStyle }) {
 
                     user.delete().then(() => {
                             // User deleted
-                            console.log('Deleted')
+                            // console.log('Deleted')
+                            redirect();
                     }).catch(function(error) {
                             // An error happened.
                             // console.log('Error', error)
