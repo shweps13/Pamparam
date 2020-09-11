@@ -6,8 +6,9 @@ import firebase from 'firebase';
 import Grid from '@material-ui/core/Grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import ModalDelUser from '../../components/dependent/ModalDelUser.js';
 import { getModalStyle, useStyles } from '../../materials/modalStyles.js';
+import ModalDelUser from '../../components/dependent/ModalDelUser.js';
+import ModalChangepass from '../../components/dependent/ModalChangepass.js';
 
 
 
@@ -27,8 +28,9 @@ function ProfileSettings({user}) {
     const classes = useStyles();
     const [modalStyle] = useState(getModalStyle);
     const [openDel, setOpenDel] = useState(false);
-
-
+    
+    const [changingPass, setChangingPass] = useState(false);
+    const [openChange, setOpenChange] = useState(false);
 
     console.log(user)
 
@@ -238,7 +240,7 @@ function ProfileSettings({user}) {
                     <Grid className="profileSet__rightColumn" item xs={7}>
                         <div className="profileSet__changePass">
                             <button className="mainBtn" type="submit" onClick={changePass}>Change</button>   
-                            <button>Forgot password?</button>   
+                            <button onClick={() => {setOpenChange(true)}} >Forgot password?</button>   
                         </div>
                     </Grid>
 
@@ -257,6 +259,7 @@ function ProfileSettings({user}) {
                         <button className="secBtn" onClick={() => {setOpenDel(true)}}>Delete</button>   
                     </Grid>
 
+                    <ModalChangepass openChange={openChange} setOpenChange={setOpenChange} modalStyle={modalStyle} classesStyle={classes.paper} />
                     <ModalDelUser user={user} openDel={openDel} setOpenDel={setOpenDel} modalStyle={modalStyle} classesStyle={classes.paper} />
                 </Grid>
             )}
