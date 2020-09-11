@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react';
 import passDone from '../../materials/passDone.jpg';
 import Modal from '@material-ui/core/Modal';
 import '../../styles/Modal.css';

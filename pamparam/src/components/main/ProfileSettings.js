@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import userPic from '../../materials/loginPlease.jpg';
 import '../../styles/ProfileSettings.css';
 import firebase from 'firebase';
+import { auth, db } from '../../materials/firebase';
 
 import Grid from '@material-ui/core/Grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -12,7 +13,41 @@ import ModalChangepass from '../../components/dependent/ModalChangepass.js';
 
 
 
-function ProfileSettings({user}) {
+function ProfileSettings() {
+
+    const [user, setUser] = useState(null)
+    const [userDbData, setUserDbData] = useState(null)
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((authUser) => {
+          if (authUser) {
+            // user logged in
+            console.log(authUser);
+            setUser(authUser);
+ 
+            db.collection('users').doc(authUser.uid).get().then(function(doc) {
+                if (doc.exists) {
+                    console.log("Document data:", doc.data());
+                    setUserDbData(doc.data());
+                } else {
+                    // doc.data() will be undefined in this case
+                    console.log("No such document!");
+                }
+            }).catch(function(error) {
+                console.log("Error getting document:", error);
+            });
+
+          } else {
+            // user logged out
+            setUser(null);
+          }
+        })
+        return () => {
+          // cleanup actions
+          unsubscribe();
+        }
+      }, []);
+
     const [newUsername, setNewusername] = useState('');
     const [newfullname, setNewfullname] = useState('');
     const [newpage, setNewpage] = useState('');
@@ -32,7 +67,10 @@ function ProfileSettings({user}) {
     const [changingPass, setChangingPass] = useState(false);
     const [openChange, setOpenChange] = useState(false);
 
-    console.log(user)
+
+            
+    
+    
 
     const cleanPass = () => {
         setOldpass('');
