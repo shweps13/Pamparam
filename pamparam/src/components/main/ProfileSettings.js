@@ -33,7 +33,8 @@ function ProfileSettings() {
                     // doc.data() will be undefined in this case
                     console.log("No such document!");
                 }
-            }).catch(function(error) {
+            })
+            .catch(function(error) {
                 console.log("Error getting document:", error);
             });
 
@@ -135,6 +136,14 @@ function ProfileSettings() {
 
     return (
     <div className="profileSet">
+
+            {userDbData === null ? (
+                <div>
+                    <CircularProgress size={25} />
+                </div>
+            ): (
+                <h3>{userDbData.email}</h3>
+            )}
 
         {user === null ? (
                 <div className="profileSet__comments">
