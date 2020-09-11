@@ -27,9 +27,16 @@
     margin: 1vh auto;
   }
 
-  .modal__body h2 {
+  .modal__body h2, h3, input {
     margin-bottom: 2vh;
     text-align: center;
+  }
+
+  .modal__body input {
+    border-radius: 3px;
+    border: 1px solid lightgray;
+    padding: 5px;
+    resize: vertical;
   }
 
   .modal__body__buttons {

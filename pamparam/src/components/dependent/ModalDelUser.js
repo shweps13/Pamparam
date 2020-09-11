@@ -7,6 +7,7 @@ import '../../styles/Modal.css';
 function ModalDelUser({ openDel, setOpenDel, modalStyle, classesStyle }) {
 
     const [passField, setPassfield] = useState('');
+    const [passFieldq, setPassfieldq] = useState('');
     const [passdiv, setPassdiv] = useState(false);
 
     return (
@@ -17,30 +18,30 @@ function ModalDelUser({ openDel, setOpenDel, modalStyle, classesStyle }) {
             </center>
             
             {passdiv ? (
-                    <div className="modal__body">
-                        <h2>Are you sure?</h2>
-                        <form className="modal__signup">
-                            <input
-                            placeholder="Password"
-                            type="password"
-                            value={passField}
-                            onChange={(e) => setPassfield(e.target.value)}
-                            />
-                            <button type="submit">Delete</button>
+                <div className="modal__body">
+                    <h3>Type your password then</h3>
+                        <input
+                        placeholder="Password"
+                        type="password"
+                        value={passField}
+                        onChange={(e) => setPassfield(e.target.value)}
+                        />
+                        <div className="modal__body__buttons">
+                            <button className="secBtn" onClick={()=>{setPassfieldq('qwdqwd')}} >Delete</button>
                             <button className="thirdBtn" onClick={()=>{setOpenDel(false);
                                 setPassdiv(false);}}>Cancel</button>
-                        </form>
-                    </div>     
-                        ):(
-                        <div className="modal__body">
-                            <h2>Are you sure?</h2>
-                            <div className="modal__body__buttons">
-                                <button className="secBtn" type="submit" onClick={()=>{setPassdiv(true)}}>Delete</button>
-                                <button className="thirdBtn" onClick={()=>{setOpenDel(false)}}>Cancel</button>
-                            </div>
-                        </div>   
-                        )}
-            
+                        </div>
+                </div>     
+                    ):(
+                    <div className="modal__body">
+                        <h2>Are you sure?</h2>
+                        <div className="modal__body__buttons">
+                            <button className="secBtn" type="submit" onClick={()=>{setPassdiv(true)}}>Delete</button>
+                            <button className="thirdBtn" onClick={()=>{setOpenDel(false)}}>Cancel</button>
+                        </div>
+                    </div>   
+            )}
+        
            
         </div>
       </Modal>
