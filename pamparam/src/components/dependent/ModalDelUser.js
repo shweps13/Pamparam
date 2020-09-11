@@ -28,10 +28,18 @@ function ModalDelUser({ user, openDel, setOpenDel, modalStyle, classesStyle }) {
 
             // asking server for reauthentication
             user.reauthenticateWithCredential(credential).then((res) => {
-                console.log('Thats works!', res);
-                
+                // console.log('Thats works!', res);
                 // old pass works => continue to change pass
-                console.log(user)
+
+                user.delete().then(() => {
+                        // User deleted
+                        console.log('Deleted')
+                  }).catch(function(error) {
+                        // An error happened.
+                        // console.log('Error', error)
+                        alert('Something wrong happened, please try again...');
+                        return false
+                  });
                 
             }).catch((error) => {
                 if (error.code === 'auth/wrong-password') {
@@ -47,13 +55,6 @@ function ModalDelUser({ user, openDel, setOpenDel, modalStyle, classesStyle }) {
             });
         }
 
-        user.delete().then(function() {
-          // User deleted
-            console.log('Deleted')
-        }).catch(function(error) {
-            // An error happened.
-            console.log('Error', error)
-        });
     }
 
     return (

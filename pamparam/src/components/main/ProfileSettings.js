@@ -64,7 +64,7 @@ function ProfileSettings({user}) {
                     // console.log('Thats works!', res);
                     
                     // old pass works => continue to change pass
-                    console.log(user)
+                    // console.log(user)
                     user.updatePassword(newpass).then(() => {
                         // Update successful.
                         console.log('Password chanched!');
