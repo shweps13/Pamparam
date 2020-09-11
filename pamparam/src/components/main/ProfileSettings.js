@@ -92,7 +92,13 @@ function ProfileSettings({user}) {
     }
 
     const userDelete = () => {
-
+        user.delete().then(function() {
+          // User deleted
+            console.log('Deleted')
+        }).catch(function(error) {
+            // An error happened.
+            console.log('Error', error)
+        });
     }
 
     return (

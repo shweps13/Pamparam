@@ -108,7 +108,7 @@ button:focus {outline: 0;} /* fixing blue borders on buttons */
     text-decoration:none;
     text-shadow:0px 1px 0px #283966;
   }
-  .mainBtn:active, .secBtn:active {
+  .mainBtn:active, .secBtn:active, .thirdBtn:active {
     position:relative;
     top:1px;
   }
