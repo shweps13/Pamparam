@@ -137,13 +137,7 @@ function ProfileSettings() {
     return (
     <div className="profileSet">
 
-            {userDbData === null ? (
-                <div>
-                    <CircularProgress size={25} />
-                </div>
-            ): (
-                <h3>{userDbData.email}</h3>
-            )}
+            
 
         {user === null ? (
                 <div className="profileSet__comments">
@@ -177,12 +171,21 @@ function ProfileSettings() {
                     </Grid>
                     <Grid className="profileSet__rightColumn" item xs={7}>
                         <div className="profileSet__rightBlock">
-                            <input
-                            placeholder="Username"
-                            type="text"
-                            value={newfullname}
-                            onChange={(e) => setNewfullname(e.target.value)}
-                            />
+                            {userDbData === null ? (
+                                <input
+                                placeholder="Username"
+                                type="text"
+                                value={newfullname}
+                                onChange={(e) => setNewfullname(e.target.value)}
+                                />
+                            ): (
+                                <input
+                                placeholder={userDbData.fullName}
+                                type="text"
+                                value={newfullname}
+                                onChange={(e) => setNewfullname(e.target.value)}
+                                />
+                            )}
                             <p>Help people discover your account by using the name you're known.</p>
                         </div>
                     </Grid>
@@ -191,12 +194,21 @@ function ProfileSettings() {
                         <label>Webpage</label>
                     </Grid>
                     <Grid className="profileSet__rightColumn" item xs={7}>
-                        <input
-                        placeholder="Username"
-                        type="text"
-                        value={newpage}
-                        onChange={(e) => setNewpage(e.target.value)}
-                        />
+                            {userDbData === null ? (
+                                <input
+                                placeholder="Webpage"
+                                type="text"
+                                value={newpage}
+                                onChange={(e) => setNewpage(e.target.value)}
+                                />
+                            ): (
+                                <input
+                                placeholder={userDbData.webpage}
+                                type="text"
+                                value={newpage}
+                                onChange={(e) => setNewpage(e.target.value)}
+                                />
+                            )}
                     </Grid>
 
                     <Grid className="profileSet__leftColumn" item xs={5}>
@@ -204,13 +216,23 @@ function ProfileSettings() {
                     </Grid>
                     <Grid className="profileSet__rightColumn" item xs={7}>
                         <div className="profileSet__rightBlock">
-                            <textarea
-                            placeholder="Username"
-                            type="text"
-                            value={newbio}
-                            onChange={(e) => setNewbio(e.target.value)}
-                            rows="3"
-                            />
+                            {userDbData === null ? (
+                                <textarea
+                                placeholder="Webpage"
+                                type="text"
+                                value={newbio}
+                                onChange={(e) => setNewbio(e.target.value)}
+                                rows="3"
+                                />
+                            ): (
+                                <textarea
+                                placeholder={userDbData.bio}
+                                type="text"
+                                value={newbio}
+                                onChange={(e) => setNewbio(e.target.value)}
+                                rows="3"
+                                />
+                            )}
                             <strong>Personal Information</strong>
                         </div>
                     </Grid>
@@ -242,13 +264,22 @@ function ProfileSettings() {
                     <Grid className="profileSet__leftColumn" item xs={5}>
                         <label>Gender</label>
                     </Grid>
-                    <Grid className="profileSet__rightColumn" item xs={7}>
-                        <input
-                        placeholder="Username"
-                        type="text"
-                        value={newgender}
-                        onChange={(e) => setNewgender(e.target.value)}
-                        />
+                    <Grid className="profileSet__rightColumn" item xs={7}>     
+                            {userDbData === null ? (
+                                <input
+                                placeholder="Webpage"
+                                type="text"
+                                value={newgender}
+                                onChange={(e) => setNewgender(e.target.value)}
+                                />
+                            ): (
+                                <input
+                                placeholder={userDbData.gender}
+                                type="text"
+                                value={newgender}
+                                onChange={(e) => setNewgender(e.target.value)}
+                                />
+                            )}
                     </Grid>
                     <Grid className="profileSet__leftColumn" item xs={5} />
                     <Grid className="profileSet__rightColumn" item xs={7}>
