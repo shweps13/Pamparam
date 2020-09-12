@@ -79,20 +79,20 @@ function ProfileSettings() {
         let oldData = [user.displayName, userDbData.fullName, userDbData.webpage, userDbData.bio, user.email, user.phoneNumber, userDbData.gender];
         let newData = [newUsername, newfullname, newpage, newbio, newemail, newphone, newgender];
         const paramData = ['displayName', 'fullName', 'webpage', 'bio', 'email', 'phoneNumber', 'gender'];
-        let toChange = [];
-        const obj = {};
+        let objChange = {};
         let continueChange = false;
         
-        console.log(oldData);
-        console.log(newData);
+        // console.log(oldData);
+        // console.log(newData);
 
         var i;
         for (i = 0; i < newData.length; i++) {
             if (newData[i] === null || newData[i] === '' || newData[i] === oldData[i]) { 
-                toChange.push(null)
+                continue;
              } else {
                 // push data to new array if so 
-                toChange.push( Object.fromEntries([[paramData[i], newData[i]]]) )
+                // toChange.push( Object.fromEntries([[paramData[i], newData[i]]]) )
+                objChange = {...objChange, ...Object.fromEntries([[paramData[i], newData[i]]]) } 
                 continueChange = true;
              }     
         }
@@ -103,10 +103,18 @@ function ProfileSettings() {
             return false
         }
 
+        console.log(objChange)
+
         // [displayName, email, phoneNumber] we need to jande not just in db, but on auth server
         // check if we need to work with auth server
-        if (toChange[0] !== null || toChange[4] !== null || toChange[5] !== null) {
+        if (objChange.displayName !== undefined || objChange.email !== undefined || objChange.phoneNumber !== undefined) {
             console.log('Working with auth')
+            console.log(objChange)
+
+            // let objSend = {}
+            // for (i = 0; i < toChange.length; i++) {
+
+            // }
             
             // user.updateProfile({
             //     displayName: toChange[0],
@@ -122,7 +130,7 @@ function ProfileSettings() {
         
         }
 
-        console.log('To change', toChange)
+        // console.log('To change', toChange)
 
 
         
