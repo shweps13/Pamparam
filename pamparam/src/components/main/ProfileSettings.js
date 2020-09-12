@@ -109,24 +109,14 @@ function ProfileSettings() {
         // check if we need to work with auth server
         if (objChange.displayName !== undefined || objChange.email !== undefined || objChange.phoneNumber !== undefined) {
             console.log('Working with auth')
-            console.log(objChange)
-
-            // let objSend = {}
-            // for (i = 0; i < toChange.length; i++) {
-
-            // }
             
-            // user.updateProfile({
-            //     displayName: toChange[0],
-            //     email: toChange[4],
-            //     phoneNumber: toChange[5]
-            //   }).then(function() {
-            //     // Update successful.
-            //     console.log('Auth data was updated')
-            //   }).catch(function(error) {
-            //     // An error happened.
-            //     console.log('Error with auth data updating', error)
-            //   });
+            user.updateProfile(objChange).then(function() {
+                // Update successful.
+                console.log('Auth data was updated')
+              }).catch(function(error) {
+                // An error happened.
+                console.log('Error with auth data updating', error)
+              });
         
         }
 
