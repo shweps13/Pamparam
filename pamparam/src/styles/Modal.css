@@ -27,7 +27,7 @@
     margin: 1vh auto;
   }
 
-  .modal__body h2, h3 {
+  .modal__body h2, .modal__body h3 {
     margin-bottom: 2vh;
     text-align: center;
   }

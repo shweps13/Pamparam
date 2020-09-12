@@ -119,11 +119,17 @@ function ProfileSettings() {
               });
         
         }
-
-        // console.log('To change', toChange)
-
-
         
+        // changing data in db now
+        db.collection("users").doc(user.uid).set(objChange)
+            .then(() => {
+                console.log('Data in DB was')
+        })
+            .catch((error) => {
+                // console.error("Error removing document: ", error);
+                alert('Something wrong happened, please try again...');
+                return false
+        });
 
     }       
     
