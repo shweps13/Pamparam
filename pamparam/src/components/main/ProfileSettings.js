@@ -32,13 +32,24 @@ function ProfileSettings() {
                     setUserDbData(doc.data());
 
                     // import data to hooks
-                    setNewusername(authUser.displayName)
-                    setNewemail(authUser.email)
-                    setNewfullname(doc.data().fullName)
-                    setNewpage(doc.data().webpage)
-                    setNewbio(doc.data().bio)
-                    setNewphone(doc.data().phoneNumber)
-                    setNewgender(doc.data().gender)
+                        setNewusername(authUser.displayName)
+                        setNewemail(authUser.email)
+
+                    if (doc.data().fullName !== undefined) {
+                        setNewfullname(doc.data().fullName)
+                    }
+                    if (doc.data().webpage !== undefined) {
+                        setNewpage(doc.data().webpage)
+                    }
+                    if (doc.data().bio !== undefined) {
+                        setNewbio(doc.data().bio)
+                    }
+                    if (doc.data().phoneNumber !== undefined) {
+                        setNewphone(doc.data().phoneNumber)
+                    }
+                    if (doc.data().gender !== undefined) {
+                        setNewgender(doc.data().gender)
+                    }
 
                 } else {
                     // doc.data() will be undefined in this case
@@ -86,7 +97,6 @@ function ProfileSettings() {
         // console.log(userDbData);
 
         // checking difference between new and old data
-        let oldData = [user.displayName, userDbData.fullName, userDbData.webpage, userDbData.bio, user.email, user.phoneNumber, userDbData.gender];
         let newData = [newUsername, newfullname, newpage, newbio, newemail, newphone, newgender];
         const paramData = ['displayName', 'fullName', 'webpage', 'bio', 'email', 'phoneNumber', 'gender'];
         let objChange = {};
@@ -97,11 +107,10 @@ function ProfileSettings() {
 
         var i;
         for (i = 0; i < newData.length; i++) {
-            if (newData[i] === null || newData[i] === '' || newData[i] === oldData[i]) { 
+            if (newData[i] === null || newData[i] === '') { 
                 continue;
              } else {
                 // push data to new array if so 
-                // toChange.push( Object.fromEntries([[paramData[i], newData[i]]]) )
                 objChange = {...objChange, ...Object.fromEntries([[paramData[i], newData[i]]]) } 
                 continueChange = true;
              }     
@@ -115,9 +124,9 @@ function ProfileSettings() {
 
         console.log(objChange)
 
-        // [displayName, email, phoneNumber] we need to jande not just in db, but on auth server
+        // [displayName, email] we need to jande not just in db, but on auth server
         // check if we need to work with auth server
-        if (objChange.displayName !== undefined || objChange.email !== undefined || objChange.phoneNumber !== undefined) {
+        if (objChange.displayName !== undefined || objChange.email !== undefined) {
             // console.log('Working with auth')
             
             user.updateProfile(objChange).then(function() {
