@@ -18,6 +18,7 @@ function ProfileSettings() {
     const [user, setUser] = useState(null)
     const [userDbData, setUserDbData] = useState(null)
 
+    // taking auth and db user data
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((authUser) => {
           if (authUser) {
@@ -69,7 +70,29 @@ function ProfileSettings() {
     const [openChange, setOpenChange] = useState(false);
 
 
-            
+    const changeProfile = (event) => {
+        event.preventDefault();
+        console.log('Update user');
+        // console.log(userDbData);
+        let oldData = [user.displayName, userDbData.fullName, userDbData.webpage, userDbData.bio, user.email, user.phoneNumber, userDbData.gender];
+        let newData = [newUsername, newfullname, newpage, newbio, newemail, newphone, newgender];
+        let toChange = [];
+        
+        console.log(oldData);
+        console.log(newData);
+
+        var i;
+        for (i = 0; i < newData.length; i++) {
+            if (newData[i] === null || newData[i] === '' || newData[i] === oldData[i]) { 
+                toChange.push(null)
+             } else {
+                toChange.push(newData[i])
+             }     
+        }
+        
+        console.log('To change', toChange)
+
+    }       
     
     
 
@@ -285,7 +308,7 @@ function ProfileSettings() {
                     </Grid>
                     <Grid className="profileSet__leftColumn" item xs={5} />
                     <Grid className="profileSet__rightColumn" item xs={7}>
-                        <button className="mainBtn">Submit</button>   
+                        <button onClick={changeProfile} className="mainBtn">Submit</button>   
                     </Grid>
 
                     <Grid className="profileSet__leftColumn" item xs={5}>
