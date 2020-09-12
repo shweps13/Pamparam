@@ -74,9 +74,14 @@ function ProfileSettings() {
         event.preventDefault();
         console.log('Update user');
         // console.log(userDbData);
+
+        // checking difference between new and old data
         let oldData = [user.displayName, userDbData.fullName, userDbData.webpage, userDbData.bio, user.email, user.phoneNumber, userDbData.gender];
         let newData = [newUsername, newfullname, newpage, newbio, newemail, newphone, newgender];
+        const paramData = ['displayName', 'fullName', 'webpage', 'bio', 'email', 'phoneNumber', 'gender'];
         let toChange = [];
+        const obj = {};
+        let continueChange = false;
         
         console.log(oldData);
         console.log(newData);
@@ -86,11 +91,41 @@ function ProfileSettings() {
             if (newData[i] === null || newData[i] === '' || newData[i] === oldData[i]) { 
                 toChange.push(null)
              } else {
-                toChange.push(newData[i])
+                // push data to new array if so 
+                toChange.push( Object.fromEntries([[paramData[i], newData[i]]]) )
+                continueChange = true;
              }     
         }
         
+        // if there is no data to change => stop function
+        if (continueChange === false) {
+            alert('There is no new data for a change! Fill something first!')
+            return false
+        }
+
+        // [displayName, email, phoneNumber] we need to jande not just in db, but on auth server
+        // check if we need to work with auth server
+        if (toChange[0] !== null || toChange[4] !== null || toChange[5] !== null) {
+            console.log('Working with auth')
+            
+            // user.updateProfile({
+            //     displayName: toChange[0],
+            //     email: toChange[4],
+            //     phoneNumber: toChange[5]
+            //   }).then(function() {
+            //     // Update successful.
+            //     console.log('Auth data was updated')
+            //   }).catch(function(error) {
+            //     // An error happened.
+            //     console.log('Error with auth data updating', error)
+            //   });
+        
+        }
+
         console.log('To change', toChange)
+
+
+        
 
     }       
     
