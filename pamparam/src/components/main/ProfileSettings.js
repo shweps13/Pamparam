@@ -122,9 +122,11 @@ function ProfileSettings() {
                     if (error.code === 'auth/wrong-password') {
                         alert('Old password is incorrect. Please, try again!');
                         setOldpass('');
+                        setChangingPass(false);
                         return false
                     } else {
                         alert('Some trouble is happened. Please, try again later.');
+                        setChangingPass(false);
                         // console.log(error)
                         return false   
                     }
