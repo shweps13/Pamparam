@@ -30,6 +30,16 @@ function ProfileSettings() {
                 if (doc.exists) {
                     console.log("Document data:", doc.data());
                     setUserDbData(doc.data());
+
+                    // import data to hooks
+                    setNewusername(authUser.displayName)
+                    setNewemail(authUser.email)
+                    setNewfullname(doc.data().fullName)
+                    setNewpage(doc.data().webpage)
+                    setNewbio(doc.data().bio)
+                    setNewphone(doc.data().phoneNumber)
+                    setNewgender(doc.data().gender)
+
                 } else {
                     // doc.data() will be undefined in this case
                     console.log("No such document!");
@@ -108,7 +118,7 @@ function ProfileSettings() {
         // [displayName, email, phoneNumber] we need to jande not just in db, but on auth server
         // check if we need to work with auth server
         if (objChange.displayName !== undefined || objChange.email !== undefined || objChange.phoneNumber !== undefined) {
-            console.log('Working with auth')
+            // console.log('Working with auth')
             
             user.updateProfile(objChange).then(function() {
                 // Update successful.
@@ -123,7 +133,7 @@ function ProfileSettings() {
         // changing data in db now
         db.collection("users").doc(user.uid).set(objChange)
             .then(() => {
-                console.log('Data in DB was')
+                console.log('Data in DB was updated')
         })
             .catch((error) => {
                 // console.error("Error removing document: ", error);
@@ -260,7 +270,7 @@ function ProfileSettings() {
                     <Grid className="profileSet__rightColumn" item xs={7}>
                             {userDbData === null ? (
                                 <input
-                                placeholder="Webpage"
+                                placeholder="Your personal page"
                                 type="text"
                                 value={newpage}
                                 onChange={(e) => setNewpage(e.target.value)}
@@ -282,7 +292,7 @@ function ProfileSettings() {
                         <div className="profileSet__rightBlock">
                             {userDbData === null ? (
                                 <textarea
-                                placeholder="Webpage"
+                                placeholder="Few words about you"
                                 type="text"
                                 value={newbio}
                                 onChange={(e) => setNewbio(e.target.value)}
@@ -317,12 +327,21 @@ function ProfileSettings() {
                         <label>Phone number</label>
                     </Grid>
                     <Grid className="profileSet__rightColumn" item xs={7}>
-                        <input
-                        placeholder={user.phoneNumber}
-                        type="text"
-                        value={newphone}
-                        onChange={(e) => setNewphone(e.target.value)}
-                        />
+                        {userDbData === null ? (
+                            <input
+                            placeholder="Your personal phone"
+                            type="text"
+                            value={newphone}
+                            onChange={(e) => setNewphone(e.target.value)}
+                            />
+                        ): (
+                            <input
+                            placeholder={userDbData.phoneNumber}
+                            type="text"
+                            value={newphone}
+                            onChange={(e) => setNewphone(e.target.value)}
+                            />
+                        )}
                     </Grid>
 
                     <Grid className="profileSet__leftColumn" item xs={5}>
@@ -331,7 +350,7 @@ function ProfileSettings() {
                     <Grid className="profileSet__rightColumn" item xs={7}>     
                             {userDbData === null ? (
                                 <input
-                                placeholder="Webpage"
+                                placeholder="Any gender"
                                 type="text"
                                 value={newgender}
                                 onChange={(e) => setNewgender(e.target.value)}
