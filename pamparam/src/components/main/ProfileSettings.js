@@ -12,6 +12,7 @@ import { getModalStyle, useStyles } from '../../materials/modalStyles.js';
 import ModalDelUser from '../../components/dependent/ModalDelUser.js';
 import ModalChangepass from '../../components/dependent/ModalChangepass.js';
 
+import { FaCheckCircle } from 'react-icons/fa';
 
 
 function ProfileSettings({ setLocal }) {
@@ -98,6 +99,8 @@ function ProfileSettings({ setLocal }) {
     const [changingPass, setChangingPass] = useState(false);
     const [openChange, setOpenChange] = useState(false);
     const [changingProfile, setChangingProfile] = useState(false);
+    const [profileDone, setProfileDone] = useState(false);
+
 
 
     const changeProfile = (event) => {
@@ -121,9 +124,6 @@ function ProfileSettings({ setLocal }) {
              }     
         }
         
-        console.log(oldData)
-        console.log(newData)
-
         for (i = 0; i < newData.length; i++) {
             if (newData[i] !== oldData[i]) {
                 continueChange = true;
@@ -142,7 +142,6 @@ function ProfileSettings({ setLocal }) {
         // check if we need to work with auth server
         if (objChange.displayName !== undefined || objChange.email !== undefined) {
             // console.log('Working with auth')
-            
             user.updateProfile(objChange).then(function() {
                 // Update successful.
                 console.log('Auth data was updated')
@@ -152,11 +151,18 @@ function ProfileSettings({ setLocal }) {
               });
         }
         
+        let closeDone = () => {
+            setProfileDone(false)
+        }
+
         // changing data in db now
         db.collection("users").doc(user.uid).set(objChange)
             .then(() => {
                 console.log('Data in DB was updated')
                 setChangingProfile(false)
+                setProfileDone(true)
+                setTimeout(closeDone, 2000)
+
         })
             .catch((error) => {
                 // console.error("Error removing document: ", error);
@@ -384,13 +390,23 @@ function ProfileSettings({ setLocal }) {
                     </Grid>
                     <Grid className="profileSet__leftColumn" item xs={5} />
                     <Grid className="profileSet__rightColumn" item xs={7}>
-                        {changingProfile ? (
-                            <div className="profileSet__loaderChangePass">
-                                <CircularProgress size={20} />
-                            </div>
-                            ): (
-                                <button onClick={changeProfile} className="mainBtn">Submit</button>     
-                        )}
+                        <div className='profileSet__changePass'>
+                            {changingProfile ? (
+                                <div className="profileSet__loaderChangePass">
+                                    <CircularProgress size={20} />
+                                </div>
+                                ): (
+                                    <button onClick={changeProfile} className="mainBtn">Submit</button>
+                            )}
+                            {profileDone ? (
+                                <div className="profileSet__doneMessage">
+                                    <FaCheckCircle  size={20}/>
+                                    <strong>Data updated!</strong>
+                                </div>    
+                                ): (
+                                <></>
+                            )}
+                        </div>
                     </Grid>
 
 
