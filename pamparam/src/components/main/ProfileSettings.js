@@ -105,6 +105,7 @@ function ProfileSettings({ setLocal }) {
         // console.log(userDbData);
 
         // checking difference between new and old data
+        let oldData = [user.displayName, userDbData.fullName, userDbData.webpage, userDbData.bio, user.email, userDbData.phoneNumber, userDbData.gender];
         let newData = [newUsername, newfullname, newpage, newbio, newemail, newphone, newgender];
         const paramData = ['displayName', 'fullName', 'webpage', 'bio', 'email', 'phoneNumber', 'gender'];
         let objChange = {};
@@ -124,6 +125,17 @@ function ProfileSettings({ setLocal }) {
              }     
         }
         
+        console.log(oldData)
+        console.log(newData)
+
+        for (i = 0; i < newData.length; i++) {
+            if (`${newData[i]}` === `${oldData[i]}`) {
+                continueChange = false;
+            }
+        }
+
+        console.log(continueChange)
+
         // if there is no data to change => stop function
         if (continueChange === false) {
             alert('There is no new data for a change! Fill something first!')
