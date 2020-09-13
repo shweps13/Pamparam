@@ -97,12 +97,12 @@ function ProfileSettings({ setLocal }) {
     
     const [changingPass, setChangingPass] = useState(false);
     const [openChange, setOpenChange] = useState(false);
+    const [changingProfile, setChangingProfile] = useState(false);
 
 
     const changeProfile = (event) => {
         event.preventDefault();
-        console.log('Update user');
-        // console.log(userDbData);
+        setChangingProfile(true);
 
         // checking difference between new and old data
         let oldData = [user.displayName, userDbData.fullName, userDbData.webpage, userDbData.bio, user.email, userDbData.phoneNumber, userDbData.gender];
@@ -110,9 +110,6 @@ function ProfileSettings({ setLocal }) {
         const paramData = ['displayName', 'fullName', 'webpage', 'bio', 'email', 'phoneNumber', 'gender'];
         let objChange = {};
         let continueChange = false;
-        
-        // console.log(oldData);
-        // console.log(newData);
 
         var i;
         for (i = 0; i < newData.length; i++) {
@@ -121,7 +118,6 @@ function ProfileSettings({ setLocal }) {
              } else {
                 // push data to new array if so 
                 objChange = {...objChange, ...Object.fromEntries([[paramData[i], newData[i]]]) } 
-                continueChange = true;
              }     
         }
         
@@ -129,19 +125,17 @@ function ProfileSettings({ setLocal }) {
         console.log(newData)
 
         for (i = 0; i < newData.length; i++) {
-            if (`${newData[i]}` === `${oldData[i]}`) {
-                continueChange = false;
+            if (newData[i] !== oldData[i]) {
+                continueChange = true;
             }
         }
 
-        console.log(continueChange)
-
         // if there is no data to change => stop function
         if (continueChange === false) {
-            alert('There is no new data for a change! Fill something first!')
+            alert('There is no new data for a change! Fill something first!');
+            setChangingProfile(false);
             return false
         }
-
         console.log(objChange)
 
         // [displayName, email] we need to jande not just in db, but on auth server
@@ -156,24 +150,21 @@ function ProfileSettings({ setLocal }) {
                 // An error happened.
                 console.log('Error with auth data updating', error)
               });
-        
         }
         
         // changing data in db now
         db.collection("users").doc(user.uid).set(objChange)
             .then(() => {
                 console.log('Data in DB was updated')
+                setChangingProfile(false)
         })
             .catch((error) => {
                 // console.error("Error removing document: ", error);
                 alert('Something wrong happened, please try again...');
                 return false
         });
-
     }       
     
-    
-
     const cleanPass = () => {
         setOldpass('');
         setNewpass('');
@@ -239,8 +230,6 @@ function ProfileSettings({ setLocal }) {
 
     return (
     <div className="profileSet">
-
-            
 
         {user === null ? (
                 <div className="profileSet__comments">
@@ -395,8 +384,17 @@ function ProfileSettings({ setLocal }) {
                     </Grid>
                     <Grid className="profileSet__leftColumn" item xs={5} />
                     <Grid className="profileSet__rightColumn" item xs={7}>
-                        <button onClick={changeProfile} className="mainBtn">Submit</button>   
+                        {changingProfile ? (
+                            <div className="profileSet__loaderChangePass">
+                                <CircularProgress size={20} />
+                            </div>
+                            ): (
+                                <button onClick={changeProfile} className="mainBtn">Submit</button>     
+                        )}
                     </Grid>
+
+
+
 
                     <Grid className="profileSet__leftColumn" item xs={5}>
                         <label>Old password</label>
