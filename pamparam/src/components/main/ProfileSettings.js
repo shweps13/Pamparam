@@ -26,6 +26,8 @@ function ProfileSettings({ setLocal }) {
 
     const [user, setUser] = useState(null)
     const [userDbData, setUserDbData] = useState(null)
+    const [userDataUpdate, setUserDataUpdate] = useState(false)
+    
 
     // taking auth and db user data
     useEffect(() => {
@@ -78,7 +80,7 @@ function ProfileSettings({ setLocal }) {
           // cleanup actions
           unsubscribe();
         }
-      }, []);
+      }, [userDataUpdate]);
 
     const [newUsername, setNewusername] = useState('');
     const [newfullname, setNewfullname] = useState('');
@@ -100,8 +102,6 @@ function ProfileSettings({ setLocal }) {
     const [openChange, setOpenChange] = useState(false);
     const [changingProfile, setChangingProfile] = useState(false);
     const [profileDone, setProfileDone] = useState(false);
-
-
 
     const changeProfile = (event) => {
         event.preventDefault();
@@ -161,6 +161,7 @@ function ProfileSettings({ setLocal }) {
                 console.log('Data in DB was updated')
                 setChangingProfile(false)
                 setProfileDone(true)
+                setUserDataUpdate(!userDataUpdate)
                 setTimeout(closeDone, 2000)
 
         })
