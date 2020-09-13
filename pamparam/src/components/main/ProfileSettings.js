@@ -3,6 +3,7 @@ import userPic from '../../materials/loginPlease.jpg';
 import '../../styles/ProfileSettings.css';
 import firebase from 'firebase';
 import { auth, db } from '../../materials/firebase';
+import { useLocation } from 'react-router-dom';
 
 import Grid from '@material-ui/core/Grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -13,7 +14,14 @@ import ModalChangepass from '../../components/dependent/ModalChangepass.js';
 
 
 
-function ProfileSettings() {
+function ProfileSettings({ setLocal }) {
+    let location = useLocation()
+
+    useEffect(
+        () => {
+            setLocal(location.pathname)  
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+        },[])
 
     const [user, setUser] = useState(null)
     const [userDbData, setUserDbData] = useState(null)
