@@ -14,6 +14,17 @@ import ModalChangepass from '../../components/dependent/ModalChangepass.js';
 
 import { FaCheckCircle } from 'react-icons/fa';
 
+// TODO next:
+// Change picture function
+//     => profile update
+//     => db update
+// Delete picture function
+// drag`n`drop ??
+// user avatar to menu
+
+// change result action in passwd update
+
+// forgot passwd feature
 
 function ProfileSettings({ setLocal }) {
     let location = useLocation()
