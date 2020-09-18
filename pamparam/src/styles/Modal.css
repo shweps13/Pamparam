@@ -20,11 +20,11 @@
   }
 
   .modal__body {
-    /* background-color: lightgreen; */
     display: flex;
     flex-direction: column;
     width: 50%;
     margin: 1vh auto;
+    /* background-color: lightgreen; */
   }
 
   .modal__body h2, .modal__body h3 {
