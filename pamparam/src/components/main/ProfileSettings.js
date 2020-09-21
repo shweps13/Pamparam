@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import userPic from '../../materials/loginPlease.jpg';
+import noAvatar from '../../materials/noAvatar.jpg';
 import '../../styles/ProfileSettings.css';
 import firebase from 'firebase';
 import { auth, db } from '../../materials/firebase';
@@ -256,7 +257,11 @@ function ProfileSettings({ setLocal }) {
             ): (
                 <Grid container spacing={2}>
                     <Grid className="profileSet__header" item xs={12}>
-                        <img src={userPic} className="profileSet__userImage" alt="logo"/>
+                        {user.photoURL === null ? (
+                                <img src={noAvatar} className="profileSet__userImage" alt="logo"/>
+                            ): (
+                                <img src={userPic} className="profileSet__userImage" alt="logo"/>
+                        )}
                         <div>
                             <h2>{user.displayName}</h2>
                             <p>Change user avatar</p>
