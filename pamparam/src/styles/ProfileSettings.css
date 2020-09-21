@@ -36,6 +36,12 @@ div:nth-child(28) > label {
     padding-top: 3px;
     padding-left: 3px;
 }
+
+.profileSet__avaUploading {
+    position: absolute;
+    margin-left: 40px;
+}
+
 .profileSet__header label{
    margin: 0;
    padding: 0;;

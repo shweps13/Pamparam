@@ -365,12 +365,14 @@ function ProfileSettings({ setLocal }) {
             ): (
                 <Grid container spacing={2}>
                     <Grid className="profileSet__header" item xs={12}>
-
-                        {user.photoURL === null ? (
-                                <img src={noAvatar} className="profileSet__userImage" alt="logo"/>
-                            ): (
-                                <img src={user.photoURL} className="profileSet__userImage" alt="logo"/>
-                        )}
+                        <div>
+                                <CircularProgress className="profileSet__avaUploading" size={20} />
+                            {user.photoURL === null ? (
+                                    <img src={noAvatar} className="profileSet__userImage" alt="logo"/>
+                                ): (
+                                    <img src={user.photoURL} className="profileSet__userImage" alt="logo"/>
+                            )}
+                        </div>
                         <div>
                             <h2>{user.displayName}</h2>
                                 <label htmlFor="upload-photo">
