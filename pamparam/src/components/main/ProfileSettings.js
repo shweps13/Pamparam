@@ -42,7 +42,6 @@ function ProfileSettings({ setLocal }) {
     const [userDbData, setUserDbData] = useState(null)
     const [userDataUpdate, setUserDataUpdate] = useState(false)
     
-    const [avatar, setAvatar] = useState(null);
     const [loading, setLoading] = useState(false);
     const [progress, setProgress] = useState(0);
 
@@ -275,7 +274,11 @@ function ProfileSettings({ setLocal }) {
     const avaUploading = (avaImage) => {
         console.log(avaImage)
         setLoading(true)
-        const uploadTask = storage.ref(`users/${avaImage.name}`).put(avaImage);
+
+        let fileExtension = avaImage.name.substr((avaImage.name.lastIndexOf('.') + 1));
+        const avaName = `${user.uid}` + `.` + `${fileExtension}`
+
+        const uploadTask = storage.ref(`users/${avaName}`).put(avaImage);
 
         uploadTask.on(
             'state_changed',
@@ -295,7 +298,7 @@ function ProfileSettings({ setLocal }) {
                 // complete function
                 storage
                     .ref('users')
-                    .child(avaImage.name)
+                    .child(avaName)
                     .getDownloadURL()
                     .then(url => {
                         // post image inside the DB
@@ -311,8 +314,8 @@ function ProfileSettings({ setLocal }) {
                     })
                         // cleaning load form after process
                         setProgress(0);
-                        setAvatar(null);
                         setLoading(false);
+                        setUserDataUpdate(!userDataUpdate)
                     })
             }
         )
@@ -328,24 +331,24 @@ function ProfileSettings({ setLocal }) {
         } else
         if (avaImage) {
             console.log('Avatar received', avaImage)
-            setAvatar(avaImage);
         }
 
         // cheking that user can have previous uploaded avatar
-        // if (user.displayName) {
-        //     // removing old avatar from the storage
-        //     const oldAvatar = storage.ref(`users/${user.uid}`); //need to add file format later [*.jpg *.png] from photoURL address
+        if (user.photoURL) {
+            // removing old avatar from the storage
+            const oldAvatar = storage.ref(`users/${user.uid}`); //need to add file format later [*.jpg *.png] from photoURL address
 
-        //     oldAvatar.delete().then(function() {
-        //     // File deleted successfully
-        //         console.log('Old avatar was removed')
-        //     }).catch(function(error) {
-        //     // Uh-oh, an error occurred!
-        //         console.log('Error removing old avatar from storage', error)
-        //     });
-        // }
-
-        avaUploading(avaImage)
+            oldAvatar.delete().then(() => {
+            // File deleted successfully
+                console.log('Old avatar was removed')
+                // uploading new avatar
+                avaUploading(avaImage)
+            }).catch((error) => {
+                console.log('Error removing old avatar from storage', error)
+            });
+        } else {
+            avaUploading(avaImage)
+        }
 
     }
 
