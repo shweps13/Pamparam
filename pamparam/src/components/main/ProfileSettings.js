@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import userPic from '../../materials/loginPlease.jpg';
 import noAvatar from '../../materials/noAvatar.jpg';
 import '../../styles/ProfileSettings.css';
 import firebase from 'firebase';
@@ -310,12 +309,12 @@ function ProfileSettings({ setLocal }) {
                             console.log('Error uploading of new avatar', error)
                           })
                     .then(() => {
-                        console.log('Azaza')
+                        setUserDataUpdate(!userDataUpdate)
                     })
                         // cleaning load form after process
                         setProgress(0);
                         setLoading(false);
-                        setUserDataUpdate(!userDataUpdate)
+
                     })
             }
         )
@@ -338,8 +337,7 @@ function ProfileSettings({ setLocal }) {
             // removing old avatar from the storage
             let fileExtensionAlt = user.photoURL.replace(/^.*\./, '');
             var extSplit = fileExtensionAlt.split('?', 2);
-            let storagePath = (user.uid + '.' + extSplit[0])
-
+            let storagePath = (user.uid + '.' + extSplit[0]) // we need to know file type from storage befoew removing
 
             const oldAvatar = storage.ref(`users/${storagePath}`);
 
