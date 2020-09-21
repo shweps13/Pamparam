@@ -44,7 +44,6 @@ function ProfileSettings({ setLocal }) {
     const [loading, setLoading] = useState(false);
     const [progress, setProgress] = useState(0);
 
-
     // taking auth and db user data
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -312,9 +311,7 @@ function ProfileSettings({ setLocal }) {
                         setUserDataUpdate(!userDataUpdate)
                     })
                         // cleaning load form after process
-                        setProgress(0);
                         setLoading(false);
-
                     })
             }
         )
@@ -366,7 +363,11 @@ function ProfileSettings({ setLocal }) {
                 <Grid container spacing={2}>
                     <Grid className="profileSet__header" item xs={12}>
                         <div>
-                                <CircularProgress className="profileSet__avaUploading" size={20} />
+                            {loading === false ? (
+                                    <></>
+                                ): (
+                                    <CircularProgress className="profileSet__avaUploading" size={20} value={progress} />
+                            )}
                             {user.photoURL === null ? (
                                     <img src={noAvatar} className="profileSet__userImage" alt="logo"/>
                                 ): (
