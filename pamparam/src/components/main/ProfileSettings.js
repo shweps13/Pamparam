@@ -53,7 +53,7 @@ function ProfileSettings({ setLocal }) {
             // user logged in
             console.log(authUser);
             setUser(authUser);
- 
+
             db.collection('users').doc(authUser.uid).get().then(function(doc) {
                 if (doc.exists) {
                     console.log("Document data:", doc.data());
@@ -276,7 +276,7 @@ function ProfileSettings({ setLocal }) {
         setLoading(true)
 
         let fileExtension = avaImage.name.substr((avaImage.name.lastIndexOf('.') + 1));
-        const avaName = `${user.uid}` + `.` + `${fileExtension}`
+        const avaName = (user.uid + '.' + fileExtension);
 
         const uploadTask = storage.ref(`users/${avaName}`).put(avaImage);
 
@@ -336,7 +336,12 @@ function ProfileSettings({ setLocal }) {
         // cheking that user can have previous uploaded avatar
         if (user.photoURL) {
             // removing old avatar from the storage
-            const oldAvatar = storage.ref(`users/${user.uid}`); //need to add file format later [*.jpg *.png] from photoURL address
+            let fileExtensionAlt = user.photoURL.replace(/^.*\./, '');
+            var extSplit = fileExtensionAlt.split('?', 2);
+            let storagePath = (user.uid + '.' + extSplit[0])
+
+
+            const oldAvatar = storage.ref(`users/${storagePath}`);
 
             oldAvatar.delete().then(() => {
             // File deleted successfully
