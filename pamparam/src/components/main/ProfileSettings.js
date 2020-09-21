@@ -273,6 +273,7 @@ function ProfileSettings({ setLocal }) {
     }
 
     const avaUploading = (avaImage) => {
+        console.log(avaImage)
         setLoading(true)
         const uploadTask = storage.ref(`users/${avaImage.name}`).put(avaImage);
 
@@ -331,18 +332,20 @@ function ProfileSettings({ setLocal }) {
         }
 
         // cheking that user can have previous uploaded avatar
-        if (user.displayName) {
-            // removing old avatar from the storage
-            const oldAvatar = storage.ref(`users/${user.uid}`); //need to add file format later [*.jpg *.png] from photoURL address
+        // if (user.displayName) {
+        //     // removing old avatar from the storage
+        //     const oldAvatar = storage.ref(`users/${user.uid}`); //need to add file format later [*.jpg *.png] from photoURL address
 
-            oldAvatar.delete().then(function() {
-            // File deleted successfully
-                console.log('Old avatar was removed')
-            }).catch(function(error) {
-            // Uh-oh, an error occurred!
-                console.log('Error removing old avatar from storage', error)
-            });
-        }
+        //     oldAvatar.delete().then(function() {
+        //     // File deleted successfully
+        //         console.log('Old avatar was removed')
+        //     }).catch(function(error) {
+        //     // Uh-oh, an error occurred!
+        //         console.log('Error removing old avatar from storage', error)
+        //     });
+        // }
+
+        avaUploading(avaImage)
 
     }
 
@@ -360,7 +363,7 @@ function ProfileSettings({ setLocal }) {
                         {user.photoURL === null ? (
                                 <img src={noAvatar} className="profileSet__userImage" alt="logo"/>
                             ): (
-                                <img src={userPic} className="profileSet__userImage" alt="logo"/>
+                                <img src={user.photoURL} className="profileSet__userImage" alt="logo"/>
                         )}
                         <div>
                             <h2>{user.displayName}</h2>
