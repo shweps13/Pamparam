@@ -5,6 +5,8 @@ import '../../styles/ProfileSettings.css';
 import firebase from 'firebase';
 import { auth, db } from '../../materials/firebase';
 import { useLocation } from 'react-router-dom';
+import { Button } from '@material-ui/core';
+
 
 import Grid from '@material-ui/core/Grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -40,6 +42,7 @@ function ProfileSettings({ setLocal }) {
     const [userDbData, setUserDbData] = useState(null)
     const [userDataUpdate, setUserDataUpdate] = useState(false)
     
+    const [avatar, setAvatar] = useState(null);
 
     // taking auth and db user data
     useEffect(() => {
@@ -247,6 +250,36 @@ function ProfileSettings({ setLocal }) {
         }
     }
 
+    // file verification block
+    const fileMaxSize = 25000000; // in bytes
+    const fileTypes = 'image/x-png, image/png, image/jpg, image/jpeg';
+    const fileTypesArr = fileTypes.split(',').map((type) => {return type.trim()});
+
+    const verifyFile = (file) => {
+        if (file) {
+            if (file.size > fileMaxSize) {
+                alert('This file is not allowed. ' + file.size + 'bytes is too large.')
+                return false
+            }
+            if (!fileTypesArr.includes(file.type)) {
+                alert('This file is not allowed. Only images are allowed.')
+                return false
+            }
+            return true
+        }
+    }
+
+    const avaHandleChange = (e) => {
+
+        if (verifyFile(e.target.files[0]) === false) {
+            return false
+        } else
+        if (e.target.files[0]) {
+            console.log('Avatar received', e.target.files[0])
+            setAvatar(e.target.files[0]);
+        }
+    }
+
     return (
     <div className="profileSet">
 
@@ -264,7 +297,17 @@ function ProfileSettings({ setLocal }) {
                         )}
                         <div>
                             <h2>{user.displayName}</h2>
-                            <p>Change user avatar</p>
+                                <label htmlFor="upload-photo">
+                                    <input type="file" 
+                                        style={{ display: 'none' }}
+                                        id="upload-photo"  
+                                        accept="image/*"
+                                        onChange={avaHandleChange} 
+                                    />
+                                    <Button  size="small" component="span">
+                                    Change user avatar
+                                    </Button>
+                                </label>
                         </div>
                     </Grid>
                     <Grid className="profileSet__leftColumn" item xs={5}>

@@ -30,12 +30,21 @@ div:nth-child(28) > label {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    
+}
+.profileSet__header h2{
+    padding-left: 3px;
+}
+.profileSet__header label{
+   margin: 0;
+   padding: 0;;
 }
 
 .profileSet__userImage{
     max-height: 6vh;
     border-radius: 50%;
     margin-right: 30px;
+    margin-left: 20px;
 }
 
 .profileSet__leftColumn {
