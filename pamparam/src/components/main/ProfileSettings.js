@@ -3,7 +3,7 @@ import userPic from '../../materials/loginPlease.jpg';
 import noAvatar from '../../materials/noAvatar.jpg';
 import '../../styles/ProfileSettings.css';
 import firebase from 'firebase';
-import { auth, db } from '../../materials/firebase';
+import { auth, db, storage } from '../../materials/firebase.js';
 import { useLocation } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 
@@ -43,6 +43,9 @@ function ProfileSettings({ setLocal }) {
     const [userDataUpdate, setUserDataUpdate] = useState(false)
     
     const [avatar, setAvatar] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [progress, setProgress] = useState(0);
+
 
     // taking auth and db user data
     useEffect(() => {
@@ -269,15 +272,78 @@ function ProfileSettings({ setLocal }) {
         }
     }
 
+    const avaUploading = (avaImage) => {
+        setLoading(true)
+        const uploadTask = storage.ref(`users/${avaImage.name}`).put(avaImage);
+
+        uploadTask.on(
+            'state_changed',
+            (snapshot) => {
+                // progress function
+                const progress = Math.round(
+                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                );
+                setProgress(progress);
+            },
+            (error) => {
+                // error function
+                console.log(error);
+                alert(error.message);
+            },
+            () => {
+                // complete function
+                storage
+                    .ref('users')
+                    .child(avaImage.name)
+                    .getDownloadURL()
+                    .then(url => {
+                        // post image inside the DB
+                        user.updateProfile({
+                            photoURL: url
+                          }).then(function() {
+                            console.log('Avatar updated')
+                          }).catch(function(error) {
+                            console.log('Error uploading of new avatar', error)
+                          })
+                    .then(() => {
+                        console.log('Azaza')
+                    })
+                        // cleaning load form after process
+                        setProgress(0);
+                        setAvatar(null);
+                        setLoading(false);
+                    })
+            }
+        )
+
+    }
+
     const avaHandleChange = (e) => {
 
-        if (verifyFile(e.target.files[0]) === false) {
+        // making verification and putting image to the hook
+        let avaImage = e.target.files[0]
+        if (verifyFile(avaImage) === false) {
             return false
         } else
-        if (e.target.files[0]) {
-            console.log('Avatar received', e.target.files[0])
-            setAvatar(e.target.files[0]);
+        if (avaImage) {
+            console.log('Avatar received', avaImage)
+            setAvatar(avaImage);
         }
+
+        // cheking that user can have previous uploaded avatar
+        if (user.displayName) {
+            // removing old avatar from the storage
+            const oldAvatar = storage.ref(`users/${user.uid}`); //need to add file format later [*.jpg *.png] from photoURL address
+
+            oldAvatar.delete().then(function() {
+            // File deleted successfully
+                console.log('Old avatar was removed')
+            }).catch(function(error) {
+            // Uh-oh, an error occurred!
+                console.log('Error removing old avatar from storage', error)
+            });
+        }
+
     }
 
     return (
@@ -290,6 +356,7 @@ function ProfileSettings({ setLocal }) {
             ): (
                 <Grid container spacing={2}>
                     <Grid className="profileSet__header" item xs={12}>
+
                         {user.photoURL === null ? (
                                 <img src={noAvatar} className="profileSet__userImage" alt="logo"/>
                             ): (
@@ -304,9 +371,7 @@ function ProfileSettings({ setLocal }) {
                                         accept="image/*"
                                         onChange={avaHandleChange} 
                                     />
-                                    <Button  size="small" component="span">
-                                    Change user avatar
-                                    </Button>
+                                    <Button size="small" component="span">Change user avatar</Button>
                                 </label>
                         </div>
                     </Grid>

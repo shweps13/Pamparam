@@ -33,6 +33,7 @@ div:nth-child(28) > label {
     
 }
 .profileSet__header h2{
+    padding-top: 3px;
     padding-left: 3px;
 }
 .profileSet__header label{
