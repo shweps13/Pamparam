@@ -327,7 +327,7 @@ function ProfileSettings({ setLocal }) {
             // removing old avatar from the storage
             let fileExtensionAlt = user.photoURL.replace(/^.*\./, '');
             var extSplit = fileExtensionAlt.split('?', 2);
-            let storagePath = (user.uid + '.' + extSplit[0]) // we need to know file type from storage befoew removing
+            let storagePath = (user.uid + '.' + extSplit[0]) // we need to know file type from storage before removing
 
             const oldAvatar = storage.ref(`users/${storagePath}`);
 

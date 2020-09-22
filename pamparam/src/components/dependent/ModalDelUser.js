@@ -6,7 +6,7 @@ import '../../styles/Modal.css';
 import { useHistory } from "react-router-dom";
 
 import firebase from 'firebase';
-import { db } from '../../materials/firebase.js';
+import { db, storage } from '../../materials/firebase.js';
 
 
 function ModalDelUser({ user, openDel, setOpenDel, modalStyle, classesStyle }) {
@@ -43,10 +43,26 @@ function ModalDelUser({ user, openDel, setOpenDel, modalStyle, classesStyle }) {
                     // db document deleted, can remove profile now
                     // console.log("Document successfully deleted!");
 
-                    user.delete().then(() => {
-                            // User deleted
+                    if (user.photoURL) {
+                        // removing old avatar from the storage
+                        let fileExtensionAlt = user.photoURL.replace(/^.*\./, '');
+                        var extSplit = fileExtensionAlt.split('?', 2);
+                        let storagePath = (user.uid + '.' + extSplit[0]) // we need to know file type from storage before removing
+            
+                        const oldAvatar = storage.ref(`users/${storagePath}`);
+            
+                        oldAvatar.delete().then(() => {
+                        // File deleted successfully
+                            console.log('Avatar was removed')
                             // console.log('Deleted')
-                            redirect();
+                        }).catch((error) => {
+                            console.log('Error removing old avatar from storage', error)
+                        });
+                    } 
+
+                    user.delete().then(() => {
+                        // User deleted
+                        redirect();
                     }).catch(function(error) {
                             // An error happened.
                             // console.log('Error', error)
