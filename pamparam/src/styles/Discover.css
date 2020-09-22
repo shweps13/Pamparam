@@ -1,0 +1,5 @@
+.discover__loading {
+    display: grid;
+    place-items: center;
+    margin-top: 30vh;
+}

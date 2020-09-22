@@ -38,7 +38,7 @@ function Routes({ Route, Redirect, Switch, setLocal, user, username }) {
         <Route exact path="/discover"
             render={() => (
               <Discover
-                setLocal={setLocal}
+                setLocal={setLocal} user={user}
               />
             )} />
         <Route exact path="/likes"
