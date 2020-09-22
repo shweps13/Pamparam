@@ -17,15 +17,8 @@ import ModalChangepass from '../../components/dependent/ModalChangepass.js';
 import { FaCheckCircle } from 'react-icons/fa';
 
 // TODO next:
-// Change picture function
-//     => profile update
-//     => db update
 // Delete picture function
-// drag`n`drop ??
 // user avatar to menu
-
-// change result action in passwd update
-
 // forgot passwd feature
 
 function ProfileSettings({ setLocal }) {
@@ -251,7 +244,7 @@ function ProfileSettings({ setLocal }) {
     }
 
     // file verification block
-    const fileMaxSize = 25000000; // in bytes
+    const fileMaxSize = 512000; // half of megabyte
     const fileTypes = 'image/x-png, image/png, image/jpg, image/jpeg';
     const fileTypesArr = fileTypes.split(',').map((type) => {return type.trim()});
 
@@ -326,7 +319,7 @@ function ProfileSettings({ setLocal }) {
             return false
         } else
         if (avaImage) {
-            console.log('Avatar received', avaImage)
+            // console.log('Avatar received', avaImage)
         }
 
         // cheking that user can have previous uploaded avatar
