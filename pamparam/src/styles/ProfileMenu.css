@@ -25,6 +25,11 @@
     z-index: 2;
 }
 
+.profileDropMenu__avatar {
+    max-width: 25px;   
+    cursor: pointer;
+}
+
 .profileDropMenu__popLogged {
     display: flex;
     flex-direction: column;   

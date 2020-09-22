@@ -17,7 +17,7 @@ import ModalChangepass from '../../components/dependent/ModalChangepass.js';
 import { FaCheckCircle } from 'react-icons/fa';
 
 // TODO next:
-// Delete picture function
+// Delete picture function?
 // user avatar to menu
 // forgot passwd feature
 
