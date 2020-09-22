@@ -18,7 +18,6 @@ import { FaCheckCircle } from 'react-icons/fa';
 
 // TODO next:
 // Delete picture function?
-// user avatar to menu
 // forgot passwd feature
 
 function ProfileSettings({ setLocal }) {
@@ -263,7 +262,7 @@ function ProfileSettings({ setLocal }) {
     }
 
     const avaUploading = (avaImage) => {
-        console.log(avaImage)
+        // console.log(avaImage)
         setLoading(true)
 
         let fileExtension = avaImage.name.substr((avaImage.name.lastIndexOf('.') + 1));

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import '../../styles/Post.css'
 import Avatar from '@material-ui/core/Avatar';
 import { db } from '../../materials/firebase';
+import noAvatar from '../../materials/noAvatar.jpg';
 import firebase from 'firebase';
 import Comment from './Comment.js'
 
@@ -47,8 +48,8 @@ function Post({ postId, username, user, caption, imageUrl }) {
             <div className="post__header">
                 <Avatar 
                     className="post__avatar" 
-                    alt="Remy Sharp" 
-                    src="/static/images/avatar/1.jpg" 
+                    alt="User avatar" 
+                    src={noAvatar} 
                 />
                 <h3>{username}</h3>
             </div>

@@ -37,17 +37,14 @@ class Card extends Component {
     }
   }
 
+
   render() {
+
     return (
       <>
-        {this.props.user === null ? (
-                <>
-                <CgProfile style={{cursor: "pointer"}} size={25} onClick={this.showMenu}/>
-                </>
-            ): (
-                <img src={this.props.user.photoURL} onClick={this.showMenu} className="profileDropMenu__avatar" alt="User avatar"/>
-        )}
-        
+
+        <CgProfile style={{cursor: "pointer"}} size={25} onClick={this.showMenu}/>
+
         {
           this.state.showMenu
             ? (
