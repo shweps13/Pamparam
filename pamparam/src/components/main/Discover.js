@@ -37,8 +37,10 @@ function Discover({ user, setLocal }) {
                     <div className="discover__grid">
                         {
                             posts.map(({ id, post }) => (
-                                <div class="discover__sideCrop">
-                                    <img key={id} src={post.imageUrl} className="discover__image" alt={`${post.username}'s post`} />
+                                <div className="discover__image">
+                                    <div className="discover__sideCrop">
+                                        <img key={id} src={post.imageUrl} className="discover__image" alt={`${post.username}'s post`} />
+                                    </div>
                                 </div>
                             ))
                         }
