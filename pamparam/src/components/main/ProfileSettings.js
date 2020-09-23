@@ -361,9 +361,9 @@ function ProfileSettings({ setLocal }) {
                                     <CircularProgress className="profileSet__avaUploading" size={20} value={progress} />
                             )}
                             {user.photoURL === null ? (
-                                    <img src={noAvatar} className="profileSet__userImage" alt="logo"/>
+                                    <img src={noAvatar} className="profileSet__userImage" alt="User avatar"/>
                                 ): (
-                                    <img src={user.photoURL} className="profileSet__userImage" alt="logo"/>
+                                    <img src={user.photoURL} className="profileSet__userImage" alt="User avatar"/>
                             )}
                         </div>
                         <div>

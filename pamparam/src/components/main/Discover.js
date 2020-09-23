@@ -1,16 +1,30 @@
-import React, {useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import '../../styles/Discover.css';
 
+import { db } from '../../materials/firebase';
+
+
 function Discover({ user, setLocal }) {
-    let location = useLocation()
+    let location = useLocation();
+    const [posts, setPosts] = useState([]);
 
     useEffect(
     () => {
         setLocal(location.pathname)  
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
+
+    // receiving all pictures data
+    useEffect(() => {
+        db.collection('posts').get().then(snapshot => {
+          setPosts(snapshot.docs.map(doc => ({
+            id: doc.id,
+            post: doc.data()
+          })));
+        })
+    }, []);
 
     return (
     <div className="discover">
@@ -19,7 +33,16 @@ function Discover({ user, setLocal }) {
                     <CircularProgress size={100} />
                 </div>
             ): (
-                <h3>Discover feature under development</h3>
+                <>
+                    <div className="discover__posts">
+                        {
+                            posts.map(({ id, post }) => (
+                                <img key={id} src={post.imageUrl} className="discover__image" alt={`${post.username}'s post`} />
+                            ))
+                        }
+                    </div>
+                    {console.log('Posts', posts)}
+                </>
         )}
     </div>
     )

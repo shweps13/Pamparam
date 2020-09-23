@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 
 function Main({ user, setLocal }) {
   const [posts, setPosts] = useState([]);
-  let location = useLocation()
+  let location = useLocation();
 
   // Pool data from the Firebase DB
   useEffect(() => {
