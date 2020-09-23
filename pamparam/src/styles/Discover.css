@@ -3,3 +3,31 @@
     place-items: center;
     margin-top: 30vh;
 }
+
+.discover__grid {
+    padding-top: 32px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 190px;
+    grid-gap: 10px;
+
+}
+
+.discover__sideCrop {
+    max-width: 190px; 
+    /* max-height: 190px;  */
+    overflow: hidden;
+    /* text-indent: -70%; */
+    /* text-indent: -140px; */
+}
+
+.discover__sideCrop img { 
+    max-width: initial; 
+    height: 300px;
+}
+
+/* .discover__image {
+    max-width: 190px;
+    max-height: 190px;
+} */
+
