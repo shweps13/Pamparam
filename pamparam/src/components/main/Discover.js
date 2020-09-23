@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import '../../styles/Discover.css';
+import DiscoverElement from '../dependent/DiscoverElement.js';
 
 import { db } from '../../materials/firebase';
 
@@ -56,11 +57,7 @@ function Discover({ user, setLocal }) {
                     <div className="discover__grid">
                         {
                             totalPosts.map(({ id, post }) => (
-                                <div className="discover__image">
-                                    <div className="discover__sideCrop">
-                                        <img key={id} src={post.imageUrl} className="discover__image" alt={`${post.username}'s post`} />
-                                    </div>
-                                </div>
+                                <DiscoverElement key={id} imageUrl={post.imageUrl} alt={post.username}/>
                             ))
                         }
                     </div>
