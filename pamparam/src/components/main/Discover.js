@@ -9,7 +9,19 @@ import { db } from '../../materials/firebase';
 function Discover({ user, setLocal }) {
     let location = useLocation();
     const [posts, setPosts] = useState([]);
+    const [totalPosts, setTotalPosts] = useState([]);
 
+    // Fisher-Yates Algorithm
+    const shuffle = (array) => {
+        for(let i = array.length - 1; i > 0; i--){
+            const j = Math.floor(Math.random() * i)
+            const temp = array[i]
+            array[i] = array[j]
+            array[j] = temp
+            }
+        return array;
+    }
+    
     useEffect(
     () => {
         setLocal(location.pathname)  
@@ -26,9 +38,16 @@ function Discover({ user, setLocal }) {
         })
     }, []);
 
+    useEffect(() => {
+        // check this point in future lazy load
+        setTotalPosts(totalPosts.concat(shuffle(posts)))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[posts])
+
+
     return (
     <div className="discover">
-        {user === null ? (
+        {totalPosts.length === 0 ? (
                 <div className="discover__loading">
                     <CircularProgress size={100} />
                 </div>
@@ -36,7 +55,7 @@ function Discover({ user, setLocal }) {
                 <>
                     <div className="discover__grid">
                         {
-                            posts.map(({ id, post }) => (
+                            totalPosts.map(({ id, post }) => (
                                 <div className="discover__image">
                                     <div className="discover__sideCrop">
                                         <img key={id} src={post.imageUrl} className="discover__image" alt={`${post.username}'s post`} />
@@ -45,7 +64,6 @@ function Discover({ user, setLocal }) {
                             ))
                         }
                     </div>
-                    {console.log('Posts', posts)}
                 </>
         )}
     </div>

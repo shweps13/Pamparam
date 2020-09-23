@@ -21,6 +21,7 @@
 
 .app__headerImage {
   width: 25%;
+  max-width: 150px;
   object-fit: contain;
 }
 
