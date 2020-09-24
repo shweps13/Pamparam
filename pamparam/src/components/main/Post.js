@@ -62,10 +62,10 @@ function Post({ postId, username, user, caption, imageUrl }) {
             <div></div>
         ): (
             <div className="post__comments">
-            {comments.map((comment) => (
-                <Comment key={comment.id} username={comment.commentData.username} text={comment.commentData.text} />
-            ))}
-        </div>
+                {comments.map((comment) => (
+                    <Comment key={comment.id} username={comment.commentData.username} text={comment.commentData.text} />
+                ))}
+            </div>
         )}
 
         {user && (

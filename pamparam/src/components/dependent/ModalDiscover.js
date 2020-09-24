@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../styles/Modal.css';
 import Modal from '@material-ui/core/Modal';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import noAvatar from '../../materials/noAvatar.jpg';
 
+import Comment from '../main/Comment.js'
+import { db } from '../../materials/firebase';
+
+
 
 function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, modalID }) {
 
-    const lorum = 'Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui dolorem ipsum, quia dolor sit amet consectetur adipisci[ng]velit, sed quia non-numquam [do] eius modi tempora inci[di]dunt, ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum[d] exercitationem ullam corporis suscipitlaboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit, qui inea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo voluptas nulla pariatur? [33] At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non-provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non-recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat…'
-
+    const [comments, setComments] = useState([]);
     const [comment, setComment] = useState('');
 
+    // function for checking posting date
     const dateFrom = (modalID) => {
         let timeStamp = Math.floor(Date.now() / 1000);
         let result = timeStamp - modalID.post.timestamp.seconds // in seconds
@@ -48,6 +52,23 @@ function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, 
         }
     }
 
+    useEffect(() => {
+        if (modalID.id) {
+            db.collection('posts')
+                .doc(modalID.id)
+                .collection('comments')
+                .orderBy('timestamp', 'asc')
+                .onSnapshot((snapshot) => {
+                    setComments(snapshot.docs.map(doc => ({
+                        id: doc.id,
+                        commentData: doc.data()
+                      })))
+                });
+        }
+    
+    }, [modalID.id]);
+
+
     const postComment = (event) => {
         event.preventDefault();
 
@@ -82,8 +103,10 @@ function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, 
                             </div>
                         </div>
                         <div className='discover__modalContent__comments'>
-                            <h3>{modalID.post.username}</h3>
-                            <h3>{lorum}</h3>
+
+                            {comments.map((comment) => (
+                                <Comment key={comment.id} username={comment.commentData.username} text={comment.commentData.text} />
+                            ))}
                         </div>
                         <div className='discover__modalContent__buttons'>
                             <h3>{dateFrom(modalID)}</h3>
