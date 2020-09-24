@@ -41,12 +41,12 @@
     flex: 1;
     padding: 10px;
     border: none;
-    border-top: 1px solid lightgray;
+    border-top: 1px solid #eeeeee;
 }
 
 .post__button {
     flex: 0;
     border: none;
-    border-top: 1px solid lightgray;
+    border-top: 1px solid #eeeeee;
     background-color: transparent;
 }

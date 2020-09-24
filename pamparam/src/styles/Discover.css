@@ -90,23 +90,43 @@
     width: 100%;
 }
 
-.discover__modalContent__headerContent {
+.discover__modalContent__headerContent, .discover__modalContent__description {
     display: flex;
     justify-content: left;
     padding: 16px;
 }
+
+.discover__modalContent__description__text {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.discover__modalContent__description__text p {
+    margin-top: 2px;
+    margin-left: 10px;
+    font-size: 0.9rem;
+}
+
+.discover__modalContent__description__text p:nth-child(3) {
+    color: gray;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 0.8rem;
+}
+
 .discover__modalContent__headerContent strong {
     padding-top: 7px;
 }
 
-.discover__modalContent__header img {
+.discover__modalContent__header img, .discover__modalContent__description img {
     height: 32px;
     width: 32px;
     border-radius: 50%;
 }
 
 .discover__modalContent__comments {
-    background-color: wheat;
+    border-top: 1px solid #eeeeee;
     width: 100%;
     height: auto;
     flex: 1;
@@ -115,7 +135,7 @@
     overflow: auto;
 }
 .discover__modalContent__buttons {
-    /* background-color: gainsboro; */
+    border-top: 1px solid #eeeeee;
     width: 335px;
     height: 82px;
 }

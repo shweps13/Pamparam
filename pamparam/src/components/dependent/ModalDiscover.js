@@ -4,7 +4,7 @@ import Modal from '@material-ui/core/Modal';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import noAvatar from '../../materials/noAvatar.jpg';
 
-import Comment from '../main/Comment.js'
+import CommentDiscover from '../dependent/CommentDiscover.js'
 import { db } from '../../materials/firebase';
 
 
@@ -17,6 +17,7 @@ function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, 
     // function for checking posting date
     const dateFrom = (modalID) => {
         let timeStamp = Math.floor(Date.now() / 1000);
+        console.log(modalID)
         let result = timeStamp - modalID.post.timestamp.seconds // in seconds
 
         let days = result/86400
@@ -108,10 +109,19 @@ function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, 
                             </div>
                         </div>
                         <div className='discover__modalContent__comments'>
+                            <div className='discover__modalContent__description'>
+                                <img src={noAvatar} alt='User avatar' />
+                                <div className='discover__modalContent__description__text'>
+                                    <strong>{modalID.post.username}</strong>
+                                    <p>{modalID.post.caption}</p>
+                                    <p>{dateFrom(modalID)}</p>
+                                </div>
+                            </div>
 
                             {comments.map((comment) => (
-                                <Comment key={comment.id} username={comment.commentData.username} text={comment.commentData.text} />
+                                <CommentDiscover dateFrom={dateFrom} comment={comment} modalID={modalID} key={comment.id} username={comment.commentData.username} text={comment.commentData.text} />
                             ))}
+                        
                         </div>
                         <div className='discover__modalContent__buttons'>
                             <h3>{dateFrom(modalID)}</h3>
