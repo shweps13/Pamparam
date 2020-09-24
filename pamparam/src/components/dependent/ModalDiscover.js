@@ -11,6 +11,43 @@ function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, 
 
     const [comment, setComment] = useState('');
 
+    const dateFrom = (modalID) => {
+        let timeStamp = Math.floor(Date.now() / 1000);
+        let result = timeStamp - modalID.post.timestamp.seconds // in seconds
+
+        let days = result/86400
+        let hours = result/3600
+        let minutes = result/60
+
+        if (days > 1) {
+            let showDays = Math.floor(days)
+                if (showDays === 1) {
+                    return (`${showDays} day ago`)
+                } else {
+                    return (`${showDays} days ago`)
+                }
+        } else 
+        if (days < 1 && hours > 1) {
+            let showHours = Math.floor(hours)
+                if (showHours === 1) {
+                    return (`${showHours} hour ago`)
+                } else {
+                    return (`${showHours} hours ago`)
+                }
+        } else 
+        if (hours < 1 && minutes > 1){
+            let showMinutes = Math.floor(minutes)
+                if (showMinutes === 1) {
+                    return (`${showMinutes} minute ago`)
+                } else {
+                    return (`${showMinutes} minutes ago`)
+                }
+        } else
+        if (minutes < 1){
+            return (`A few seconds ago`)
+        }
+    }
+
     const postComment = (event) => {
         event.preventDefault();
 
@@ -49,7 +86,8 @@ function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, 
                             <h3>{lorum}</h3>
                         </div>
                         <div className='discover__modalContent__buttons'>
-                            <h3>{modalID.post.username}</h3>
+                            <h3>{dateFrom(modalID)}</h3>
+                            
                         </div>
                         
                         <div className='discover__modalContent__footer'>

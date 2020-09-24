@@ -65,7 +65,9 @@ function Discover({ user, setLocal }) {
         post: {
             caption: null,
             imageUrl: null,
-            timestamp: null,
+            timestamp: {
+                seconds: 0
+            },
             username: null
         }
     });
