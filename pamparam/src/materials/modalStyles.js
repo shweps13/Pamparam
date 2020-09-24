@@ -25,7 +25,7 @@ function getModalStyle() {
   const useDiscoverStyles = makeStyles((theme) => ({
     paper: {
       position: 'absolute',
-      width: 700,
+      width: 800,
       height: 600,
       backgroundColor: theme.palette.background.paper,
       boxShadow: theme.shadows[5],

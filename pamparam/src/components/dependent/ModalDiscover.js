@@ -23,7 +23,11 @@ function ModalDiscover({ openPost, setOpenPost, modalStyle, classesStyle, modalI
                 </div>
             ): (
                 <div className='discover__modal'>
-                    <img src={modalID.post.imageUrl} className="discover__modalImage" alt={`${modalID.post.username}'s post`} />
+                    <div className="discover__modalItem">
+                        <div className="discover__modalImage">
+                            <img src={modalID.post.imageUrl} alt={`${modalID.post.username}'s post`} />
+                        </div>
+                    </div>
                     <div className='discover__modalContent'>
                         <div className='discover__modalContent__header'>
                             <h3>{modalID.post.username}</h3>
