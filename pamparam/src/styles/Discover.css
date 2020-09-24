@@ -62,19 +62,23 @@
 .discover__modalItem {
     max-width: 465px;
     width: 100%;
-    height: 100%;
+    height: 600px;
     position: relative;
 }
 .discover__modalImage {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    
 }
 .discover__modalImage img{
     max-height: 600px;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: 50% 50%;
+    
+    /* object-position: center !important; */
 }
 
 .discover__modalContent {
