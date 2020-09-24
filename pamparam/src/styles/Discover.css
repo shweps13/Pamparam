@@ -115,6 +115,14 @@
     font-size: 0.8rem;
 }
 
+.discover__modalContent__description {
+    padding-top: 0;
+}
+
+.discover__modalContent__description:nth-child(1) {
+    padding: 16px 16px 32px 16px;
+}
+
 .discover__modalContent__headerContent strong {
     padding-top: 7px;
 }

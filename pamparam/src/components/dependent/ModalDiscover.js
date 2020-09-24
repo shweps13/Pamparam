@@ -108,17 +108,19 @@ function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, 
                             </div>
                         </div>
                         <div className='discover__modalContent__comments'>
-                            <div className='discover__modalContent__description'>
+                            <CommentDiscover dateFrom={dateFrom} seconds={modalID.post.timestamp.seconds} username={modalID.post.username} text={modalID.post.caption} />
+
+                            {/* <div className='discover__modalContent__description'>
                                 <img src={noAvatar} alt='User avatar' />
                                 <div className='discover__modalContent__description__text'>
                                     <strong>{modalID.post.username}</strong>
                                     <p>{modalID.post.caption}</p>
                                     <p>{dateFrom(modalID.post.timestamp.seconds)}</p>
                                 </div>
-                            </div>
+                            </div> */}
 
                             {comments.map((comment) => (
-                                <CommentDiscover dateFrom={dateFrom} comment={comment} key={comment.id} username={comment.commentData.username} text={comment.commentData.text} />
+                                <CommentDiscover dateFrom={dateFrom} seconds={comment.commentData.timestamp.seconds} key={comment.id} username={comment.commentData.username} text={comment.commentData.text} />
                             ))}
                         
                         </div>

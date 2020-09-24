@@ -2,7 +2,7 @@ import React from 'react'
 import noAvatar from '../../materials/noAvatar.jpg';
 
 
-function Comment({ dateFrom, username, text, comment }) {
+function Comment({ dateFrom, username, text, seconds }) {
 
     return (
     <div className='discover__modalContent__description'>
@@ -10,7 +10,7 @@ function Comment({ dateFrom, username, text, comment }) {
         <div className='discover__modalContent__description__text'>
             <strong>{username}</strong>
             <p>{text}</p>
-            <p>{dateFrom(comment.commentData.timestamp.seconds)}</p>
+            <p>{dateFrom(seconds)}</p>
         </div>
     </div>
     )
