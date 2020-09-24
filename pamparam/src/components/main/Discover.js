@@ -85,7 +85,7 @@ function Discover({ user, setLocal }) {
                             ))
                         }
                     </div>
-                    <ModalDiscover modalID={modalID} openPost={openPost} setOpenPost={setOpenPost} modalStyle={modalStyle} classesStyle={classes.paper} />
+                    <ModalDiscover user={user} modalID={modalID} openPost={openPost} setOpenPost={setOpenPost} modalStyle={modalStyle} classesStyle={classes.paper} />
                 </>
         )}
     </div>

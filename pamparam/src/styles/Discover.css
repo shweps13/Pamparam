@@ -91,10 +91,25 @@
 }
 
 .discover__modalContent__header {
-    background-color: grey;
     height: 72px;
     width: 100%;
 }
+
+.discover__modalContent__headerContent {
+    display: flex;
+    justify-content: left;
+    padding: 16px;
+}
+.discover__modalContent__headerContent strong {
+    padding-top: 7px;
+}
+
+.discover__modalContent__header img {
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+}
+
 .discover__modalContent__comments {
     background-color: wheat;
     width: 100%;
@@ -104,14 +119,25 @@
     overflow: auto;
 }
 .discover__modalContent__buttons {
-    background-color: gainsboro;
+    /* background-color: gainsboro; */
     width: 335px;
     height: 82px;
 }
 .discover__modalContent__footer {
-    background-color: burlywood;
     width: 335px;
     height: 56px;
+}
+.discover__modalContent__footer form{
+    margin-top: 0;
+}
+.discover__modalContent__footer .post__input{
+    padding-top: 20px;
+    padding-left: 16px;
+    outline: none;
+}
+.discover__modalContent__footer .post__button{
+    padding-top: 10px;
+    padding-right: 16px;
 }
 
 @media screen and (min-width: 736px) {
