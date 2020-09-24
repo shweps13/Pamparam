@@ -80,9 +80,14 @@ function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, 
         setComment('');
     }
 
+    const modalClose = () => {
+        setOpenPost(false)
+        setComment('')
+    }
+
 
     return (
-    <Modal open={openPost} onClose={() => setOpenPost(false)}>
+    <Modal open={openPost} onClose={() => modalClose()}>
         <div style={modalStyle} className={classesStyle}>
         {modalID === null ? (
                 <div className="discover__loading">

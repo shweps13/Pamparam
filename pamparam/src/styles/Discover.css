@@ -13,18 +13,17 @@
 }
 
 .discover__image {
-    width: 100%;
-    height: 100%;
     display: grid;
 }
 
-.discover__sideCrop {
+.discover__sideCrop, .discover__image, .discover__modalImage, .discover__modalImage img {
     width: 100%;
     height: 100%;
+}
+
+.discover__sideCrop {
     overflow: hidden;
     display: grid;
-    /* background-color: lightblue; */
-
     background-position: center;
     background-size: cover;
     cursor: pointer;
@@ -66,15 +65,11 @@
     position: relative;
 }
 .discover__modalImage {
-    width: 100%;
-    height: 100%;
     overflow: hidden;
     
 }
 .discover__modalImage img{
     max-height: 600px;
-    width: 100%;
-    height: 100%;
     object-fit: cover;
     object-position: 50% 50%;
     
@@ -116,6 +111,7 @@
     height: auto;
     flex: 1;
     display: flex;
+    flex-direction: column;
     overflow: auto;
 }
 .discover__modalContent__buttons {
