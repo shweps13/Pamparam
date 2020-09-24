@@ -15,10 +15,9 @@ function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, 
     const [comment, setComment] = useState('');
 
     // function for checking posting date
-    const dateFrom = (modalID) => {
+    const dateFrom = (seconds) => {
         let timeStamp = Math.floor(Date.now() / 1000);
-        console.log(modalID)
-        let result = timeStamp - modalID.post.timestamp.seconds // in seconds
+        let result = timeStamp - seconds // in seconds
 
         let days = result/86400
         let hours = result/3600
@@ -82,8 +81,8 @@ function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, 
     }
 
     const modalClose = () => {
-        setOpenPost(false)
-        setComment('')
+        setOpenPost(false);
+        setComment('');
     }
 
 
@@ -114,17 +113,17 @@ function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, 
                                 <div className='discover__modalContent__description__text'>
                                     <strong>{modalID.post.username}</strong>
                                     <p>{modalID.post.caption}</p>
-                                    <p>{dateFrom(modalID)}</p>
+                                    <p>{dateFrom(modalID.post.timestamp.seconds)}</p>
                                 </div>
                             </div>
 
                             {comments.map((comment) => (
-                                <CommentDiscover dateFrom={dateFrom} comment={comment} modalID={modalID} key={comment.id} username={comment.commentData.username} text={comment.commentData.text} />
+                                <CommentDiscover dateFrom={dateFrom} comment={comment} key={comment.id} username={comment.commentData.username} text={comment.commentData.text} />
                             ))}
                         
                         </div>
                         <div className='discover__modalContent__buttons'>
-                            <h3>{dateFrom(modalID)}</h3>
+                            <h3>{dateFrom(modalID.post.timestamp.seconds)}</h3>
                             
                         </div>
                         

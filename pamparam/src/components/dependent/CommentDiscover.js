@@ -1,12 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import noAvatar from '../../materials/noAvatar.jpg';
 
 
-function Comment({ dateFrom, modalID, username, text, comment }) {
-
-    useEffect(() => {
-        console.log(comment)
-    }, [comment])
+function Comment({ dateFrom, username, text, comment }) {
 
     return (
     <div className='discover__modalContent__description'>
@@ -14,7 +10,7 @@ function Comment({ dateFrom, modalID, username, text, comment }) {
         <div className='discover__modalContent__description__text'>
             <strong>{username}</strong>
             <p>{text}</p>
-            <p>{dateFrom(modalID)}</p>
+            <p>{dateFrom(comment.commentData.timestamp.seconds)}</p>
         </div>
     </div>
     )
