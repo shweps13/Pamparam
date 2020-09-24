@@ -1,15 +1,18 @@
 import React from 'react';
 
 
-function DiscoverElement({ id, imageUrl, alt, setOpenPost, setModalID }) {
+function DiscoverElement({ id, post, setOpenPost, setModalID }) {
 
     const styles = {
-        backgroundImage: `url(${imageUrl})`
+        backgroundImage: `url(${post.imageUrl})`
       };
 
     const pushData = () => {
         setOpenPost(true);
-        setModalID(id);
+        setModalID({
+            id: id,
+            post: post
+        });
     }
 
     return (

@@ -30,8 +30,6 @@
     cursor: pointer;
 }
 
-
-
 .discover__sideCrop::before {
     content: "";
     padding-top: 100%;
@@ -53,6 +51,19 @@
 
 .discover__half__zoom {
     grid-row: span 2;
+}
+
+.discover__modal {
+    display: flex;
+    flex-direction: row;
+}
+
+.discover__modalImage {
+    max-width: 300px;
+}
+
+.discover__modalContent {
+
 }
 
 @media screen and (min-width: 736px) {

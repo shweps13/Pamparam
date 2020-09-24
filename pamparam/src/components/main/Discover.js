@@ -5,7 +5,7 @@ import '../../styles/Discover.css';
 import DiscoverElement from '../dependent/DiscoverElement.js';
 
 import ModalDiscover from '../dependent/ModalDiscover.js';
-import { getModalStyle, useStyles } from '../../materials/modalStyles.js';
+import { getModalStyle, useDiscoverStyles } from '../../materials/modalStyles.js';
 
 import { db } from '../../materials/firebase';
 
@@ -57,10 +57,18 @@ function Discover({ user, setLocal }) {
     },[posts])
 
 
-    const classes = useStyles();
+    const classes = useDiscoverStyles();
     const [modalStyle] = useState(getModalStyle);
     const [openPost, setOpenPost] = useState(false);
-    const [modalID, setModalID] = useState('');
+    const [modalID, setModalID] = useState({
+        id: null,
+        post: {
+            caption: null,
+            imageUrl: null,
+            timestamp: null,
+            username: null
+        }
+    });
 
     return (
     <div className="discover">
@@ -73,7 +81,7 @@ function Discover({ user, setLocal }) {
                     <div className="discover__grid">
                         {
                             totalPosts.map(({ id, post }) => (
-                                <DiscoverElement setModalID={setModalID} setOpenPost={setOpenPost} key={id} id={id} imageUrl={post.imageUrl} alt={post.username}/>
+                                <DiscoverElement setModalID={setModalID} setOpenPost={setOpenPost} key={id} id={id} post={post}/>
                             ))
                         }
                     </div>
