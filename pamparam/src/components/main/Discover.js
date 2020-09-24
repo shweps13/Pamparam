@@ -4,6 +4,9 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import '../../styles/Discover.css';
 import DiscoverElement from '../dependent/DiscoverElement.js';
 
+import ModalDiscover from '../dependent/ModalDiscover.js';
+import { getModalStyle, useStyles } from '../../materials/modalStyles.js';
+
 import { db } from '../../materials/firebase';
 
 // All next parts for [Discover] feature 
@@ -54,6 +57,11 @@ function Discover({ user, setLocal }) {
     },[posts])
 
 
+    const classes = useStyles();
+    const [modalStyle] = useState(getModalStyle);
+    const [openPost, setOpenPost] = useState(false);
+    const [modalID, setModalID] = useState('');
+
     return (
     <div className="discover">
         {totalPosts.length === 0 ? (
@@ -65,10 +73,11 @@ function Discover({ user, setLocal }) {
                     <div className="discover__grid">
                         {
                             totalPosts.map(({ id, post }) => (
-                                <DiscoverElement key={id} imageUrl={post.imageUrl} alt={post.username}/>
+                                <DiscoverElement setModalID={setModalID} setOpenPost={setOpenPost} key={id} id={id} imageUrl={post.imageUrl} alt={post.username}/>
                             ))
                         }
                     </div>
+                    <ModalDiscover modalID={modalID} openPost={openPost} setOpenPost={setOpenPost} modalStyle={modalStyle} classesStyle={classes.paper} />
                 </>
         )}
     </div>

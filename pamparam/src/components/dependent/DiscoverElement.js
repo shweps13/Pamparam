@@ -1,23 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import { getModalStyle, useStyles } from '../../materials/modalStyles.js';
-import ModalDiscover from '../dependent/ModalDiscover.js';
 
-function DiscoverElement({ id, imageUrl, alt }) {
-
-    const classes = useStyles();
-    const [modalStyle] = useState(getModalStyle);
-    const [openPost, setOpenPost] = useState(false);
+function DiscoverElement({ id, imageUrl, alt, setOpenPost, setModalID }) {
 
     const styles = {
         backgroundImage: `url(${imageUrl})`
       };
 
+    const pushData = () => {
+        setOpenPost(true);
+        setModalID(id);
+    }
+
     return (
     <div className="discover__image">
-        <div style={styles} className="discover__sideCrop" onClick={() => {setOpenPost(true)}}>
+        <div style={styles} className="discover__sideCrop" onClick={() => {pushData()}}>
             {/* <img src={imageUrl} alt={`${alt}'s post`} /> */}
-            <ModalDiscover openPost={openPost} setOpenPost={setOpenPost} modalStyle={modalStyle} classesStyle={classes.paper} />
         </div>
     </div>
     )
