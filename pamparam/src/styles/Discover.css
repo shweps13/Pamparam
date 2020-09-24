@@ -56,6 +56,7 @@
 .discover__modal {
     display: flex;
     flex-direction: row;
+    width: 100%;
 }
 
 .discover__modalImage {
@@ -63,7 +64,36 @@
 }
 
 .discover__modalContent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 335px;
+    border-left: 1px solid #efefef;
+    height: 600px;
+}
 
+.discover__modalContent__header {
+    background-color: grey;
+    height: 72px;
+    width: 100%;
+}
+.discover__modalContent__comments {
+    background-color: wheat;
+    width: 100%;
+    height: auto;
+    flex: 1;
+    display: flex;
+    overflow: auto;
+}
+.discover__modalContent__buttons {
+    background-color: gainsboro;
+    width: 335px;
+    height: 82px;
+}
+.discover__modalContent__footer {
+    background-color: burlywood;
+    width: 335px;
+    height: 56px;
 }
 
 @media screen and (min-width: 736px) {
