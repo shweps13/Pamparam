@@ -7,7 +7,7 @@ import noAvatar from '../../materials/noAvatar.jpg';
 import CommentDiscover from '../dependent/CommentDiscover.js'
 import { db } from '../../materials/firebase';
 
-
+// auth with token () => {}
 
 function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, modalID }) {
 
@@ -101,32 +101,23 @@ function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, 
                         </div>
                     </div>
                     <div className='discover__modalContent'>
+
                         <div className='discover__modalContent__header'>
                             <div className='discover__modalContent__headerContent'>
                                 <img src={noAvatar} alt='User avatar' />
                                 <strong>{modalID.post.username}</strong>
                             </div>
                         </div>
+
                         <div className='discover__modalContent__comments'>
                             <CommentDiscover dateFrom={dateFrom} seconds={modalID.post.timestamp.seconds} username={modalID.post.username} text={modalID.post.caption} />
-
-                            {/* <div className='discover__modalContent__description'>
-                                <img src={noAvatar} alt='User avatar' />
-                                <div className='discover__modalContent__description__text'>
-                                    <strong>{modalID.post.username}</strong>
-                                    <p>{modalID.post.caption}</p>
-                                    <p>{dateFrom(modalID.post.timestamp.seconds)}</p>
-                                </div>
-                            </div> */}
-
                             {comments.map((comment) => (
                                 <CommentDiscover dateFrom={dateFrom} seconds={comment.commentData.timestamp.seconds} key={comment.id} username={comment.commentData.username} text={comment.commentData.text} />
-                            ))}
-                        
+                            ))}                        
                         </div>
+
                         <div className='discover__modalContent__buttons'>
-                            <h3>{dateFrom(modalID.post.timestamp.seconds)}</h3>
-                            
+                            <h3>{dateFrom(modalID.post.timestamp.seconds)}</h3>   
                         </div>
                         
                         <div className='discover__modalContent__footer'>
