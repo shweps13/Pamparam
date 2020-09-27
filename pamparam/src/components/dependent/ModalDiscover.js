@@ -7,8 +7,6 @@ import noAvatar from '../../materials/noAvatar.jpg';
 import CommentDiscover from '../dependent/CommentDiscover.js'
 import { db } from '../../materials/firebase';
 
-// auth with token () => {}
-
 function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, modalID }) {
 
     const [comments, setComments] = useState([]);
