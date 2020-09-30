@@ -10,20 +10,18 @@ import firebase from 'firebase';
 
 function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, modalID }) {
 
-    var objDiv = document.getElementById("commentBlock");
-
-    const scrollToRef = (ref) => objDiv.scrollTo(0, ref.current.offsetTop)  
+    // hook that allows to scroll to the last comment
+    var bottomComment = document.getElementById("commentBlock");
+    const scrollToRef = (ref) => bottomComment.scrollTo(0, ref.current.offsetTop)  
     const myRef = useRef(null)
     const executeScroll = () => scrollToRef(myRef)
-
+    
+    // hooks with all comments from db and new comment
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState('');
 
     // function for checking posting date
     const dateFrom = (seconds) => {
-
-        console.log(seconds)
-
         let localTimeStamp = Math.floor(Date.now() / 1000);
         let result
         if (seconds.timestamp) {
@@ -65,6 +63,7 @@ function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, 
         }
     }
 
+    // receiving all new comments from DB by snapshot and put into the hook
     useEffect(() => {
         if (modalID.id) {
             db.collection('posts')
@@ -81,11 +80,7 @@ function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, 
     
     }, [modalID.id]);
 
-
-    useEffect(() => {
-        console.log('Comments', comments)
-    }, [comments])
-
+    // post comment, clean comment field, scroll to the fresh comment
     const postComment = (event) => {
         event.preventDefault();
 
@@ -95,8 +90,10 @@ function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, 
             username: user.displayName
         });
         setComment('');
+        setTimeout(executeScroll, 200);
     }
 
+    // cleaning feature
     const modalClose = () => {
         setOpenPost(false);
         setComment('');
@@ -131,12 +128,11 @@ function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, 
                             {comments.map((newComment) => (
                                 <CommentDiscover dateFrom={dateFrom} seconds={newComment.commentData} key={newComment.id} username={newComment.commentData.username} text={newComment.commentData.text} />
                             ))}        
-                            <div ref={myRef}>I wanna be seen</div> 
+                            <div ref={myRef} /> 
                         </div>
 
                         <div className='discover__modalContent__buttons'>
                             <h3>{dateFrom(modalID.post)}</h3>   
-                            <button onClick={executeScroll}> Click to scroll </button> 
                         </div>
                         
                         <div className='discover__modalContent__footer'>
