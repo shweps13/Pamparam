@@ -148,8 +148,9 @@ function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, 
                                 </div>
                             </div>
                             
-
-                            <h3>{dateFrom(modalID.post)}</h3>   
+                            <div className='discover__modalContent__buttons__posted'>
+                                <p>Posted {dateFrom(modalID.post)}</p>   
+                            </div>
                         </div>
                         
                         <div className='discover__modalContent__footer'>

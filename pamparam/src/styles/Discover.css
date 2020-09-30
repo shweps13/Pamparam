@@ -72,8 +72,6 @@
     max-height: 600px;
     object-fit: cover;
     object-position: 50% 50%;
-    
-    /* object-position: center !important; */
 }
 
 .discover__modalContent {
@@ -146,6 +144,9 @@
     border-top: 1px solid #eeeeee;
     width: 335px;
     height: 82px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .discover__modalContent__buttons__line {
@@ -162,9 +163,17 @@
 .discover__modalContent__buttons__left svg{
     padding-right: 10px;
 }
+
 .discover__modalContent__buttons__right svg{
     padding-top: 3px;
 }
+
+.discover__modalContent__buttons__posted {
+    padding: 0 0 8px 16px ;
+    font-size: 0.7rem;
+    color: grey;
+}
+
 
 .discover__modalContent__footer {
     width: 335px;
