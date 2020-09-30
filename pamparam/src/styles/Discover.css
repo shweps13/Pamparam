@@ -147,6 +147,25 @@
     width: 335px;
     height: 82px;
 }
+
+.discover__modalContent__buttons__line {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 4px 16px 0 8px ;
+}
+.discover__modalContent__buttons__left {
+    padding-left: 8px;
+    padding-top: 2px;
+}
+
+.discover__modalContent__buttons__left svg{
+    padding-right: 10px;
+}
+.discover__modalContent__buttons__right svg{
+    padding-top: 3px;
+}
+
 .discover__modalContent__footer {
     width: 335px;
     height: 56px;

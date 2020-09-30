@@ -8,6 +8,11 @@ import CommentDiscover from '../dependent/CommentDiscover.js'
 import { db } from '../../materials/firebase';
 import firebase from 'firebase';
 
+import { AiOutlineHeart } from 'react-icons/ai';
+import { FaRegComment } from 'react-icons/fa';
+import { RiFlag2Line, RiSendPlaneLine } from 'react-icons/ri';
+
+
 function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, modalID }) {
 
     // hook that allows to scroll to the last comment
@@ -132,6 +137,18 @@ function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, 
                         </div>
 
                         <div className='discover__modalContent__buttons'>
+                            <div className='discover__modalContent__buttons__line'>
+                                <div className='discover__modalContent__buttons__left'>
+                                    <AiOutlineHeart size={25}/>
+                                    <FaRegComment size={23}/>
+                                    <RiSendPlaneLine size={25}/>
+                                </div>
+                                <div className='discover__modalContent__buttons__right'>
+                                    <RiFlag2Line size={24}/>
+                                </div>
+                            </div>
+                            
+
                             <h3>{dateFrom(modalID.post)}</h3>   
                         </div>
                         
