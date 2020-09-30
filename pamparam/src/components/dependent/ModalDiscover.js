@@ -6,6 +6,7 @@ import noAvatar from '../../materials/noAvatar.jpg';
 
 import CommentDiscover from '../dependent/CommentDiscover.js'
 import { db } from '../../materials/firebase';
+import firebase from 'firebase';
 
 function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, modalID }) {
 
@@ -70,11 +71,11 @@ function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, 
     const postComment = (event) => {
         event.preventDefault();
 
-        // db.collection('posts').doc(postId).collection('comments').add({
-        //     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-        //     text: comment,
-        //     username: user.displayName
-        // });
+        db.collection('posts').doc(modalID.id).collection('comments').add({
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            text: comment,
+            username: user.displayName
+        });
         setComment('');
     }
 
