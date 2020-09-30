@@ -15,8 +15,16 @@ function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, 
 
     // function for checking posting date
     const dateFrom = (seconds) => {
-        let timeStamp = Math.floor(Date.now() / 1000);
-        let result = timeStamp - seconds // in seconds
+
+        console.log(seconds)
+
+        let localTimeStamp = Math.floor(Date.now() / 1000);
+        let result
+        if (seconds.timestamp) {
+            result = localTimeStamp - seconds.timestamp.seconds // in seconds
+        } else {
+            return null
+        }
 
         let days = result/86400
         let hours = result/3600
@@ -68,6 +76,10 @@ function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, 
     }, [modalID.id]);
 
 
+    useEffect(() => {
+        console.log('Comments', comments)
+    }, [comments])
+
     const postComment = (event) => {
         event.preventDefault();
 
@@ -109,14 +121,14 @@ function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, 
                         </div>
 
                         <div className='discover__modalContent__comments'>
-                            <CommentDiscover dateFrom={dateFrom} seconds={modalID.post.timestamp.seconds} username={modalID.post.username} text={modalID.post.caption} />
-                            {comments.map((comment) => (
-                                <CommentDiscover dateFrom={dateFrom} seconds={comment.commentData.timestamp.seconds} key={comment.id} username={comment.commentData.username} text={comment.commentData.text} />
+                            <CommentDiscover dateFrom={dateFrom} seconds={modalID.post} username={modalID.post.username} text={modalID.post.caption} />
+                            {comments.map((newComment) => (
+                                <CommentDiscover dateFrom={dateFrom} seconds={newComment.commentData} key={newComment.id} username={newComment.commentData.username} text={newComment.commentData.text} />
                             ))}                        
                         </div>
 
                         <div className='discover__modalContent__buttons'>
-                            <h3>{dateFrom(modalID.post.timestamp.seconds)}</h3>   
+                            <h3>{dateFrom(modalID.post)}</h3>   
                         </div>
                         
                         <div className='discover__modalContent__footer'>
