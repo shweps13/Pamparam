@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../../styles/Modal.css';
 import Modal from '@material-ui/core/Modal';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -9,6 +9,12 @@ import { db } from '../../materials/firebase';
 import firebase from 'firebase';
 
 function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, modalID }) {
+
+    var objDiv = document.getElementById("commentBlock");
+
+    const scrollToRef = (ref) => objDiv.scrollTo(0, ref.current.offsetTop)  
+    const myRef = useRef(null)
+    const executeScroll = () => scrollToRef(myRef)
 
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState('');
@@ -120,15 +126,17 @@ function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, 
                             </div>
                         </div>
 
-                        <div className='discover__modalContent__comments'>
+                        <div id='commentBlock' className='discover__modalContent__comments'>
                             <CommentDiscover dateFrom={dateFrom} seconds={modalID.post} username={modalID.post.username} text={modalID.post.caption} />
                             {comments.map((newComment) => (
                                 <CommentDiscover dateFrom={dateFrom} seconds={newComment.commentData} key={newComment.id} username={newComment.commentData.username} text={newComment.commentData.text} />
-                            ))}                        
+                            ))}        
+                            <div ref={myRef}>I wanna be seen</div> 
                         </div>
 
                         <div className='discover__modalContent__buttons'>
                             <h3>{dateFrom(modalID.post)}</h3>   
+                            <button onClick={executeScroll}> Click to scroll </button> 
                         </div>
                         
                         <div className='discover__modalContent__footer'>
