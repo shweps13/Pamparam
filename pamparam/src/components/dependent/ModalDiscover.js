@@ -104,6 +104,11 @@ function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, 
         setComment('');
     }
 
+    // focus feature for comment icon in modal block
+    const postInput = useRef(null)
+    const handleFocus = () => {
+        postInput.current.focus()
+      }
 
     return (
     <Modal open={openPost} onClose={() => modalClose()}>
@@ -140,7 +145,7 @@ function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, 
                             <div className='discover__modalContent__buttons__line'>
                                 <div className='discover__modalContent__buttons__left'>
                                     <AiOutlineHeart size={25}/>
-                                    <FaRegComment size={23}/>
+                                    <FaRegComment size={23} onClick={handleFocus}/>
                                     <RiSendPlaneLine size={25}/>
                                 </div>
                                 <div className='discover__modalContent__buttons__right'>
@@ -160,6 +165,7 @@ function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, 
                                     className="post__input"
                                     type="text"
                                     placeholder="Add a comment"
+                                    ref={postInput}
                                     value={comment}
                                     onChange={(e) => setComment(e.target.value)}
                                 />

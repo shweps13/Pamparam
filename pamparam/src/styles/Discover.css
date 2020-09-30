@@ -162,10 +162,12 @@
 
 .discover__modalContent__buttons__left svg{
     padding-right: 10px;
+    cursor: pointer;
 }
 
 .discover__modalContent__buttons__right svg{
     padding-top: 3px;
+    cursor: pointer;
 }
 
 .discover__modalContent__buttons__posted {
