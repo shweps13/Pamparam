@@ -1,3 +1,7 @@
+.discover {
+    background-color: #fafafa;
+}
+
 .discover__loading {
     display: grid;
     place-items: center;

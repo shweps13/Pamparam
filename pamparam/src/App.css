@@ -25,8 +25,9 @@
 .app__headerImage {
   width: 100%;
   max-width: 110px;
-  max-height: 100px;
   object-fit: contain;
+  height: 30px;
+
 }
 
 .app__headerButtons {
@@ -38,12 +39,3 @@
   color: black;
   padding-right: 10px;
 }
-
-/* Safari 10.1+ */
-
-@media not all and (min-resolution:.001dpcm) { @media {
-
-  .app__headerImage { 
-    height: 30px;
-  }
-}}
