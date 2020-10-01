@@ -19,6 +19,7 @@
   width: auto;
   z-index: 1;
   flex-wrap: nowrap;
+  min-width: 295px;
 }
 
 .app__headerImage {
@@ -29,10 +30,20 @@
 }
 
 .app__headerButtons {
-  margin-top: 3px;
+  margin-top: 3px;;
+  display: block;
 }
 
 .navbar__link {
   color: black;
   padding-right: 10px;
 }
+
+/* Safari 10.1+ */
+
+@media not all and (min-resolution:.001dpcm) { @media {
+
+  .app__headerImage { 
+    height: 30px;
+  }
+}}

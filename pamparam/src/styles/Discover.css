@@ -220,8 +220,14 @@
 
 @media screen and (max-width: 350px) {
 
+    .app__headerButtons{
+        padding-right: 1px;
+    }
     .app__headerButtons a{
         padding: 0 5px 0 0;
     }
 
+    .profileDropMenu__pop{
+        right: 4px;
+    }
 }
