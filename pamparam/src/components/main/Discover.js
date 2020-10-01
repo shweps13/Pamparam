@@ -10,9 +10,6 @@ import { getModalStyle, useDiscoverStyles } from '../../materials/modalStyles.js
 import { db } from '../../materials/firebase';
 
 // All next parts for [Discover] feature 
-// ==> Post parts in modal
-// ==> Ability to get render info and comments
-// ==> Ability to add comments
 // ==> Shuffle mixed styles alorithm
 // ==> lazy load
 // ==> mobile view / @media stylings

@@ -200,10 +200,6 @@
         width: 100%;
         margin: 0 auto 30px;
     }
-}
-
-@media screen and (min-width: 736px) {
-    
     .discover__grid{
         box-sizing: content-box;
         max-width: 935px;
@@ -214,3 +210,15 @@
     }
 }
 
+@media screen and (max-width: 600px) {
+    
+    .app__header {
+        background-color: burlywood;
+        overflow: hidden;
+    }
+
+    .discover__grid {
+        grid-template-columns: repeat(3, minmax(100px, 1fr));
+    }
+
+}

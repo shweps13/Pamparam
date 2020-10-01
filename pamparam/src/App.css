@@ -10,12 +10,13 @@
 .app__header {
   position: sticky;
   top: 0;
-  object-fit: contain;
+  /* object-fit: contain; */
   background-color: white;
   padding: 10px 15px;
   border-bottom: 1px solid lightgrey;
   display: flex;
   justify-content: space-between;
+  width: auto;
   z-index: 1;
 }
 
