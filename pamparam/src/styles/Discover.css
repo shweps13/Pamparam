@@ -212,17 +212,13 @@
 
 @media screen and (max-width: 600px) {
     
-    .app__header {
-        overflow: hidden;
-    }
-
     .discover__grid {
         grid-template-columns: repeat(3, minmax(100px, 1fr));
     }
 
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 350px) {
 
     .app__headerButtons a{
         padding: 0 5px 0 0;
