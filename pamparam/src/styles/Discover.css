@@ -67,11 +67,9 @@
     width: 100%;
     height: 600px;
     position: relative;
+    overflow: hidden;   
 }
-.discover__modalImage {
-    overflow: hidden;
-    
-}
+
 .discover__modalImage img{
     max-height: 600px;
     object-fit: cover;
@@ -211,6 +209,33 @@
         width: calc(100% - 40px);
         margin: auto;
         grid-gap: 25px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    
+    .discover__modal {
+        flex-direction: column;
+        background-color: white;
+    }
+    .discover__modalItem {
+        height: 600px;
+    }
+    .discover__modalImage img{
+        max-height: 600px;
+        object-fit: cover;
+        object-position: 50% 50%;
+    }
+    .makeStyles-paper-2 {
+        width: 450px !important;
+        top: 35% !important;
+    }
+
+    .discover__modalContent{
+        height: 300px;
+    }
+    .discover__modalContent__header {
+        height: auto;
     }
 }
 
