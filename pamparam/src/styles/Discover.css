@@ -238,7 +238,8 @@
         width: auto;
     }
     .discover__modalContent{
-        height: 200px;
+        /* height: auto; */
+        max-height: 200px;
     }
 
     .discover__modalContent__buttons, .discover__modalContent, .discover__modalContent__footer{
@@ -254,6 +255,19 @@
         border-radius: 50px;
         background-color: white;
     }
+    .discover__modalContent__description:nth-child(1) {
+        padding: 5px 16px 5px 16px;
+    }
+    .discover__modalContent__description {
+        padding-top: 5px;
+    }
+    .discover__modalContent__description__text p:nth-child(3) {
+        margin-top: 2px;
+    }
+    .discover__modalContent__buttons{
+        height: auto;
+    }
+
 }
 
 @media screen and (max-width: 600px) {

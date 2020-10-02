@@ -158,26 +158,26 @@ function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, 
                             </div>
                         </div>
                         
-                        <div className='discover__modalContent__footer'>
                             {user && (
-                            <form className="post__commentBox">
-                                <input 
-                                    className="post__input"
-                                    type="text"
-                                    placeholder="Add a comment"
-                                    ref={postInput}
-                                    value={comment}
-                                    onChange={(e) => setComment(e.target.value)}
-                                />
-                                <button 
-                                    className="post__button"
-                                    type="submit"
-                                    disabled={!comment}
-                                    onClick={postComment}
-                                >Post</button>
-                            </form>
+                            <div className='discover__modalContent__footer'>
+                                <form className="post__commentBox">
+                                    <input 
+                                        className="post__input"
+                                        type="text"
+                                        placeholder="Add a comment"
+                                        ref={postInput}
+                                        value={comment}
+                                        onChange={(e) => setComment(e.target.value)}
+                                    />
+                                    <button 
+                                        className="post__button"
+                                        type="submit"
+                                        disabled={!comment}
+                                        onClick={postComment}
+                                    >Post</button>
+                                </form>
+                            </div>
                             )}
-                        </div>
                         
                     </div>
             </div>
