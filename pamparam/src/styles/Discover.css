@@ -217,25 +217,42 @@
     .discover__modal {
         flex-direction: column;
         background-color: white;
+        /* height: 500px; */
     }
     .discover__modalItem {
-        height: 600px;
+        height: 50%;
+        max-width: 100%;
     }
     .discover__modalImage img{
-        max-height: 600px;
+        max-height: 450px;
         object-fit: cover;
         object-position: 50% 50%;
     }
     .makeStyles-paper-2 {
-        width: 450px !important;
-        top: 35% !important;
+        width: 55% !important;
+        top: 50% !important;
     }
 
-    .discover__modalContent{
-        height: 300px;
+    #modalHeader > .discover__modalContent__headerContent, .discover__modalContent__description:nth-last-child(0) {
+        padding: 5px;
+        width: auto;
     }
+    .discover__modalContent{
+        height: 200px;
+    }
+
+    .discover__modalContent__buttons, .discover__modalContent, .discover__modalContent__footer{
+        width: 100%;
+    }
+
     .discover__modalContent__header {
+        width: 150px;
         height: auto;
+        position: absolute;
+        top: 15px;
+        margin-left: 15px;
+        border-radius: 50px;
+        background-color: white;
     }
 }
 
@@ -243,6 +260,9 @@
     
     .discover__grid {
         grid-template-columns: repeat(3, minmax(100px, 1fr));
+    }
+    .makeStyles-paper-2 {
+        width: 75% !important;
     }
 
 }
@@ -258,5 +278,8 @@
 
     .profileDropMenu__pop{
         right: 4px;
+    }
+    .makeStyles-paper-2 {
+        width: 95% !important;
     }
 }

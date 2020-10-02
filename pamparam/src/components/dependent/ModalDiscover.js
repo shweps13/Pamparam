@@ -126,7 +126,7 @@ function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, 
                     </div>
                     <div className='discover__modalContent'>
 
-                        <div className='discover__modalContent__header'>
+                        <div id='modalHeader' className='discover__modalContent__header'>
                             <div className='discover__modalContent__headerContent'>
                                 <img src={noAvatar} alt='User avatar' />
                                 <strong>{modalID.post.username}</strong>
