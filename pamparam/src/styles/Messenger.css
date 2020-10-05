@@ -88,11 +88,13 @@
     line-height: 26px;
     font-weight: normal;
     margin-bottom: 5px;
+    text-align: center;
 }
 .messenger__window__rightColumn__cover__content p{
     color: #8e8e8e;
     font-size: 14px;
     margin-bottom: 25px;
+    text-align: center;
 }
 .messenger__window__rightColumn__cover__content button{
     border: 1px solid transparent;
@@ -109,4 +111,23 @@
     text-transform: inherit;
     text-overflow: ellipsis;
     width: auto;
+}
+
+@media screen and (max-width: 935px) {
+    .messenger {
+        padding-top: 0;
+        height: 95%;
+        background-color: white;
+    }
+    .messenger__window {
+        border-top: 0;
+        border-bottom: 0;
+        border-radius: 0;
+    }
+    .messenger__window__leftColumn{
+        width: 300px;
+        min-width: 300px;
+    }
+
+    
 }
