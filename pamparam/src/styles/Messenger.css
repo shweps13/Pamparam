@@ -22,3 +22,38 @@
     border-right: 1px solid #dbdbdb;
     overflow: hidden;
 }
+
+.messenger__window__leftColumn__header{
+    border-bottom: 1px solid #dbdbdb;
+    height: 60px;
+    padding: 0 20px;
+}
+
+.messenger__window__leftColumn__header__content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: inherit;
+    justify-content: space-between;
+}
+
+.messenger__window__leftColumn__header__content div:nth-child(1){
+    flex-direction: row;
+    flex-basis: 32px;
+}
+.messenger__window__leftColumn__header__content div:nth-child(2){
+    align-items: center;
+    display: inline-block;
+    flex: 1;
+    justify-content: center;
+    min-width: 0;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: bolder;
+}
+.messenger__window__leftColumn__header__content svg {
+    cursor: pointer;
+}

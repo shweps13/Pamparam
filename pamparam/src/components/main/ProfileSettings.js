@@ -6,7 +6,6 @@ import { auth, db, storage } from '../../materials/firebase.js';
 import { useLocation } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 
-
 import Grid from '@material-ui/core/Grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
