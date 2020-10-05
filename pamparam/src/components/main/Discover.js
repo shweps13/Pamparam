@@ -12,7 +12,6 @@ import { db } from '../../materials/firebase';
 // All next parts for [Discover] feature 
 // ==> Shuffle mixed styles alorithm
 // ==> lazy load
-// ==> mobile view / @media stylings
 
 
 function Discover({ user, setLocal }) {

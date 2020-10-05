@@ -13,7 +13,20 @@ function Messenger({ setLocal }) {
 
   return (
     <div className="messenger">
-      <h3>Here will be text</h3>
+      <div className="messenger__leftColumn">
+        <div className="messenger__leftColumn__header">
+          <h3>Direct</h3>
+        </div>
+        <div className="messenger__leftColumn__chats">
+        
+        </div>
+
+      </div>
+      <div className="messenger__rightColumn">
+        <div className="messenger__rightColumn">
+          <h3>Your Messages</h3>
+        </div>
+      </div>
     </div>
   );
 }
