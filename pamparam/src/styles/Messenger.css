@@ -58,6 +58,18 @@
     cursor: pointer;
 }
 
+.messenger__window__leftColumn__chats__element {
+    display: flex;
+}
+.messenger__window__leftColumn__chats__element:hover {
+    background-color: #faf9f9;
+}
+.messenger__window__leftColumn__chats__element img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
 .messenger__window__rightColumn{
     width: auto;
     height: 100%;

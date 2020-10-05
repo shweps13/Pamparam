@@ -4,6 +4,7 @@ import '../../styles/Messenger.css';
 import { BsPencilSquare } from 'react-icons/bs';
 
 import Cover from '../dependent/MessengerCover.js';
+import MessageElement from '../dependent/MessengerElement.js';
 
 
 function Messenger({ setLocal }) {
@@ -28,7 +29,7 @@ function Messenger({ setLocal }) {
             </div>
           </div>
           <div className="messenger__window__leftColumn__chats">
-          
+            <MessageElement />
           </div>
 
         </div>
