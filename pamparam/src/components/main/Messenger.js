@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import '../../styles/Messenger.css';
 import { BsPencilSquare } from 'react-icons/bs';
@@ -9,6 +9,8 @@ import MessageElement from '../dependent/MessengerElement.js';
 
 function Messenger({ setLocal }) {
   let location = useLocation()
+
+  const [activeChat, setActiveChat] = useState(false);
 
   useEffect(
     () => {
@@ -25,7 +27,7 @@ function Messenger({ setLocal }) {
             <div className="messenger__window__leftColumn__header__content">
               <div/>
               <div>Direct</div>
-              <BsPencilSquare size={26} />
+              <BsPencilSquare size={26} onClick={() => {setActiveChat(!activeChat)}}/>
             </div>
           </div>
           <div className="messenger__window__leftColumn__chats">
@@ -36,7 +38,13 @@ function Messenger({ setLocal }) {
 
         </div>
         <div className="messenger__window__rightColumn">
-          <Cover />
+          { activeChat === false ? (
+            <Cover setActiveChat={setActiveChat} />
+          ):(
+            <div>
+              Ololo
+            </div>
+          )}
         </div>
       </div>
     </div>
