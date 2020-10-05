@@ -57,3 +57,56 @@
 .messenger__window__leftColumn__header__content svg {
     cursor: pointer;
 }
+
+.messenger__window__rightColumn{
+    width: auto;
+    height: 100%;
+    flex: 1 1 auto;
+    min-height: 0;
+    min-width: 0;
+}
+
+.messenger__window__rightColumn__cover{
+    width: 100%;
+    display: grid;
+    place-items: center;
+    height: 100%;
+}
+.messenger__window__rightColumn__cover__content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.messenger__window__rightColumn__cover__content img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+}
+.messenger__window__rightColumn__cover__content h3{
+    font-size: 22px;
+    line-height: 26px;
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+.messenger__window__rightColumn__cover__content p{
+    color: #8e8e8e;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+.messenger__window__rightColumn__cover__content button{
+    border: 1px solid transparent;
+    background-color: #0095f6;
+    color: #fff;
+    border-radius: 4px;
+    border: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    font-weight: 600;
+    padding: 5px 10px;
+    text-align: center;
+    text-transform: inherit;
+    text-overflow: ellipsis;
+    width: auto;
+}

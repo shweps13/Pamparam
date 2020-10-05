@@ -3,6 +3,8 @@ import { useLocation } from 'react-router-dom';
 import '../../styles/Messenger.css';
 import { BsPencilSquare } from 'react-icons/bs';
 
+import Cover from '../dependent/MessengerCover.js';
+
 
 function Messenger({ setLocal }) {
   let location = useLocation()
@@ -31,9 +33,7 @@ function Messenger({ setLocal }) {
 
         </div>
         <div className="messenger__window__rightColumn">
-          <div className="messenger__window__rightColumn__chatroom">
-            <h3>Your Messages</h3>
-          </div>
+          <Cover />
         </div>
       </div>
     </div>
