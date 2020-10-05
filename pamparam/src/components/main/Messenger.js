@@ -30,6 +30,8 @@ function Messenger({ setLocal }) {
           </div>
           <div className="messenger__window__leftColumn__chats">
             <MessageElement />
+            <MessageElement />
+            <MessageElement />
           </div>
 
         </div>

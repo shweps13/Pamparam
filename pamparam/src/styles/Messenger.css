@@ -60,14 +60,32 @@
 
 .messenger__window__leftColumn__chats__element {
     display: flex;
+    padding: 8px 20px;
+    align-items: center;
+    cursor: pointer;
+}
+.messenger__window__leftColumn__chats__element:nth-child(1){
+    margin-top: 8px;
 }
 .messenger__window__leftColumn__chats__element:hover {
     background-color: #faf9f9;
 }
 .messenger__window__leftColumn__chats__element img{
-    width: 50px;
-    height: 50px;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
+}
+.messenger__window__leftColumn__chats__element div {
+    margin-left: 10px;
+    margin-top: -5px;
+}
+.messenger__window__leftColumn__chats__element p:nth-child(1) {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+.messenger__window__leftColumn__chats__element p:nth-child(2) {
+    color: #8e8e8e;
+    font-size: 14px;
 }
 
 .messenger__window__rightColumn{
