@@ -164,6 +164,33 @@
     border-radius: 50%;
 }
 
+.messenger__window__rightColumn__activeChat__footer {
+    width: 100%;
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    /* padding: 20px; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+}
+.post__message__input {
+    display: flex;
+    flex-direction: row;
+    width: 55%;
+    /* border: 1 solid lightgray; */
+    padding-left: 11px;
+    padding-right: 8px;
+    min-height: 35px;
+    border-radius: 22px;
+    border-width: 1px;
+}
+.post__message__button {
+    width: 10%;
+}
+
+
 @media screen and (max-width: 935px) {
     .messenger {
         padding-top: 0;

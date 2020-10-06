@@ -12,6 +12,7 @@ function Messenger({ setLocal }) {
   let location = useLocation()
 
   const [activeChat, setActiveChat] = useState(false);
+  const [messageText, setMessageTest] = useState('');
 
   useEffect(
     () => {
@@ -42,7 +43,7 @@ function Messenger({ setLocal }) {
           { activeChat === false ? (
             <Cover setActiveChat={setActiveChat} />
           ):(
-            <ActiveChat />
+            <ActiveChat messageText={messageText} setMessageTest={setMessageTest} />
           )}
         </div>
       </div>
