@@ -3,6 +3,9 @@ import noAvatar from '../../materials/noAvatar.jpg';
 import { AiOutlineInfoCircle, AiOutlineHeart } from 'react-icons/ai';
 import { VscSmiley } from 'react-icons/vsc';
 
+import Message from '../dependent/ActiveChatMessage.js';
+
+
 function ActiveChat({ messageText, setMessageTest }) {
 
     const sendMessage = (e) => {
@@ -23,7 +26,11 @@ function ActiveChat({ messageText, setMessageTest }) {
         </div>
 
         <div className="messenger__window__rightColumn__activeChat__chatField">
-        
+            <div className="messenger__window__rightColumn__activeChat__chatField__content">
+                <Message />
+                <Message />
+                <Message />
+            </div>
         </div>
         
         <div className="messenger__window__rightColumn__activeChat__footer">
