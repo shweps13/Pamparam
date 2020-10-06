@@ -168,9 +168,6 @@
     width: 100%;
     box-sizing: border-box;
     flex: 0 0 auto;
-    /* padding: 20px; */
-    /* justify-content: center; */
-    /* align-items: center; */
     justify-content: flex-start;
     align-items: stretch;
     align-content: stretch;
@@ -187,14 +184,15 @@
 
 .messenger__window__rightColumn__activeChat__footer__line {
     align-items: center;
-    border-color: #dbdbdb;
-    border-radius: 22px;
     border-width: 1px;
     display: flex;
     flex-direction: row;
     min-height: 44px;
     padding-left: 11px;
-    padding-right: 8px;
+    padding-right: 11px;
+    border-radius: 22px;
+    border: 1px solid #dbdbdb;
+    justify-content: space-between;
 }
 
 .messenger__window__rightColumn__activeChat__footer__line__field {
@@ -207,33 +205,37 @@
     align-content: stretch;
 }
 
+.post__message {
+    width: 100%;
+    display: flex;
+}
+
 .post__message__input {
     height: 18px;
     background-color: transparent;
     border: 0;
     overflow: auto;
-    padding: 8px 9px;
+    padding: 10px 9px;
     resize: none;
     outline: none;
+    width: 100%;
 }
 
 .post__message__button {
-    display: none;
+    border: 0;
+    height: 40px;
+    color: #0095f6;
+    background-color: white;
+    display: inline;
+    padding: 0;
+    position: relative;
+    padding-left: 10px;
+    padding-right: 5px;
 }
 
-/* .post__message__input {
-    display: flex;
-    flex-direction: row;
-    width: 55%;
-    padding-left: 11px;
-    padding-right: 8px;
-    min-height: 35px;
-    border-radius: 22px;
-    border-width: 1px;
+.messenger__window__rightColumn__activeChat__footer__line__heart {
+    margin-left: 15px;
 }
-.post__message__button {
-    width: 10%;
-} */
 
 
 @media screen and (max-width: 935px) {

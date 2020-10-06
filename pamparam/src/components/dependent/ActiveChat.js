@@ -7,7 +7,7 @@ function ActiveChat({ messageText, setMessageTest }) {
 
     const sendMessage = (e) => {
         e.preventDefault();
-        console.log('Send...')
+        console.log('Send...', messageText)
     }
 
     return (
@@ -30,7 +30,7 @@ function ActiveChat({ messageText, setMessageTest }) {
             <div className="messenger__window__rightColumn__activeChat__footer__preline">
                 <div className="messenger__window__rightColumn__activeChat__footer__line">
                     <div className="messenger__window__rightColumn__activeChat__footer__line__emoji">
-                        <VscSmiley size={42} />
+                        <VscSmiley size={35} />
                     </div>
                     <form className="post__message">
                         <div className="messenger__window__rightColumn__activeChat__footer__line__field">
@@ -42,18 +42,26 @@ function ActiveChat({ messageText, setMessageTest }) {
                                 onChange={(e) => setMessageTest(e.target.value)}
                             />
                         </div>
-                        <div className="messenger__window__rightColumn__activeChat__footer__line__button">
-                            <button 
-                                className="post__message__button"
-                                type="submit"
-                                disabled={!messageText}
-                                onClick={sendMessage}
-                            >Post</button>
-                        </div>
+                        {messageText === '' ? (
+                            <div style={{display: "none"}} />
+                        ): (
+                            <div className="messenger__window__rightColumn__activeChat__footer__line__button">
+                                <button 
+                                    className="post__message__button"
+                                    type="submit"
+                                    disabled={!messageText}
+                                    onClick={sendMessage}
+                                >Send</button>
+                            </div>
+                        )}
                     </form>
-                    <div className="messenger__window__rightColumn__activeChat__footer__line__heart">
-                        <AiOutlineHeart size={20} />
-                    </div>
+                        {messageText === '' ? (
+                            <div className="messenger__window__rightColumn__activeChat__footer__line__heart">
+                                <AiOutlineHeart style={{display: "block"}} size={35} />
+                            </div>
+                        ): (
+                            <div style={{display: "none"}} />
+                        )}
                 </div>
             </div>
         </div>
