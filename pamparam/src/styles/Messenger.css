@@ -27,6 +27,7 @@
     border-bottom: 1px solid #dbdbdb;
     height: 60px;
     padding: 0 20px;
+    z-index: 1;
 }
 
 .messenger__window__leftColumn__header__content, .messenger__window__rightColumn__activeChat__header__content {
@@ -146,6 +147,9 @@
 .messenger__window__rightColumn__activeChat {
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .messenger__window__rightColumn__activeChat__header__content div:nth-child(1) {
@@ -164,6 +168,14 @@
     border-radius: 50%;
 }
 
+.messenger__window__rightColumn__activeChat__chatField {
+    width: 100%;
+    height: 100%;
+    /* background-color: lightgray; */
+    overflow: hidden;
+    z-index: 2;
+}
+
 .messenger__window__rightColumn__activeChat__footer {
     width: 100%;
     box-sizing: border-box;
@@ -171,6 +183,9 @@
     justify-content: flex-start;
     align-items: stretch;
     align-content: stretch;
+    position: relative;
+    bottom: 0;
+    z-index: 1;
 }
 
 .messenger__window__rightColumn__activeChat__footer__preline {

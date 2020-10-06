@@ -22,8 +22,8 @@ function ActiveChat({ messageText, setMessageTest }) {
             </div>
         </div>
 
-        <div>
-
+        <div className="messenger__window__rightColumn__activeChat__chatField">
+        
         </div>
         
         <div className="messenger__window__rightColumn__activeChat__footer">
