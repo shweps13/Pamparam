@@ -175,11 +175,56 @@
     align-items: stretch;
     align-content: stretch;
 }
+
+.messenger__window__rightColumn__activeChat__footer__preline {
+    padding: 20px;
+    flex: 0 0 auto;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+    flex-direction: row;
+}
+
+.messenger__window__rightColumn__activeChat__footer__line {
+    align-items: center;
+    border-color: #dbdbdb;
+    border-radius: 22px;
+    border-width: 1px;
+    display: flex;
+    flex-direction: row;
+    min-height: 44px;
+    padding-left: 11px;
+    padding-right: 8px;
+}
+
+.messenger__window__rightColumn__activeChat__footer__line__field {
+    margin-right: 4px;
+    flex: 1 1 auto;
+    min-height: 0;
+    min-width: 0;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+}
+
 .post__message__input {
+    height: 18px;
+    background-color: transparent;
+    border: 0;
+    overflow: auto;
+    padding: 8px 9px;
+    resize: none;
+    outline: none;
+}
+
+.post__message__button {
+    display: none;
+}
+
+/* .post__message__input {
     display: flex;
     flex-direction: row;
     width: 55%;
-    /* border: 1 solid lightgray; */
     padding-left: 11px;
     padding-right: 8px;
     min-height: 35px;
@@ -188,7 +233,7 @@
 }
 .post__message__button {
     width: 10%;
-}
+} */
 
 
 @media screen and (max-width: 935px) {

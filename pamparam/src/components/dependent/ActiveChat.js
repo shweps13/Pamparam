@@ -23,23 +23,25 @@ function ActiveChat({ messageText, setMessageTest }) {
         </div>
 
         <div>
-            
+
         </div>
         
         <div className="messenger__window__rightColumn__activeChat__footer">
-            <div>
+            <div className="messenger__window__rightColumn__activeChat__footer__preline">
                 <div className="messenger__window__rightColumn__activeChat__footer__line">
                     <div className="messenger__window__rightColumn__activeChat__footer__line__emoji">
-                        <VscSmiley size={20} />
+                        <VscSmiley size={42} />
                     </div>
                     <form className="post__message">
-                        <input 
-                            className="post__message__input"
-                            type="text"
-                            placeholder="Message..."
-                            value={messageText}
-                            onChange={(e) => setMessageTest(e.target.value)}
-                        />
+                        <div className="messenger__window__rightColumn__activeChat__footer__line__field">
+                            <input 
+                                className="post__message__input"
+                                type="text"
+                                placeholder="Message..."
+                                value={messageText}
+                                onChange={(e) => setMessageTest(e.target.value)}
+                            />
+                        </div>
                         <div className="messenger__window__rightColumn__activeChat__footer__line__button">
                             <button 
                                 className="post__message__button"
