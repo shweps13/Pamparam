@@ -4,6 +4,7 @@ import '../../styles/Messenger.css';
 import { BsPencilSquare } from 'react-icons/bs';
 
 import Cover from '../dependent/MessengerCover.js';
+import ActiveChat from '../dependent/ActiveChat.js';
 import MessageElement from '../dependent/MessengerElement.js';
 
 
@@ -41,9 +42,7 @@ function Messenger({ setLocal }) {
           { activeChat === false ? (
             <Cover setActiveChat={setActiveChat} />
           ):(
-            <div>
-              Ololo
-            </div>
+            <ActiveChat />
           )}
         </div>
       </div>

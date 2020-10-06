@@ -23,13 +23,13 @@
     overflow: hidden;
 }
 
-.messenger__window__leftColumn__header{
+.messenger__window__leftColumn__header, .messenger__window__rightColumn__activeChat__header{
     border-bottom: 1px solid #dbdbdb;
     height: 60px;
     padding: 0 20px;
 }
 
-.messenger__window__leftColumn__header__content {
+.messenger__window__leftColumn__header__content, .messenger__window__rightColumn__activeChat__header__content {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -141,6 +141,27 @@
     text-transform: inherit;
     text-overflow: ellipsis;
     width: auto;
+}
+
+.messenger__window__rightColumn__activeChat {
+    width: 100%;
+    height: 100%;
+}
+
+.messenger__window__rightColumn__activeChat__header__content div:nth-child(1) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.messenger__window__rightColumn__activeChat__header__content div:nth-child(1) p{
+    margin-left: 10px;
+    font-weight: bolder;
+}
+
+.messenger__window__rightColumn__activeChat__header__content img{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
 }
 
 @media screen and (max-width: 935px) {
