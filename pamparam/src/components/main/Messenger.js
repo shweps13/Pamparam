@@ -3,12 +3,14 @@ import { useLocation } from 'react-router-dom';
 import '../../styles/Messenger.css';
 import { BsPencilSquare } from 'react-icons/bs';
 import messageCover from '../../materials/MessageCover.png'; 
+import { db } from '../../materials/firebase.js';
 
 import Cover from '../dependent/MessengerCover.js';
 import ActiveChat from '../dependent/ActiveChat.js';
 import MessageElement from '../dependent/MessengerElement.js';
 
-import { auth, db } from '../../materials/firebase.js';
+import ModalNewMessage from '../../components/dependent/ModalNewMessage.js';
+import { getModalStyle, useStyles } from '../../materials/modalStyles.js';
 
 function Messenger({ setLocal, user }) {
   let location = useLocation()
@@ -16,9 +18,13 @@ function Messenger({ setLocal, user }) {
   const [activeChat, setActiveChat] = useState(false);
   const [messageText, setMessageTest] = useState('');
   
-
   const [roomsActive, setRoomsActive] = useState([]);
   const [rooms, setRooms] = useState([]);
+  
+  const classes = useStyles();
+  const [modalStyle] = useState(getModalStyle);
+  const [modalMessage, setModalMessage] = useState(false);
+  
 
   useEffect(
     () => {
@@ -70,7 +76,7 @@ function Messenger({ setLocal, user }) {
             <div className="messenger__window__leftColumn__header__content">
               <div/>
               <div>Direct</div>
-              <BsPencilSquare size={26} onClick={() => {setActiveChat(!activeChat)}}/>
+              <BsPencilSquare size={26} onClick={() => {setModalMessage(!modalMessage)}}/>
             </div>
           </div>
           <div className="messenger__window__leftColumn__chats">
@@ -98,6 +104,7 @@ function Messenger({ setLocal, user }) {
           )}
         </div>
       </div>
+      <ModalNewMessage modalMessage={modalMessage} setModalMessage={setModalMessage} modalStyle={modalStyle} classesStyle={classes.paper} />
     </div>
   );
 }
