@@ -32,4 +32,15 @@ function getModalStyle() {
     },
   }));
 
-export { getModalStyle, useStyles, useDiscoverStyles };
+  const useMessageStyles = makeStyles((theme) => ({
+    paper: {
+      position: 'absolute',
+      width: 400,
+      height: 600,
+      backgroundColor: theme.palette.background.paper,
+      borderRadius: 10,
+      boxShadow: theme.shadows[5],
+    },
+  }));
+
+export { getModalStyle, useStyles, useDiscoverStyles, useMessageStyles };

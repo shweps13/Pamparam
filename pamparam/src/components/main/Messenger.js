@@ -10,7 +10,7 @@ import ActiveChat from '../dependent/ActiveChat.js';
 import MessageElement from '../dependent/MessengerElement.js';
 
 import ModalNewMessage from '../../components/dependent/ModalNewMessage.js';
-import { getModalStyle, useStyles } from '../../materials/modalStyles.js';
+import { getModalStyle, useMessageStyles } from '../../materials/modalStyles.js';
 
 function Messenger({ setLocal, user }) {
   let location = useLocation()
@@ -21,7 +21,7 @@ function Messenger({ setLocal, user }) {
   const [roomsActive, setRoomsActive] = useState([]);
   const [rooms, setRooms] = useState([]);
   
-  const classes = useStyles();
+  const classes = useMessageStyles();
   const [modalStyle] = useState(getModalStyle);
   const [modalMessage, setModalMessage] = useState(false);
   
