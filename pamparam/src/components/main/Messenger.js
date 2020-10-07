@@ -15,6 +15,8 @@ function Messenger({ setLocal, user }) {
   const [activeChat, setActiveChat] = useState(false);
   const [messageText, setMessageTest] = useState('');
   
+
+  const [roomsActive, setRoomsActive] = useState([]);
   const [rooms, setRooms] = useState([]);
 
   useEffect(
@@ -31,17 +33,35 @@ function Messenger({ setLocal, user }) {
           doc.onSnapshot(function(doc) {
             // receiving real time list of chat rooms in real time from user collection data
             const realChatRooms = doc.data().chatRooms
-            console.log("Current data: ", realChatRooms);
-
+            // console.log("Current data: ", realChatRooms);
+            setRoomsActive(realChatRooms)
            });
-
       }
-  
   }, [user]);
+  
+  useEffect(() => {
+      if (roomsActive.length !== 0) {
+          db.collection("rooms").where("usersIn", "array-contains", user.uid).get()
+          .then(function(querySnapshot) {
+              querySnapshot.forEach(function(doc) {
+                  // doc.data() is never undefined for query doc snapshots
+                  console.log(doc.id, " => ", doc.data());
+              });
+          })
+          .catch(function(error) {
+              console.log("Error getting documents: ", error);
+          });
+      }
+  }, [roomsActive]);
+
+
 
   useEffect(() => {
     console.log('rooms', rooms)
   }, [rooms])
+  useEffect(() => {
+    console.log('roomsActive', roomsActive)
+  }, [roomsActive])
 
   return (
     <div className="messenger">
