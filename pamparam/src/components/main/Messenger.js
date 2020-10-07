@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import '../../styles/Messenger.css';
 import { BsPencilSquare } from 'react-icons/bs';
+import messageCover from '../../materials/MessageCover.png'; 
 
 import Cover from '../dependent/MessengerCover.js';
 import ActiveChat from '../dependent/ActiveChat.js';
@@ -73,11 +74,21 @@ function Messenger({ setLocal, user }) {
             </div>
           </div>
           <div className="messenger__window__leftColumn__chats">
-            {rooms.map((room) => (
-              <MessageElement key={room.id} id={room.id} usersIn={room.data.usersIn} roomName={room.data.roomName} />
-            ))}
+            {rooms.length === 0 ? (
+                <div className="messenger__window__leftColumn__chats__element">
+                    <img src={messageCover} alt='create a message plane'></img>
+                    <div className="lonely__messenger__div">
+                        <p>Start your messaging</p>
+                    </div>
+                </div>
+            ):(
+              <>
+                {rooms.map((room) => (
+                  <MessageElement key={room.id} id={room.id} usersIn={room.data.usersIn} roomName={room.data.roomName} />
+                ))}
+              </>
+            )}
           </div>
-
         </div>
         <div className="messenger__window__rightColumn">
           { activeChat === false ? (

@@ -89,6 +89,11 @@
     font-size: 14px;
 }
 
+.messenger__window__leftColumn__chats__element .lonely__messenger__div p{
+    margin-bottom: 0;
+    font-size: 16px;
+}
+
 .messenger__window__rightColumn{
     width: auto;
     height: 100%;
