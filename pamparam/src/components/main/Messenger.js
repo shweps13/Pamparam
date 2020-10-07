@@ -43,10 +43,17 @@ function Messenger({ setLocal, user }) {
       if (roomsActive.length !== 0) {
           db.collection("rooms").where("usersIn", "array-contains", user.uid).get()
           .then(function(querySnapshot) {
-              querySnapshot.forEach(function(doc) {
-                  // doc.data() is never undefined for query doc snapshots
-                  console.log(doc.id, " => ", doc.data());
-              });
+              setRooms(
+                querySnapshot.docs.map((room) => ({
+                  id: room.id,
+                  data: room.data(),
+                }))
+              )
+
+              // querySnapshot.forEach(function(doc) {
+              //     // doc.data() is never undefined for query doc snapshots
+              //     console.log(doc.id, " => ", doc.data());
+              // });
           })
           .catch(function(error) {
               console.log("Error getting documents: ", error);
