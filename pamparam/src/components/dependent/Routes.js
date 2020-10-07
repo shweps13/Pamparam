@@ -32,7 +32,7 @@ function Routes({ Route, Redirect, Switch, setLocal, user, username }) {
         <Route exact path="/messenger"
             render={() => (
 							<Messenger
-                setLocal={setLocal}
+                setLocal={setLocal} user={user}
 							/>
 						)} />
         <Route exact path="/discover"

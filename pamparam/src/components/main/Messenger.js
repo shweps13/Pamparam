@@ -7,12 +7,15 @@ import Cover from '../dependent/MessengerCover.js';
 import ActiveChat from '../dependent/ActiveChat.js';
 import MessageElement from '../dependent/MessengerElement.js';
 
+import { auth, db } from '../../materials/firebase.js';
 
-function Messenger({ setLocal }) {
+function Messenger({ setLocal, user }) {
   let location = useLocation()
 
   const [activeChat, setActiveChat] = useState(false);
   const [messageText, setMessageTest] = useState('');
+  
+  const [rooms, setRooms] = useState([]);
 
   useEffect(
     () => {
@@ -20,6 +23,25 @@ function Messenger({ setLocal }) {
       
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+  
+  useEffect(() => {
+      if (user !== null) {
+          const doc = db.collection('users').doc(user.uid);
+          
+          doc.onSnapshot(function(doc) {
+            // receiving real time list of chat rooms in real time from user collection data
+            const realChatRooms = doc.data().chatRooms
+            console.log("Current data: ", realChatRooms);
+
+           });
+
+      }
+  
+  }, [user]);
+
+  useEffect(() => {
+    console.log('rooms', rooms)
+  }, [rooms])
 
   return (
     <div className="messenger">
