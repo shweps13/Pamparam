@@ -49,26 +49,17 @@ function Messenger({ setLocal, user }) {
                   data: room.data(),
                 }))
               )
-
-              // querySnapshot.forEach(function(doc) {
-              //     // doc.data() is never undefined for query doc snapshots
-              //     console.log(doc.id, " => ", doc.data());
-              // });
           })
           .catch(function(error) {
-              console.log("Error getting documents: ", error);
+              console.log("Error getting active rooms with user: ", error);
           });
       }
   }, [roomsActive]);
 
-
-
   useEffect(() => {
     console.log('rooms', rooms)
   }, [rooms])
-  useEffect(() => {
-    console.log('roomsActive', roomsActive)
-  }, [roomsActive])
+
 
   return (
     <div className="messenger">
@@ -82,9 +73,9 @@ function Messenger({ setLocal, user }) {
             </div>
           </div>
           <div className="messenger__window__leftColumn__chats">
-            <MessageElement />
-            <MessageElement />
-            <MessageElement />
+            {rooms.map((room) => (
+              <MessageElement key={room.id} id={room.id} usersIn={room.data.usersIn} roomName={room.data.roomName} />
+            ))}
           </div>
 
         </div>
