@@ -2,29 +2,29 @@ import React, { useState, useEffect } from 'react';
 import Modal from '@material-ui/core/Modal';
 import '../../styles/Modal.css';
 import { GrClose } from 'react-icons/gr';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { db } from '../../materials/firebase.js';
 
-function ModalNewMessage({ modalMessage, setModalMessage, modalStyle, classesStyle }) {
+function ModalNewMessage({ modalMessageClick, setModalMessageClick, modalMessage, setModalMessage, modalStyle, classesStyle }) {
 
     // field that handle search field input
     const [userSearchField, setUserSearchField] = useState('');
     
     // function for closing and cleaning modal
     const closeMessageModal = () => {
-        // setUserSearchField('')
+        setUserSearchField('')
         setModalMessage(false)
-        makeRequest()
+        setModalMessageClick(false)
     }
     
     // hooks and var for search feature
     const [userSearchLoading, setUserSearchLoading] = useState(false);
     const [userSearchData, setUserSearchData] = useState([]);
-    let arrayholder = [];
+    const [arrayholder, setArrayholder] = useState([]);
     
-    // search function itself
+    // request function 
     const makeRequest = () => {
-        if (userSearchField !== '') {
             setUserSearchLoading(true)
             db.collection("users").where("displayName", "!=", false).get()
                 .then(function(querySnapshot) {
@@ -32,19 +32,36 @@ function ModalNewMessage({ modalMessage, setModalMessage, modalStyle, classesSty
                         querySnapshot.docs.map((user) => ({
                             id: user.id,
                             displayName: user.data().displayName,
-                            data: user.data(), 
+                            fullName: user.data().fullName
                         }))
-                    )
+                    )      
+                    setUserSearchLoading(false)
                 })
           .catch(function(error) {
-              console.log("Error getting active rooms with user: ", error);
+              console.log("Error getting users data: ", error);
           });
-
-        } else {
-            setUserSearchData([])
-        }
     }
 
+    // request runner due to the modal opening
+    useEffect(() => {
+        if (modalMessageClick === true) {
+            makeRequest()
+        }
+        console.log('click',modalMessageClick)
+    }, [modalMessageClick])
+
+    // filter function
+    const searchFilter = (text) => {
+
+    }
+
+
+    useEffect(() => {
+        console.log('arrayholder', arrayholder)
+    }, [arrayholder])
+    useEffect(() => {
+        console.log('userSearchLoading', userSearchLoading)
+    }, [userSearchLoading])
     useEffect(() => {
         console.log(userSearchData)
     }, [userSearchData])
@@ -83,9 +100,17 @@ function ModalNewMessage({ modalMessage, setModalMessage, modalStyle, classesSty
                         </div>      
                     </div>      
                     <div className="modalMessage__body__search__results">
-                        <h3>Azaza</h3>
-                        <h3>Azaza</h3>
-                        <h3>Azaza</h3>
+                        { userSearchLoading === true ? (
+                            <div className="modalMessage__loading">
+                                <CircularProgress size={50} />
+                            </div>
+                        ):(
+                            <>
+                                <h3>Azaza</h3>
+                                <h3>Azaza</h3>
+                                <h3>Azaza</h3>
+                            </>
+                        )}
                     </div>      
 
                 </div>      

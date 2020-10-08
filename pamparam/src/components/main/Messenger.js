@@ -24,6 +24,7 @@ function Messenger({ setLocal, user }) {
   const classes = useMessageStyles();
   const [modalStyle] = useState(getModalStyle);
   const [modalMessage, setModalMessage] = useState(false);
+  const [modalMessageClick, setModalMessageClick] = useState(false);
   
 
   useEffect(
@@ -69,6 +70,11 @@ function Messenger({ setLocal, user }) {
   //   console.log('rooms', rooms)
   // }, [rooms])
 
+  const modalOpener = () => {
+    setModalMessage(!modalMessage)
+    setModalMessageClick(!modalMessageClick)
+  }
+
 
   return (
     <div className="messenger">
@@ -78,7 +84,7 @@ function Messenger({ setLocal, user }) {
             <div className="messenger__window__leftColumn__header__content">
               <div/>
               <div>Direct</div>
-              <BsPencilSquare size={26} onClick={() => {setModalMessage(!modalMessage)}}/>
+              <BsPencilSquare size={26} onClick={() => {modalOpener()}}/>
             </div>
           </div>
           <div className="messenger__window__leftColumn__chats">
@@ -106,7 +112,7 @@ function Messenger({ setLocal, user }) {
           )}
         </div>
       </div>
-      <ModalNewMessage modalMessage={modalMessage} setModalMessage={setModalMessage} modalStyle={modalStyle} classesStyle={classes.paper} />
+      <ModalNewMessage setModalMessageClick={setModalMessageClick} modalMessageClick={modalMessageClick} modalMessage={modalMessage} setModalMessage={setModalMessage} modalStyle={modalStyle} classesStyle={classes.paper} />
     </div>
   );
 }
