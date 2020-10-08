@@ -36,10 +36,12 @@ function getModalStyle() {
     paper: {
       position: 'absolute',
       width: 400,
-      height: 600,
+      height: '50%',
       backgroundColor: theme.palette.background.paper,
       borderRadius: 10,
       boxShadow: theme.shadows[5],
+      justifyContent: 'center',
+      maxHeight: 'calc(100% - 40px)'
     },
   }));
 
