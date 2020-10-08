@@ -3,8 +3,9 @@ import Modal from '@material-ui/core/Modal';
 import '../../styles/Modal.css';
 import { GrClose } from 'react-icons/gr';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
 import { db } from '../../materials/firebase.js';
+
+import MessModalElem from './MessModalElem.js';
 
 function ModalNewMessage({ modalMessageClick, setModalMessageClick, modalMessage, setModalMessage, modalStyle, classesStyle }) {
 
@@ -47,7 +48,6 @@ function ModalNewMessage({ modalMessageClick, setModalMessageClick, modalMessage
         if (modalMessageClick === true) {
             makeRequest()
         }
-        console.log('click',modalMessageClick)
     }, [modalMessageClick])
 
     // filter function
@@ -59,9 +59,6 @@ function ModalNewMessage({ modalMessageClick, setModalMessageClick, modalMessage
     useEffect(() => {
         console.log('arrayholder', arrayholder)
     }, [arrayholder])
-    useEffect(() => {
-        console.log('userSearchLoading', userSearchLoading)
-    }, [userSearchLoading])
     useEffect(() => {
         console.log(userSearchData)
     }, [userSearchData])
@@ -106,9 +103,9 @@ function ModalNewMessage({ modalMessageClick, setModalMessageClick, modalMessage
                             </div>
                         ):(
                             <>
-                                <h3>Azaza</h3>
-                                <h3>Azaza</h3>
-                                <h3>Azaza</h3>
+                                {userSearchData.map((userData) => (
+                                    <MessModalElem key={userData.id} id={userData.id} displayName={userData.displayName} />
+                                ))}
                             </>
                         )}
                     </div>      
