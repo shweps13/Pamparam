@@ -35,6 +35,8 @@ function ProfileSettings({ setLocal }) {
     const [loading, setLoading] = useState(false);
     const [progress, setProgress] = useState(0);
 
+    const [chatRooms, setChatrooms] = useState(['azazaz'])
+
     // taking auth and db user data
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -51,6 +53,7 @@ function ProfileSettings({ setLocal }) {
                     // import data to hooks
                         setNewusername(authUser.displayName)
                         setNewemail(authUser.email)
+                        setChatrooms(doc.data().chatRooms)
 
                     if (doc.data().fullName !== undefined) {
                         setNewfullname(doc.data().fullName)
@@ -114,9 +117,9 @@ function ProfileSettings({ setLocal }) {
         setChangingProfile(true);
 
         // checking difference between new and old data
-        let oldData = [user.displayName, userDbData.fullName, userDbData.webpage, userDbData.bio, user.email, userDbData.phoneNumber, userDbData.gender];
-        let newData = [newUsername, newfullname, newpage, newbio, newemail, newphone, newgender];
-        const paramData = ['displayName', 'fullName', 'webpage', 'bio', 'email', 'phoneNumber', 'gender'];
+        let oldData = [user.displayName, userDbData.fullName, userDbData.webpage, userDbData.bio, user.email, userDbData.phoneNumber, userDbData.gender, userDbData.chatRooms];
+        let newData = [newUsername, newfullname, newpage, newbio, newemail, newphone, newgender, chatRooms];
+        const paramData = ['displayName', 'fullName', 'webpage', 'bio', 'email', 'phoneNumber', 'gender', 'chatRooms'];
         let objChange = {};
         let continueChange = false;
 
