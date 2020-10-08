@@ -53,7 +53,7 @@ function App() {
     db.collection('users').doc(userID).set({
       userID: userID,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      username: username,
+      displayName: username,
       photoURL: null,
       email: email,
     });

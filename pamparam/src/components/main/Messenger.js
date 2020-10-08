@@ -40,8 +40,10 @@ function Messenger({ setLocal, user }) {
           doc.onSnapshot(function(doc) {
             // receiving real time list of chat rooms in real time from user collection data
             const realChatRooms = doc.data().chatRooms
-            // console.log("Current data: ", realChatRooms);
-            setRoomsActive(realChatRooms)
+            console.log("Current data: ", realChatRooms);
+            if (realChatRooms) {
+                setRoomsActive(realChatRooms)
+            }
            });
       }
   }, [user]);

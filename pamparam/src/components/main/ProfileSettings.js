@@ -116,7 +116,7 @@ function ProfileSettings({ setLocal }) {
         // checking difference between new and old data
         let oldData = [user.displayName, userDbData.fullName, userDbData.webpage, userDbData.bio, user.email, userDbData.phoneNumber, userDbData.gender];
         let newData = [newUsername, newfullname, newpage, newbio, newemail, newphone, newgender];
-        const paramData = ['username', 'fullName', 'webpage', 'bio', 'email', 'phoneNumber', 'gender'];
+        const paramData = ['displayName', 'fullName', 'webpage', 'bio', 'email', 'phoneNumber', 'gender'];
         let objChange = {};
         let continueChange = false;
 
