@@ -63,9 +63,9 @@ function Messenger({ setLocal, user }) {
       }
   }, [roomsActive]);
 
-  useEffect(() => {
-    console.log('rooms', rooms)
-  }, [rooms])
+  // useEffect(() => {
+  //   console.log('rooms', rooms)
+  // }, [rooms])
 
 
   return (

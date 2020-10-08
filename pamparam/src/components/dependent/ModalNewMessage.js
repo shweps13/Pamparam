@@ -1,18 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from '@material-ui/core/Modal';
 import '../../styles/Modal.css';
-
 import { GrClose } from 'react-icons/gr';
 
+import { db } from '../../materials/firebase.js';
 
 function ModalNewMessage({ modalMessage, setModalMessage, modalStyle, classesStyle }) {
 
-    const [userSearch, setUserSearch] = useState('');
-
+    // field that handle search field input
+    const [userSearchField, setUserSearchField] = useState('');
+    
+    // function for closing and cleaning modal
     const closeMessageModal = () => {
-        setUserSearch('')
+        // setUserSearchField('')
         setModalMessage(false)
+        makeRequest()
     }
+    
+    // hooks and var for search feature
+    const [userSearchLoading, setUserSearchLoading] = useState(false);
+    const [userSearchData, setUserSearchData] = useState([]);
+    let arrayholder = [];
+    
+    // search function itself
+    const makeRequest = () => {
+        if (userSearchField !== '') {
+            setUserSearchLoading(true)
+            db.collection("users").where("displayName", "!=", false).get()
+                .then(function(querySnapshot) {
+                    setUserSearchData(
+                        querySnapshot.docs.map((user) => ({
+                            id: user.id,
+                            displayName: user.data().displayName,
+                            data: user.data(), 
+                        }))
+                    )
+                })
+          .catch(function(error) {
+              console.log("Error getting active rooms with user: ", error);
+          });
+
+        } else {
+            setUserSearchData([])
+        }
+    }
+
+    useEffect(() => {
+        console.log(userSearchData)
+    }, [userSearchData])
 
     return (
         <Modal open={modalMessage} onClose={() => closeMessageModal()}>
@@ -41,13 +76,16 @@ function ModalNewMessage({ modalMessage, setModalMessage, modalStyle, classesSty
                                     className="search__field__line__input"
                                     type="text"
                                     placeholder="Search..."
-                                    value={userSearch}
-                                    onChange={(e) => setUserSearch(e.target.value)}
+                                    value={userSearchField}
+                                    onChange={(e) => setUserSearchField(e.target.value)}
                                 />
                             </div>      
                         </div>      
                     </div>      
                     <div className="modalMessage__body__search__results">
+                        <h3>Azaza</h3>
+                        <h3>Azaza</h3>
+                        <h3>Azaza</h3>
                     </div>      
 
                 </div>      
