@@ -46,3 +46,52 @@
     justify-content: space-around;
   }
   
+  .modalMessage__body {
+    width: 100%;
+    height: 100%;
+  }
+
+  .modalMessage__body__header {
+    width: 100%;
+    height: 43px;
+    border-bottom: 1px solid #dbdbdb;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .modalMessage__body__header__close {
+    display: flex;
+    flex: 0 0 48px;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modalMessage__body__header__close svg{
+    margin-left: 16px;
+    margin-right: 16px;
+    cursor: pointer;
+  }
+
+  .modalMessage__body__header__title{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }
+  
+  .modalMessage__body__header__title h3{
+    font-size: 16px;
+  }
+
+  .modalMessage__body__header__next {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+  .modalMessage__body__header__next button{
+    flex: 0;
+    border: none;
+    background-color: transparent;
+    margin-right: 10px;
+  }
