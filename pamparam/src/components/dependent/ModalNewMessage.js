@@ -9,13 +9,18 @@ function ModalNewMessage({ modalMessage, setModalMessage, modalStyle, classesSty
 
     const [userSearch, setUserSearch] = useState('');
 
+    const closeMessageModal = () => {
+        setUserSearch('')
+        setModalMessage(false)
+    }
+
     return (
-        <Modal open={modalMessage} onClose={() => setModalMessage(false)}>
+        <Modal open={modalMessage} onClose={() => closeMessageModal()}>
         <div style={modalStyle} className={classesStyle} >
             <div className="modalMessage__body">
                 <div className="modalMessage__body__header">
                     <div className="modalMessage__body__header__close">
-                        <GrClose size={20} onClick={() => setModalMessage(false)} />
+                        <GrClose size={20} onClick={() => closeMessageModal()} />
                     </div>      
                     <div className="modalMessage__body__header__title">
                         <h3>New Message</h3>
