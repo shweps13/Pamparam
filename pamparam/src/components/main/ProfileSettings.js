@@ -117,9 +117,14 @@ function ProfileSettings({ setLocal }) {
         setChangingProfile(true);
 
         // checking difference between new and old data
-        let oldData = [user.displayName, userDbData.fullName, userDbData.webpage, userDbData.bio, user.email, userDbData.phoneNumber, userDbData.gender, userDbData.chatRooms];
-        let newData = [newUsername, newfullname, newpage, newbio, newemail, newphone, newgender, chatRooms];
-        const paramData = ['displayName', 'fullName', 'webpage', 'bio', 'email', 'phoneNumber', 'gender', 'chatRooms'];
+        let oldData = [user.displayName, userDbData.fullName, userDbData.webpage, userDbData.bio, user.email, userDbData.phoneNumber, userDbData.gender];
+        let newData = [newUsername, newfullname, newpage, newbio, newemail, newphone, newgender];
+        let paramData = ['displayName', 'fullName', 'webpage', 'bio', 'email', 'phoneNumber', 'gender'];
+        if (chatRooms) {
+            oldData.push(userDbData.chatRooms)
+            newData.push(chatRooms)
+            paramData.push('chatRooms')
+        }
         let objChange = {};
         let continueChange = false;
 
