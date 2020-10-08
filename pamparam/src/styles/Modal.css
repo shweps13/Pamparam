@@ -89,9 +89,49 @@
     justify-content: center;
     text-align: center;
   }
+  
   .modalMessage__body__header__next button{
     flex: 0;
     border: none;
     background-color: transparent;
     margin-right: 10px;
+  }
+
+  .modalMessage__body__search__field {
+    border-bottom: 1px solid #dbdbdb;
+    max-height: 50%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
+  .modalMessage__body__search__field__line {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 8px;
+    margin-top: 8px;
+    max-height: 200px;
+  }
+
+  .modalMessage__body__search__field__line__to {
+    align-content: stretch;
+    width: 65px;
+    padding: 4px 12px;
+  }
+
+  .modalMessage__body__search__field__line__input{
+    flex-wrap: wrap;
+    overflow-wrap: normal;
+    width: calc(100% - 65px);
+  }
+
+  .search__field__line__input{
+    outline: 0 !important;
+    border: 0;
+    flex-grow: 1;
+    font-size: 14px;
+    line-height: 30px;
+    margin: 0;
+    overflow: visible;
+    padding: 2px 12px 4px 12px;
+    width: 90%;
   }

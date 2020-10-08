@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Modal from '@material-ui/core/Modal';
 import '../../styles/Modal.css';
 
@@ -7,6 +7,7 @@ import { GrClose } from 'react-icons/gr';
 
 function ModalNewMessage({ modalMessage, setModalMessage, modalStyle, classesStyle }) {
 
+    const [userSearch, setUserSearch] = useState('');
 
     return (
         <Modal open={modalMessage} onClose={() => setModalMessage(false)}>
@@ -26,6 +27,20 @@ function ModalNewMessage({ modalMessage, setModalMessage, modalStyle, classesSty
                 
                 <div className="modalMessage__body__search">
                     <div className="modalMessage__body__search__field">
+                        <div className="modalMessage__body__search__field__line">
+                            <div className="modalMessage__body__search__field__line__to">
+                                <h3>To:</h3>
+                            </div>      
+                            <div className="modalMessage__body__search__field__line__input">
+                                <input 
+                                    className="search__field__line__input"
+                                    type="text"
+                                    placeholder="Search..."
+                                    value={userSearch}
+                                    onChange={(e) => setUserSearch(e.target.value)}
+                                />
+                            </div>      
+                        </div>      
                     </div>      
                     <div className="modalMessage__body__search__results">
                     </div>      
