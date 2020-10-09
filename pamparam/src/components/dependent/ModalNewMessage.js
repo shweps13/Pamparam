@@ -52,16 +52,24 @@ function ModalNewMessage({ modalMessageClick, setModalMessageClick, modalMessage
 
     // filter function
     const searchFilter = (text) => {
+        const newData = userSearchData.filter(item => {
+            const itemData = `${item.displayName.toUpperCase()}`;
 
+            const textData = text.toUpperCase();
+            return itemData.indexOf(textData) > -1
+        });
+        setArrayholder(newData)
     }
-
 
     useEffect(() => {
         console.log('arrayholder', arrayholder)
     }, [arrayholder])
+    // useEffect(() => {
+    //     console.log(userSearchData)
+    // }, [userSearchData])
     useEffect(() => {
-        console.log(userSearchData)
-    }, [userSearchData])
+        searchFilter(userSearchField)
+    }, [userSearchField])
 
     return (
         <Modal open={modalMessage} onClose={() => closeMessageModal()}>
