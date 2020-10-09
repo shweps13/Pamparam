@@ -111,9 +111,19 @@ function ModalNewMessage({ modalMessageClick, setModalMessageClick, modalMessage
                             </div>
                         ):(
                             <>
-                                {userSearchData.map((userData) => (
-                                    <MessModalElem key={userData.id} id={userData.id} displayName={userData.displayName} />
-                                ))}
+                                { userSearchField === '' ? (
+                                    <div>
+                                        {userSearchData.map((userData) => (
+                                            <MessModalElem key={userData.id} id={userData.id} displayName={userData.displayName} fullName={userData.fullName} />
+                                        ))}
+                                    </div>
+                                ):(
+                                    <div>
+                                        {arrayholder.map((userData) => (
+                                            <MessModalElem key={userData.id} id={userData.id} displayName={userData.displayName} fullName={userData.fullName} />
+                                        ))}
+                                    </div>
+                                )}
                             </>
                         )}
                     </div>      
