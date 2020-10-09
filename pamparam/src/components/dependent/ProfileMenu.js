@@ -37,12 +37,9 @@ class Card extends Component {
     }
   }
 
-
   render() {
-
     return (
       <>
-
         <CgProfile style={{cursor: "pointer"}} size={25} onClick={this.showMenu}/>
 
         {

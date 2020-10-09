@@ -61,12 +61,7 @@ function ModalNewMessage({ modalMessageClick, setModalMessageClick, modalMessage
         setArrayholder(newData)
     }
 
-    useEffect(() => {
-        console.log('arrayholder', arrayholder)
-    }, [arrayholder])
-    // useEffect(() => {
-    //     console.log(userSearchData)
-    // }, [userSearchData])
+    // implementation of livesearch
     useEffect(() => {
         searchFilter(userSearchField)
     }, [userSearchField])
