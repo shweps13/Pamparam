@@ -64,6 +64,7 @@ function ModalNewMessage({ modalMessageClick, setModalMessageClick, modalMessage
     // implementation of livesearch
     useEffect(() => {
         searchFilter(userSearchField)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userSearchField])
 
     return (

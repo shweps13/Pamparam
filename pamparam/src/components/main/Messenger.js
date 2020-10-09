@@ -30,7 +30,6 @@ function Messenger({ setLocal, user }) {
   useEffect(
     () => {
       setLocal(location.pathname)
-      
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
   
@@ -64,11 +63,8 @@ function Messenger({ setLocal, user }) {
               console.log("Error getting active rooms with user: ", error);
           });
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomsActive]);
-
-  // useEffect(() => {
-  //   console.log('rooms', rooms)
-  // }, [rooms])
 
   const modalOpener = () => {
     setModalMessage(!modalMessage)
