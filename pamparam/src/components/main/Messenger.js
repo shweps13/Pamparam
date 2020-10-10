@@ -27,6 +27,7 @@ function Messenger({ setLocal, user }) {
   const [modalMessageClick, setModalMessageClick] = useState(false);
   
 
+  
   useEffect(
     () => {
       setLocal(location.pathname)
