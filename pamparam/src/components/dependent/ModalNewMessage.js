@@ -121,13 +121,13 @@ function ModalNewMessage({ modalMessageClick, setModalMessageClick, modalMessage
                         ):(
                             <>
                                 { userSearchField === '' ? (
-                                    <div>
+                                    <div className="modalMessage__mapContainer">
                                         {userSearchData.map((userData) => (
                                             <MessModalElem key={userData.id} id={userData.id} displayName={userData.displayName} fullName={userData.fullName} userCheckBox={userCheckBox} setUserCheckBox={setUserCheckBox} />
                                         ))}
                                     </div>
                                 ):(
-                                    <div>
+                                    <div className="modalMessage__mapContainer">
                                         {arrayholder.map((userData) => (
                                             <MessModalElem key={userData.id} id={userData.id} displayName={userData.displayName} fullName={userData.fullName} userCheckBox={userCheckBox} setUserCheckBox={setUserCheckBox} />
                                         ))}
