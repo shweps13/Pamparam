@@ -3,20 +3,21 @@ import noAvatar from '../../materials/noAvatar.jpg';
 
 function MessModalElem({ id, displayName, fullName, userCheckBox, setUserCheckBox }) {
 
+    // logical operations for putting data to parental hook with selected user
     const checkValueToHook = () => {
-        if (userCheckBox.checked === false || userCheckBox.checked === true && userCheckBox.userId !== id){
+        if (userCheckBox.checked === true && userCheckBox.userId === id) {
+            setUserCheckBox({
+                userId: '',
+                checked: false
+        })} else if (userCheckBox.checked === false || userCheckBox.checked === true){
             setUserCheckBox({
                 userId: id,
                 checked: true
             })
-        } else if (userCheckBox.checked === true && userCheckBox.userId === id) {
-            setUserCheckBox({
-                userId: '',
-                checked: false
-            })
         }
     }
     
+    // true/false statements for checkbox rendering
     const [checkState, setCheckState] = useState(false);
     
     useEffect(() => {
@@ -30,6 +31,7 @@ function MessModalElem({ id, displayName, fullName, userCheckBox, setUserCheckBo
         } else {
             setCheckState(false)
         }
+    // eslint-disable-next-line
     }, [userCheckBox])
 
     return (

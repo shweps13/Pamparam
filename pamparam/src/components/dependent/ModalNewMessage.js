@@ -17,6 +17,10 @@ function ModalNewMessage({ modalMessageClick, setModalMessageClick, modalMessage
         setUserSearchField('')
         setModalMessage(false)
         setModalMessageClick(false)
+        setUserCheckBox({
+            userId: '',
+            checked: false
+        })
     }
     
     // hooks and var for search feature
