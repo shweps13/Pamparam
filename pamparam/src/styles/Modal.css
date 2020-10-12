@@ -135,3 +135,18 @@
     padding: 2px 12px 4px 12px;
     width: 90%;
   }
+
+  .MessModalElem {
+    display: flex;
+    padding: 8px 16px 8px 16px;
+  }
+  
+  .MessModalElem:hover {
+    background-color: #faf9f9;
+  }
+  
+  .MessModalElem img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+  }

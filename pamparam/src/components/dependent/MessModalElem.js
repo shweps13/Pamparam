@@ -1,10 +1,15 @@
 import React from 'react';
+import noAvatar from '../../materials/noAvatar.jpg'; 
 
-function MessModalElem({ displayName }) {
+function MessModalElem({ displayName, fullName }) {
 
     return (
         <div className="MessModalElem">
-            <h3>{displayName}</h3>
+            <img src={noAvatar} alt='user avatar' />
+            <div className="MessModalElem__body">
+                <strong>{displayName}</strong>
+                <p>{fullName}</p>
+            </div>
         </div>
     )
 }
