@@ -17,10 +17,7 @@ function ModalNewMessage({ modalMessageClick, setModalMessageClick, modalMessage
         setUserSearchField('')
         setModalMessage(false)
         setModalMessageClick(false)
-        setUserCheckBox({
-            userId: '',
-            checked: false
-        })
+        cleanCheckBox()
     }
     
     // hooks and var for search feature
@@ -30,12 +27,21 @@ function ModalNewMessage({ modalMessageClick, setModalMessageClick, modalMessage
     
     const [userCheckBox, setUserCheckBox] = useState({
         userId: '',
+        userName: '',
         checked: false
     });
     
     useEffect(() => {
         console.log('userCheckBox', userCheckBox)
     }, [userCheckBox])
+
+    const cleanCheckBox = () => {
+        setUserCheckBox({
+            userId: '',
+            userName: '',
+            checked: false
+        })
+    }
 
     // request function 
     const makeRequest = () => {
@@ -103,14 +109,32 @@ function ModalNewMessage({ modalMessageClick, setModalMessageClick, modalMessage
                                 <h3>To:</h3>
                             </div>      
                             <div className="modalMessage__body__search__field__line__input">
-                                <input 
-                                    className="search__field__line__input"
-                                    type="text"
-                                    placeholder="Search..."
-                                    value={userSearchField}
-                                    onChange={(e) => setUserSearchField(e.target.value)}
-                                />
-                            </div>      
+                                {userCheckBox.checked === true ? (
+                                    <div className="modalMessage__body__search__field__line__input__active">
+                                        <div onClick={() => cleanCheckBox()}>
+                                            <p>{userCheckBox.userName}</p>
+                                        </div>
+                                        <input 
+                                            className="search__field__line__input__active"
+                                            type="text"
+                                            placeholder="Search..."
+                                            value={userSearchField}
+                                            onChange={(e) => setUserSearchField(e.target.value)}
+                                        />
+                                    </div>
+                                ) : (
+                                    <>
+                                        <input 
+                                            className="search__field__line__input"
+                                            type="text"
+                                            placeholder="Search..."
+                                            value={userSearchField}
+                                            onChange={(e) => setUserSearchField(e.target.value)}
+                                        />
+                                    </>
+                                )}   
+                                
+                            </div>   
                         </div>      
                     </div>      
                     <div className="modalMessage__body__search__results">

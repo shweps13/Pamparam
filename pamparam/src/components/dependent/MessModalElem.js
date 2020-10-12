@@ -8,10 +8,12 @@ function MessModalElem({ id, displayName, fullName, userCheckBox, setUserCheckBo
         if (userCheckBox.checked === true && userCheckBox.userId === id) {
             setUserCheckBox({
                 userId: '',
+                userName: '',
                 checked: false
         })} else if (userCheckBox.checked === false || userCheckBox.checked === true){
             setUserCheckBox({
                 userId: id,
+                userName: displayName.toLowerCase(),
                 checked: true
             })
         }

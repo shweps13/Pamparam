@@ -124,7 +124,7 @@
     width: calc(100% - 65px);
   }
 
-  .search__field__line__input{
+  .search__field__line__input, .search__field__line__input__active{
     outline: 0 !important;
     border: 0;
     flex-grow: 1;
@@ -134,6 +134,31 @@
     overflow: visible;
     padding: 2px 12px 4px 12px;
     width: 90%;
+  }
+
+  .modalMessage__body__search__field__line__input__active {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .modalMessage__body__search__field__line__input__active div:nth-child(1) {
+    background-color: #0095f6;
+    color: #fff;
+    border-radius: 4px;
+    border: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    font-weight: 500;
+    padding: 8px 10px;
+    text-align: center;
+    text-transform: inherit;
+    text-overflow: ellipsis;
+    width: auto;
+  }
+  
+  .search__field__line__input__active {
+    width: 100%;
   }
 
   .MessModalElem {
