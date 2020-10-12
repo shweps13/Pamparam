@@ -90,11 +90,21 @@
     text-align: center;
   }
   
-  .modalMessage__body__header__next button{
+  .modalMessage__body__header__next__activeBtn, .modalMessage__body__header__next__Btn{
     flex: 0;
     border: none;
     background-color: transparent;
     margin-right: 10px;
+    font-weight: 600;
+  }
+
+  .modalMessage__body__header__next__Btn{
+    color: #8e8e8e;
+  }
+
+  .modalMessage__body__header__next__activeBtn{
+    cursor: pointer;
+    color: #0095f6;
   }
 
   .modalMessage__body__search__field {
@@ -156,7 +166,7 @@
     text-overflow: ellipsis;
     width: auto;
   }
-  
+
   .search__field__line__input__active {
     width: 100%;
   }

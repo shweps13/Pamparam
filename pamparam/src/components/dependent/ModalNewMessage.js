@@ -98,7 +98,11 @@ function ModalNewMessage({ modalMessageClick, setModalMessageClick, modalMessage
                         <h3>New Message</h3>
                     </div>      
                     <div className="modalMessage__body__header__next">
-                        <button>Next</button>
+                        {userCheckBox.checked === true ? (
+                            <button className="modalMessage__body__header__next__activeBtn">Next</button>
+                        ) : (
+                            <button className="modalMessage__body__header__next__Btn">Next</button>
+                        )}
                     </div>      
                 </div>      
                 
