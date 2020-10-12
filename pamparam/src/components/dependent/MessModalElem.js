@@ -36,7 +36,7 @@ function MessModalElem({ id, displayName, fullName, userCheckBox, setUserCheckBo
 
     return (
         <div className="MessModalElem">
-            <div className="MessModalElem__Left">
+            <div className="MessModalElem__Left" onClick={() => {checkValueToHook()}}>
                 <img src={noAvatar} alt='user avatar' />
 
                 {fullName ? (
