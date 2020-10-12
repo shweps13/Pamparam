@@ -139,6 +139,7 @@
   .MessModalElem {
     display: flex;
     padding: 8px 16px 8px 16px;
+    cursor: pointer;
   }
   
   .MessModalElem:hover {
@@ -149,4 +150,27 @@
     width: 45px;
     height: 45px;
     border-radius: 50%;
+  }
+
+  .MessModalElem strong, .MessModalElem p {
+    margin-left: 10px;
+    width: 80%;
+    font-size: 14px;
+  }
+
+  .MessModalElem p {
+    color: #8e8e8e;
+  }
+
+  .MessModalElem__body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 4px;
+  }
+  
+  .MessModalElem__body__noFull{
+    height: 100%;
+    width: 100%;
+    padding-top: 10px;    
   }
