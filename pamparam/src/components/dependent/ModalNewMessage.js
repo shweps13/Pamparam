@@ -24,6 +24,15 @@ function ModalNewMessage({ modalMessageClick, setModalMessageClick, modalMessage
     const [userSearchData, setUserSearchData] = useState([]);
     const [arrayholder, setArrayholder] = useState([]);
     
+    const [userCheckBox, setUserCheckBox] = useState({
+        userId: '',
+        checked: false
+    });
+    
+    useEffect(() => {
+        console.log('userCheckBox', userCheckBox)
+    }, [userCheckBox])
+
     // request function 
     const makeRequest = () => {
             setUserSearchLoading(true)
@@ -110,13 +119,13 @@ function ModalNewMessage({ modalMessageClick, setModalMessageClick, modalMessage
                                 { userSearchField === '' ? (
                                     <div>
                                         {userSearchData.map((userData) => (
-                                            <MessModalElem key={userData.id} id={userData.id} displayName={userData.displayName} fullName={userData.fullName} />
+                                            <MessModalElem key={userData.id} id={userData.id} displayName={userData.displayName} fullName={userData.fullName} userCheckBox={userCheckBox} setUserCheckBox={setUserCheckBox} />
                                         ))}
                                     </div>
                                 ):(
                                     <div>
                                         {arrayholder.map((userData) => (
-                                            <MessModalElem key={userData.id} id={userData.id} displayName={userData.displayName} fullName={userData.fullName} />
+                                            <MessModalElem key={userData.id} id={userData.id} displayName={userData.displayName} fullName={userData.fullName} userCheckBox={userCheckBox} setUserCheckBox={setUserCheckBox} />
                                         ))}
                                     </div>
                                 )}

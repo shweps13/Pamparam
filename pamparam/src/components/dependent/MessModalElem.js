@@ -1,7 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import noAvatar from '../../materials/noAvatar.jpg'; 
 
-function MessModalElem({ displayName, fullName }) {
+function MessModalElem({ id, displayName, fullName, userCheckBox, setUserCheckBox }) {
+
+    const checkValueToHook = () => {
+        if (userCheckBox.checked === false || userCheckBox.checked === true && userCheckBox.userId !== id){
+            setUserCheckBox({
+                userId: id,
+                checked: true
+            })
+        } else if (userCheckBox.checked === true && userCheckBox.userId === id) {
+            setUserCheckBox({
+                userId: '',
+                checked: false
+            })
+        }
+    }
+    
+    const [checkState, setCheckState] = useState(false);
+    
+    useEffect(() => {
+        console.log()
+        if (userCheckBox.userId === id) {
+            if (userCheckBox.checked === true) {
+                setCheckState(true)
+            } else {
+                setCheckState(false)
+            }
+        } else {
+            setCheckState(false)
+        }
+    }, [userCheckBox])
 
     return (
         <div className="MessModalElem">
@@ -20,7 +49,10 @@ function MessModalElem({ displayName, fullName }) {
                 )}
             </div>
             <label className="MessModalElem__checkbox__div">
-                <input type="checkbox"></input>
+                <input 
+                    type="checkbox" 
+                    checked={checkState}
+                    onChange={checkValueToHook} />
                 <span className="MessModalElem__checkmark"></span>
             </label>
         </div>
