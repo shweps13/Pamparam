@@ -8,7 +8,7 @@ import firebase from 'firebase';
 
 import MessModalElem from './MessModalElem.js';
 
-function ModalNewMessage({ userID, modalMessageClick, setModalMessageClick, modalMessage, setModalMessage, modalStyle, classesStyle }) {
+function ModalNewMessage({ setActiveChat, userID, modalMessageClick, setModalMessageClick, modalMessage, setModalMessage, modalStyle, classesStyle }) {
 
     // field that handle search field input
     const [userSearchField, setUserSearchField] = useState('');
@@ -132,6 +132,7 @@ function ModalNewMessage({ userID, modalMessageClick, setModalMessageClick, moda
         .then(function() {  
             setUserNewMessage(false)
             closeMessageModal()
+            setActiveChat(true)
         })
       .catch(function(error) {
           console.log("Error putting new chat data: ", error);

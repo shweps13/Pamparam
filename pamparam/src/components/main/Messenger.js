@@ -103,13 +103,13 @@ function Messenger({ setLocal, user }) {
         </div>
         <div className="messenger__window__rightColumn">
           { activeChat === false ? (
-            <Cover setActiveChat={setActiveChat} />
+            <Cover modalOpener={modalOpener} />
           ):(
             <ActiveChat messageText={messageText} setMessageTest={setMessageTest} />
           )}
         </div>
       </div>
-      <ModalNewMessage userID={user} setModalMessageClick={setModalMessageClick} modalMessageClick={modalMessageClick} modalMessage={modalMessage} setModalMessage={setModalMessage} modalStyle={modalStyle} classesStyle={classes.paper} />
+      <ModalNewMessage setActiveChat={setActiveChat} userID={user} setModalMessageClick={setModalMessageClick} modalMessageClick={modalMessageClick} modalMessage={modalMessage} setModalMessage={setModalMessage} modalStyle={modalStyle} classesStyle={classes.paper} />
     </div>
   );
 }
