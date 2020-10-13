@@ -88,18 +88,44 @@ function ModalNewMessage({ userID, modalMessageClick, setModalMessageClick, moda
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userSearchField])
 
+    // id generator
+    const makeid = (length) => {
+        let result           = '';
+        let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let charactersLength = characters.length;
+        for ( let i = 0; i < length; i++ ) {
+           result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+    }
+
     const newRoom = () => {
-        setUserNewMessage(true)
-        db.collection("rooms").doc('77777777').set({
+        const newId = makeid(20) // generating new id
+        console.log('New room with ID [', newId, ']')
+        setUserNewMessage(true) // hook data for 'user wait' effect rendering
+        // creating new room
+            db.collection("rooms").doc(newId).set({
                 roomName: 'Azazaz',
                 usersIn: [userID.uid, userCheckBox.userId]
             })
+        // .then(function() {  
+        // db.collection("rooms").doc('77777777').collection("messages").add({
+        //         message: 'Ololo',
+        //         name: userID.displayName,
+        //         uid: userID.uid,
+        //         timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        //     })
+        // })
+
+        // adding rooms to users profiles
         .then(function() {  
-        db.collection("rooms").doc('77777777').collection("messages").add({
-                message: 'Ololo',
-                name: userID.displayName,
-                uid: userID.uid,
-                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            db.collection("users").doc(userID.uid).update({
+                chatRooms: firebase.firestore.FieldValue.arrayUnion(newId)
+            })
+        })
+        .then(function() {  
+            db.collection("users").doc(userCheckBox.userId).update({
+                chatRooms: firebase.firestore.FieldValue.arrayUnion(newId)
             })
         })
         .then(function() {  
