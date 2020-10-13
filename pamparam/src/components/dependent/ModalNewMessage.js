@@ -130,6 +130,7 @@ function ModalNewMessage({ userID, modalMessageClick, setModalMessageClick, moda
         })
         .then(function() {  
             setUserNewMessage(false)
+            closeMessageModal()
         })
       .catch(function(error) {
           console.log("Error putting new chat data: ", error);
@@ -148,11 +149,22 @@ function ModalNewMessage({ userID, modalMessageClick, setModalMessageClick, moda
                         <h3>New Message</h3>
                     </div>      
                     <div className="modalMessage__body__header__next">
-                        {userCheckBox.checked === true ? (
-                            <button className="modalMessage__body__header__next__activeBtn" onClick={() => newRoom()}>Next</button>
-                        ) : (
-                            <button className="modalMessage__body__header__next__Btn">Next</button>
+                        {userNewMessage === false ? (
+                            <>
+                                {userCheckBox.checked === true ? (
+                                    <button className="modalMessage__body__header__next__activeBtn" onClick={() => newRoom()}>Next</button>
+                                ) : (
+                                    <button className="modalMessage__body__header__next__Btn">Next</button>
+                                )}
+                            </>
+                        ):(
+                            <>
+                                <button className="modalMessage__body__header__next__Btn">
+                                    <CircularProgress size={20} />
+                                </button> 
+                            </>
                         )}
+                            
                     </div>      
                 </div>      
                 
