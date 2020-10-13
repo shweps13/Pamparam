@@ -109,7 +109,7 @@ function Messenger({ setLocal, user }) {
           )}
         </div>
       </div>
-      <ModalNewMessage setModalMessageClick={setModalMessageClick} modalMessageClick={modalMessageClick} modalMessage={modalMessage} setModalMessage={setModalMessage} modalStyle={modalStyle} classesStyle={classes.paper} />
+      <ModalNewMessage userID={user} setModalMessageClick={setModalMessageClick} modalMessageClick={modalMessageClick} modalMessage={modalMessage} setModalMessage={setModalMessage} modalStyle={modalStyle} classesStyle={classes.paper} />
     </div>
   );
 }

@@ -4,10 +4,11 @@ import '../../styles/Modal.css';
 import { GrClose } from 'react-icons/gr';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { db } from '../../materials/firebase.js';
+import firebase from 'firebase';
 
 import MessModalElem from './MessModalElem.js';
 
-function ModalNewMessage({ modalMessageClick, setModalMessageClick, modalMessage, setModalMessage, modalStyle, classesStyle }) {
+function ModalNewMessage({ userID, modalMessageClick, setModalMessageClick, modalMessage, setModalMessage, modalStyle, classesStyle }) {
 
     // field that handle search field input
     const [userSearchField, setUserSearchField] = useState('');
@@ -22,6 +23,7 @@ function ModalNewMessage({ modalMessageClick, setModalMessageClick, modalMessage
     
     // hooks and var for search feature
     const [userSearchLoading, setUserSearchLoading] = useState(false);
+    const [userNewMessage, setUserNewMessage] = useState(false);
     const [userSearchData, setUserSearchData] = useState([]);
     const [arrayholder, setArrayholder] = useState([]);
     
@@ -86,6 +88,28 @@ function ModalNewMessage({ modalMessageClick, setModalMessageClick, modalMessage
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userSearchField])
 
+    const newRoom = () => {
+        setUserNewMessage(true)
+        db.collection("rooms").doc('77777777').set({
+                roomName: 'Azazaz',
+                usersIn: [userID.uid, userCheckBox.userId]
+            })
+        .then(function() {  
+        db.collection("rooms").doc('77777777').collection("messages").add({
+                message: 'Ololo',
+                name: userID.displayName,
+                uid: userID.uid,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            })
+        })
+        .then(function() {  
+            setUserNewMessage(false)
+        })
+      .catch(function(error) {
+          console.log("Error putting new chat data: ", error);
+      });
+    }
+
     return (
         <Modal open={modalMessage} onClose={() => closeMessageModal()}>
         <div style={modalStyle} className={classesStyle} >
@@ -99,7 +123,7 @@ function ModalNewMessage({ modalMessageClick, setModalMessageClick, modalMessage
                     </div>      
                     <div className="modalMessage__body__header__next">
                         {userCheckBox.checked === true ? (
-                            <button className="modalMessage__body__header__next__activeBtn">Next</button>
+                            <button className="modalMessage__body__header__next__activeBtn" onClick={() => newRoom()}>Next</button>
                         ) : (
                             <button className="modalMessage__body__header__next__Btn">Next</button>
                         )}
