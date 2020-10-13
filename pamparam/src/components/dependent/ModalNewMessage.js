@@ -105,8 +105,9 @@ function ModalNewMessage({ userID, modalMessageClick, setModalMessageClick, moda
         setUserNewMessage(true) // hook data for 'user wait' effect rendering
         // creating new room
             db.collection("rooms").doc(newId).set({
-                roomName: 'Azazaz',
-                usersIn: [userID.uid, userCheckBox.userId]
+                roomName: false,
+                usersIn: [userID.uid, userCheckBox.userId],
+                usersInNames: [userID.displayName, userCheckBox.userName],
             })
         // .then(function() {  
         // db.collection("rooms").doc('77777777').collection("messages").add({
