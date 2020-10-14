@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import noAvatar from '../../materials/noAvatar.jpg'; 
 import { AiOutlineInfoCircle, AiOutlineHeart } from 'react-icons/ai';
 import { VscSmiley } from 'react-icons/vsc';
+import { db } from '../../materials/firebase.js';
 
 import Message from '../dependent/ActiveChatMessage.js';
 
@@ -13,12 +14,8 @@ function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
         console.log('Send...', messageText)
     }
 
+    // function for opponent name rendering
     const opponentName = () => {
-        // console.log({
-        //     openedRoom: openedRoom.openedRoom,
-        //     usersIn: openedRoom.usersIn,
-        //     usersInNames: openedRoom.usersInNames
-        // })
         if (openedRoom.usersIn.length > 0) {
             var i
             for (i=0; i < openedRoom.usersIn.length; i++) {
@@ -37,6 +34,28 @@ function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
             return 'Chat room'
         }
     }
+
+    // hooks for realtime messages receiving
+    const [roomMessages, setRoomMessages] = useState([]);
+
+    useEffect(() => {
+        if (openedRoom.openedRoom && openedRoom.openedRoom !== '') {
+            // console.log(openedRoom.openedRoom)
+            db.collection('rooms')
+            .doc(openedRoom.openedRoom)
+            .collection('messages')
+            .orderBy('timestamp')
+            .onSnapshot(snapshot => (
+                setRoomMessages(snapshot.docs.map((doc) => doc.data()))
+            ));
+
+
+        }
+    }, [openedRoom])
+
+    useEffect(() => {
+        console.log('roomMessages', roomMessages)
+    }, [roomMessages])
 
     return (
     <div className="messenger__window__rightColumn__activeChat">
