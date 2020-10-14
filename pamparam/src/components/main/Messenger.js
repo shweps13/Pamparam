@@ -15,17 +15,28 @@ import { getModalStyle, useMessageStyles } from '../../materials/modalStyles.js'
 function Messenger({ setLocal, user }) {
   let location = useLocation()
 
-  const [activeChat, setActiveChat] = useState(false);
   const [messageText, setMessageTest] = useState('');
   
   const [roomsActive, setRoomsActive] = useState([]);
   const [rooms, setRooms] = useState([]);
   
+  // modal hooks
   const classes = useMessageStyles();
   const [modalStyle] = useState(getModalStyle);
   const [modalMessage, setModalMessage] = useState(false);
   const [modalMessageClick, setModalMessageClick] = useState(false);
   
+  // opened room hook
+  const [openedRoom, setOpenedRoom] = useState({
+      opened: false,
+      openedRoom: '',
+      usersIn: [],
+      usersInNames: []
+  });
+
+  useEffect(() => {
+    console.log('openedRoom', openedRoom)
+  }, [openedRoom])
 
   
   useEffect(
@@ -102,14 +113,14 @@ function Messenger({ setLocal, user }) {
           </div>
         </div>
         <div className="messenger__window__rightColumn">
-          { activeChat === false ? (
+          { openedRoom.opened === false ? (
             <Cover modalOpener={modalOpener} />
           ):(
             <ActiveChat messageText={messageText} setMessageTest={setMessageTest} />
           )}
         </div>
       </div>
-      <ModalNewMessage setActiveChat={setActiveChat} userID={user} setModalMessageClick={setModalMessageClick} modalMessageClick={modalMessageClick} modalMessage={modalMessage} setModalMessage={setModalMessage} modalStyle={modalStyle} classesStyle={classes.paper} />
+      <ModalNewMessage setOpenedRoom={setOpenedRoom} userID={user} setModalMessageClick={setModalMessageClick} modalMessageClick={modalMessageClick} modalMessage={modalMessage} setModalMessage={setModalMessage} modalStyle={modalStyle} classesStyle={classes.paper} />
     </div>
   );
 }

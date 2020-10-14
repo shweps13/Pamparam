@@ -8,7 +8,7 @@ import firebase from 'firebase';
 
 import MessModalElem from './MessModalElem.js';
 
-function ModalNewMessage({ setActiveChat, userID, modalMessageClick, setModalMessageClick, modalMessage, setModalMessage, modalStyle, classesStyle }) {
+function ModalNewMessage({ setOpenedRoom, userID, modalMessageClick, setModalMessageClick, modalMessage, setModalMessage, modalStyle, classesStyle }) {
 
     // field that handle search field input
     const [userSearchField, setUserSearchField] = useState('');
@@ -33,10 +33,6 @@ function ModalNewMessage({ setActiveChat, userID, modalMessageClick, setModalMes
         checked: false
     });
     
-    useEffect(() => {
-        console.log('userCheckBox', userCheckBox)
-    }, [userCheckBox])
-
     const cleanCheckBox = () => {
         setUserCheckBox({
             userId: '',
@@ -107,7 +103,7 @@ function ModalNewMessage({ setActiveChat, userID, modalMessageClick, setModalMes
             db.collection("rooms").doc(newId).set({
                 roomName: false,
                 usersIn: [userID.uid, userCheckBox.userId],
-                usersInNames: [userID.displayName, userCheckBox.userName],
+                usersInNames: [userID.displayName, userCheckBox.userName]
             })
         // .then(function() {  
         // db.collection("rooms").doc('77777777').collection("messages").add({
@@ -130,9 +126,14 @@ function ModalNewMessage({ setActiveChat, userID, modalMessageClick, setModalMes
             })
         })
         .then(function() {  
-            setUserNewMessage(false)
-            closeMessageModal()
-            setActiveChat(true)
+            setUserNewMessage(false) // hook for loader rendering
+            closeMessageModal() 
+            setOpenedRoom({
+                opened: true,
+                openedRoom: newId,
+                usersIn: [userID.uid, userCheckBox.userId],
+                usersInNames: [userID.displayName, userCheckBox.userName]
+            }) // sending opened room data to parent component
         })
       .catch(function(error) {
           console.log("Error putting new chat data: ", error);
