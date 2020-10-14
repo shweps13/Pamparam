@@ -188,6 +188,14 @@
     padding: 20px 20px 0;
 }
 
+.messenger__window__rightColumn__activeChat__chatField__content__noMessages {
+    display: flex;
+    justify-content: center;
+}
+.messenger__window__rightColumn__activeChat__chatField__content__noMessages p{
+    color: #8e8e8e;
+}
+
 .messenger__window__rightColumn__activeChat__footer {
     width: 100%;
     box-sizing: border-box;

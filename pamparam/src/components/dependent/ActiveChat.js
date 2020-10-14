@@ -69,9 +69,19 @@ function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
 
         <div className="messenger__window__rightColumn__activeChat__chatField">
             <div className="messenger__window__rightColumn__activeChat__chatField__content">
-                {roomMessages.map((messageData) => (
-                    <Message key={messageData.timestamp.seconds} timestamp={messageData.timestamp} message={messageData.message} userId={messageData.userId} />
-                ))}
+                {roomMessages.length === 0 ? (
+                    <div className="messenger__window__rightColumn__activeChat__chatField__content__noMessages">
+                        <p>You have no messages yet...</p>
+                    </div>
+                ):(
+                    <>
+                        {roomMessages.map((messageData) => (
+                            <Message key={messageData.timestamp.seconds} timestamp={messageData.timestamp} message={messageData.message} userId={messageData.userId} />
+                        ))}
+                    </>
+                )}
+                
+
             </div>
         </div>
         
