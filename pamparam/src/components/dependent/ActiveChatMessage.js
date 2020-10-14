@@ -1,13 +1,13 @@
 import React from 'react';
 
-function ActiveChatMessage() {
+function ActiveChatMessage({ message, userId, timestamp }) {
 
     return (
     <div className="activeChatMessage">
         <div className="activeChatMessage__content">
             <div/>
             <div>
-                <p>Some important content here</p>
+                <p>{message}</p>
             </div>
         </div>
     </div>

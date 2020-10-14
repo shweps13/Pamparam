@@ -48,8 +48,6 @@ function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
             .onSnapshot(snapshot => (
                 setRoomMessages(snapshot.docs.map((doc) => doc.data()))
             ));
-
-
         }
     }, [openedRoom])
 
@@ -71,9 +69,9 @@ function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
 
         <div className="messenger__window__rightColumn__activeChat__chatField">
             <div className="messenger__window__rightColumn__activeChat__chatField__content">
-                <Message />
-                <Message />
-                <Message />
+                {roomMessages.map((messageData) => (
+                    <Message key={messageData.timestamp.seconds} timestamp={messageData.timestamp} message={messageData.message} userId={messageData.userId} />
+                ))}
             </div>
         </div>
         
