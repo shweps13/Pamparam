@@ -9,9 +9,12 @@ import Message from '../dependent/ActiveChatMessage.js';
 
 function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
 
-    const sendMessage = (e) => {
-        e.preventDefault();
-        console.log('Send...', messageText)
+    const handleSubmit = (event) => {
+        if (messageText && messageText !== '') {
+            console.log('Send...', messageText);
+            setMessageTest('')
+        } 
+        event.preventDefault();
     }
 
     // function for opponent name rendering
@@ -91,7 +94,7 @@ function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
                     <div className="messenger__window__rightColumn__activeChat__footer__line__emoji">
                         <VscSmiley size={35} />
                     </div>
-                    <form className="post__message">
+                    <form className="post__message" onSubmit={handleSubmit}>
                         <div className="messenger__window__rightColumn__activeChat__footer__line__field">
                             <input 
                                 className="post__message__input"
@@ -109,7 +112,7 @@ function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
                                     className="post__message__button"
                                     type="submit"
                                     disabled={!messageText}
-                                    onClick={sendMessage}
+                                    onClick={handleSubmit}
                                 >Send</button>
                             </div>
                         )}
