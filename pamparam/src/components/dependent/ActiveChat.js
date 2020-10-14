@@ -31,7 +31,8 @@ function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
                 message: messageText,
                 userId: user.uid,
                 userName: user.displayName,
-                localId: makeid(20)
+                localId: makeid(20),
+                liked: false
             });
 
             setMessageTest('')
@@ -101,7 +102,7 @@ function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
                 ):(
                     <>
                         {roomMessages.map((messageData) => (
-                            <Message key={messageData.localId} timestamp={messageData.timestamp} message={messageData.message} userId={messageData.userId} />
+                            <Message currentUser={user.uid} key={messageData.localId} timestamp={messageData.timestamp} message={messageData.message} userId={messageData.userId} />
                         ))}
                     </>
                 )}
