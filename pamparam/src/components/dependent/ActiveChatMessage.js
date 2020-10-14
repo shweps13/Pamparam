@@ -1,4 +1,6 @@
 import React from 'react';
+import noAvatar from '../../materials/noAvatar.jpg'; 
+
 
 function ActiveChatMessage({ currentUser, message, userId, timestamp }) {
 
@@ -21,6 +23,7 @@ function ActiveChatMessage({ currentUser, message, userId, timestamp }) {
             </div>
         ):(
             <div className="activeChatMessage__content__remoteUser">
+                <img src={noAvatar} alt='user avatar' />
                 <div/>
                 <div>
                     <p>{message}</p>
