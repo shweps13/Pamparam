@@ -37,7 +37,6 @@ function Messenger({ setLocal, user }) {
   useEffect(() => {
     console.log('openedRoom', openedRoom)
   }, [openedRoom])
-
   
   useEffect(
     () => {

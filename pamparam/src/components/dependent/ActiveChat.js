@@ -2,16 +2,38 @@ import React, { useEffect, useState } from 'react';
 import noAvatar from '../../materials/noAvatar.jpg'; 
 import { AiOutlineInfoCircle, AiOutlineHeart } from 'react-icons/ai';
 import { VscSmiley } from 'react-icons/vsc';
+
 import { db } from '../../materials/firebase.js';
+import firebase from 'firebase';
 
 import Message from '../dependent/ActiveChatMessage.js';
 
 
 function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
 
+    // id generator
+    const makeid = (length) => {
+        let result           = '';
+        let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let charactersLength = characters.length;
+        for ( let i = 0; i < length; i++ ) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+    }
+
+    // message sender
     const handleSubmit = (event) => {
         if (messageText && messageText !== '') {
-            console.log('Send...', messageText);
+
+            db.collection('rooms').doc(openedRoom.openedRoom).collection('messages').add({
+                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                message: messageText,
+                userId: user.uid,
+                userName: user.displayName,
+                localId: makeid(20)
+            });
+
             setMessageTest('')
         } 
         event.preventDefault();
@@ -79,7 +101,7 @@ function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
                 ):(
                     <>
                         {roomMessages.map((messageData) => (
-                            <Message key={messageData.timestamp.seconds} timestamp={messageData.timestamp} message={messageData.message} userId={messageData.userId} />
+                            <Message key={messageData.localId} timestamp={messageData.timestamp} message={messageData.message} userId={messageData.userId} />
                         ))}
                     </>
                 )}
