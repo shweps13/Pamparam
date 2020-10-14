@@ -116,7 +116,7 @@ function Messenger({ setLocal, user }) {
           { openedRoom.opened === false ? (
             <Cover modalOpener={modalOpener} />
           ):(
-            <ActiveChat messageText={messageText} setMessageTest={setMessageTest} />
+            <ActiveChat user={user} openedRoom={openedRoom} messageText={messageText} setMessageTest={setMessageTest} />
           )}
         </div>
       </div>

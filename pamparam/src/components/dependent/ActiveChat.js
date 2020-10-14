@@ -6,11 +6,24 @@ import { VscSmiley } from 'react-icons/vsc';
 import Message from '../dependent/ActiveChatMessage.js';
 
 
-function ActiveChat({ messageText, setMessageTest }) {
+function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
 
     const sendMessage = (e) => {
         e.preventDefault();
         console.log('Send...', messageText)
+    }
+
+    const opponentName = () => {
+        if (openedRoom.usersIn.length > 0) {
+            var i
+            for (i=0; i < openedRoom.usersIn.length; i++) {
+                if (openedRoom.usersIn[i] !== user.uid) {
+                    return openedRoom.usersInNames[i]
+                }
+            }
+        } else {
+            return 'Chat room'
+        }
     }
 
     return (
@@ -19,7 +32,7 @@ function ActiveChat({ messageText, setMessageTest }) {
             <div className="messenger__window__rightColumn__activeChat__header__content">
                 <div>
                     <img src={noAvatar} alt='user avatar' />
-                    <p>someusername777</p>
+                    <p>{opponentName()}</p>
                 </div>
                 <AiOutlineInfoCircle size={24} />
             </div>
