@@ -14,11 +14,23 @@ function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
     }
 
     const opponentName = () => {
+        // console.log({
+        //     openedRoom: openedRoom.openedRoom,
+        //     usersIn: openedRoom.usersIn,
+        //     usersInNames: openedRoom.usersInNames
+        // })
         if (openedRoom.usersIn.length > 0) {
             var i
             for (i=0; i < openedRoom.usersIn.length; i++) {
                 if (openedRoom.usersIn[i] !== user.uid) {
-                    return openedRoom.usersInNames[i]
+                    if (openedRoom.usersInNames) {
+                        return openedRoom.usersInNames[i]
+                    } else 
+                    if (openedRoom.roomName) {
+                        return openedRoom.roomName
+                    } else {
+                        return openedRoom.usersIn[i]
+                    }
                 }
             }
         } else {

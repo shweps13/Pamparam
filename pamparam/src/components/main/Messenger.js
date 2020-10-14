@@ -106,7 +106,7 @@ function Messenger({ setLocal, user }) {
             ):(
               <>
                 {rooms.map((room) => (
-                  <MessageElement user={user} key={room.id} id={room.id} usersIn={room.data.usersIn} roomName={room.data.roomName} usersNames={room.data.usersInNames}/>
+                  <MessageElement setOpenedRoom={setOpenedRoom} user={user} key={room.id} id={room.id} usersIn={room.data.usersIn} room={room} />
                 ))}
               </>
             )}
