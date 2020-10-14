@@ -1,7 +1,7 @@
 import React from 'react';
 import usrPic from '../../materials/noAvatar.jpg'; 
 
-function MessageElement({ setOpenedRoom, id, usersIn, user, room}) {
+function MessageElement({ openedRoom, setOpenedRoom, id, usersIn, user, room}) {
 
     // ability to get username of second user to show
     const opponentName = () => {
@@ -22,34 +22,39 @@ function MessageElement({ setOpenedRoom, id, usersIn, user, room}) {
         //         usersInNames: room.data.usersInNames
         //     }
         // )
-        if (room.data.roomName) {
-            setOpenedRoom({
-                opened: true,
-                openedRoom: id,
-                usersIn: usersIn,
-                usersInNames: room.data.usersInNames,
-                roomName: room.data.roomName
-            })
+
+        if (openedRoom.openedRoom === id) {
+            return null
         } else {
-            setOpenedRoom({
-                opened: true,
-                openedRoom: id,
-                usersIn: usersIn,
-                usersInNames: room.data.usersInNames
-            })
+            if (room.data.roomName) {
+                setOpenedRoom({
+                    opened: true,
+                    openedRoom: id,
+                    usersIn: usersIn,
+                    usersInNames: room.data.usersInNames,
+                    roomName: room.data.roomName
+                })
+            } else {
+                setOpenedRoom({
+                    opened: true,
+                    openedRoom: id,
+                    usersIn: usersIn,
+                    usersInNames: room.data.usersInNames
+                })
+            }
         }
     }
 
     return (
-    <div className="messenger__window__leftColumn__chats__element">
+    <div className="messenger__window__leftColumn__chats__element" onClick={() => {sendRoom()}}>
         <img src={usrPic} alt='user profile logo'></img>
         {typeof room.data.roomName === 'string' ? (
-            <div onClick={() => {sendRoom()}}>
+            <div>
                 <p>{room.data.roomName}</p>
                 <p>Some last message</p>
             </div>
             ):(
-            <div onClick={() => {sendRoom()}}>
+            <div>
                 <p>{opponentName()}</p>
                 <p>Some last message</p>
             </div>
