@@ -48,7 +48,7 @@ function ActiveChatMessage({ currentUser, message, userId, timestamp, liked, ope
                         {message === '<3' ? (
                             <div className="activeChatMessage__heart">
                                 <div>
-                                    <BsFillHeartFill size={50} />
+                                    <BsFillHeartFill size={50} className="activeChatMessage__inner__heart__svg"/>
                                 </div>
                             </div>
                         ):(
@@ -69,18 +69,34 @@ function ActiveChatMessage({ currentUser, message, userId, timestamp, liked, ope
                     </div>
             </div>
         ):(
-            <div className="activeChatMessage__content__remoteUser">
+            <div className="activeChatMessage__content__remoteUser" onClick={likeMessage}>
                 <img src={noAvatar} alt='user avatar' />
                 <div/>
-                {message === '<3' ? (
-                    <div className="activeChatMessage__heart__remoteUser">
-                        <BsFillHeartFill size={50}/>
-                    </div>
-                ):(
-                    <div>
-                        <p>{message}</p>
-                    </div>
-                )}
+                
+                <div>
+                    {message === '<3' ? (
+                        <div className="activeChatMessage__heart__remoteUser">
+                            <div className="activeChatMessage__inner__heart__remoteUser">
+                                <BsFillHeartFill size={50} className="activeChatMessage__inner__heart__remoteUser_svg"/>
+                            </div>
+                        </div>
+                    ):(
+                        <div>
+                            <div>
+                                <p>{message}</p>
+                            </div>
+                        </div>
+                    )}
+
+                    {liked === true ? (
+                        <div className="activeChatMessage__heart__liked__div">
+                            <BsFillHeartFill size={15} className="activeChatMessage__heart__liked__remoteUser"/>
+                        </div>
+                    ):(
+                        <></>
+                    )}
+                </div>
+
             </div>
         )}
     </div>
