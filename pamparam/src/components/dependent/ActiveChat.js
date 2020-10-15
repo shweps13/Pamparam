@@ -25,7 +25,6 @@ function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
     // message sender
     const handleSubmit = (event) => {
         if (messageText && messageText !== '') {
-
             db.collection('rooms').doc(openedRoom.openedRoom).collection('messages').add({
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                 message: messageText,
@@ -34,10 +33,24 @@ function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
                 localId: makeid(20),
                 liked: false
             });
-
             setMessageTest('')
         } 
         event.preventDefault();
+    }
+
+    const sendHeart = () => {
+        if (openedRoom.openedRoom) {
+            console.log('here')
+            db.collection('rooms').doc(openedRoom.openedRoom).collection('messages').add({
+                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                message: '<3',
+                userId: user.uid,
+                userName: user.displayName,
+                localId: makeid(20),
+                liked: false
+            });
+            setMessageTest('')
+        } 
     }
 
     // function for opponent name rendering
@@ -141,7 +154,7 @@ function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
                         )}
                     </form>
                         {messageText === '' ? (
-                            <div className="messenger__window__rightColumn__activeChat__footer__line__heart">
+                            <div onClick={sendHeart} className="messenger__window__rightColumn__activeChat__footer__line__heart">
                                 <AiOutlineHeart style={{display: "block"}} size={35} />
                             </div>
                         ): (

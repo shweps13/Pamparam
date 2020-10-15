@@ -270,6 +270,7 @@
 
 .messenger__window__rightColumn__activeChat__footer__line__heart {
     margin-left: 15px;
+    cursor: pointer;
 }
 
 .activeChatMessage {
