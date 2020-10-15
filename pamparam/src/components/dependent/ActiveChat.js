@@ -39,6 +39,15 @@ function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
     }
 
     const sendHeart = () => {
+        // user cannot send big heart twice in row
+        if (roomMessages.length > 0) {
+            if (roomMessages[roomMessages.length-1].message === '<3' && roomMessages[roomMessages.length-1].userId === user.uid) {
+                console.log('here')
+                return null
+            } 
+        }
+
+        // user sending big heart
         if (openedRoom.openedRoom) {
             console.log('here')
             db.collection('rooms').doc(openedRoom.openedRoom).collection('messages').add({
@@ -51,6 +60,7 @@ function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
             });
             setMessageTest('')
         } 
+        
     }
 
     // function for opponent name rendering
