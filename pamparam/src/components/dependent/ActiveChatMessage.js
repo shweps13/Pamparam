@@ -14,19 +14,6 @@ function ActiveChatMessage({ currentUser, message, userId, timestamp, liked, ope
         }
     }
 
-    // const likeMessage = () => {
-    //     let likeValue
-    //     db.collection('rooms').doc(openedRoom).collection('messages').where("localId", "==", localId).get()
-    //     .then(function(querySnapshot) {
-    //         querySnapshot.forEach(function(doc) {
-    //             // doc.data() is never undefined for query doc snapshots
-    //             console.log(doc.id, " => ", doc.data().liked);
-    //         });
-    //     })
-    //     .catch(function(error) {
-    //         console.log("Error getting documents: ", error);
-    //     });
-    // }
     const likeMessage = () => {
         let likeValue = {}
         db.collection('rooms').doc(openedRoom).collection('messages').where("localId", "==", localId).get()
@@ -42,6 +29,7 @@ function ActiveChatMessage({ currentUser, message, userId, timestamp, liked, ope
         })
         .then(function() {
             let likedDoc = db.collection('rooms').doc(openedRoom).collection('messages').doc(likeValue.id)
+            console.log('like feature operation works!')
             return likedDoc.update({
                 liked: !likeValue.liked
             })
@@ -56,15 +44,29 @@ function ActiveChatMessage({ currentUser, message, userId, timestamp, liked, ope
         {isLocalMessage() === true ? (
             <div className="activeChatMessage__content" onClick={likeMessage}>
                 <div/>
-                {message === '<3' ? (
-                    <div className="activeChatMessage__heart">
-                        <BsFillHeartFill size={50} />
-                    </div>
-                ):(
                     <div>
-                        <p>{message}</p>
+                        {message === '<3' ? (
+                            <div className="activeChatMessage__heart">
+                                <div>
+                                    <BsFillHeartFill size={50} />
+                                </div>
+                            </div>
+                        ):(
+                            <div>
+                                <div>
+                                    <p>{message}</p>
+                                </div>
+                            </div>
+                        )}
+
+                        {liked === true ? (
+                            <div>
+                                <BsFillHeartFill size={15} className="activeChatMessage__heart__liked"/>
+                            </div>
+                        ):(
+                            <></>
+                        )}
                     </div>
-                )}
             </div>
         ):(
             <div className="activeChatMessage__content__remoteUser">
