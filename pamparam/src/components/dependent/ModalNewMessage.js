@@ -105,15 +105,6 @@ function ModalNewMessage({ setOpenedRoom, userID, modalMessageClick, setModalMes
                 usersIn: [userID.uid, userCheckBox.userId],
                 usersInNames: [userID.displayName, userCheckBox.userName]
             })
-        // .then(function() {  
-        // db.collection("rooms").doc('77777777').collection("messages").add({
-        //         message: 'Ololo',
-        //         name: userID.displayName,
-        //         uid: userID.uid,
-        //         timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        //     })
-        // })
-
         // adding rooms to users profiles
         .then(function() {  
             db.collection("users").doc(userID.uid).update({

@@ -14,15 +14,6 @@ function MessageElement({ openedRoom, setOpenedRoom, id, usersIn, user, room}) {
     }
 
     const sendRoom = () => {
-        // console.log(
-        //     {
-        //         opened: true,
-        //         openedRoom: id,
-        //         usersIn: usersIn,
-        //         usersInNames: room.data.usersInNames
-        //     }
-        // )
-
         if (openedRoom.openedRoom === id) {
             return null
         } else {

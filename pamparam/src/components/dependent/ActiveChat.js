@@ -49,7 +49,6 @@ function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
 
         // user sending big heart
         if (openedRoom.openedRoom) {
-            console.log('here')
             db.collection('rooms').doc(openedRoom.openedRoom).collection('messages').add({
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                 message: '<3',
@@ -125,7 +124,7 @@ function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
                 ):(
                     <>
                         {roomMessages.map((messageData) => (
-                            <Message currentUser={user.uid} key={messageData.localId} timestamp={messageData.timestamp} message={messageData.message} userId={messageData.userId} />
+                            <Message openedRoom={openedRoom.openedRoom} currentUser={user.uid} localId={messageData.localId} key={messageData.localId} liked={messageData.liked} timestamp={messageData.timestamp} message={messageData.message} userId={messageData.userId} />
                         ))}
                     </>
                 )}
