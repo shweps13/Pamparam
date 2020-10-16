@@ -12,6 +12,7 @@ import MessageElement from '../dependent/MessengerElement.js';
 import ModalNewMessage from '../../components/dependent/ModalNewMessage.js';
 import { getModalStyle, useMessageStyles } from '../../materials/modalStyles.js';
 
+
 function Messenger({ setLocal, user }) {
   let location = useLocation()
 
