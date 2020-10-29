@@ -8,7 +8,6 @@ import firebase from 'firebase';
 
 import Message from '../dependent/ActiveChatMessage.js';
 
-
 function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
 
     // id generator
