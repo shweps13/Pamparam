@@ -8,7 +8,6 @@ import firebase from 'firebase';
 
 import MessModalElem from './MessModalElem.js';
 
-
 function ModalNewMessage({ setOpenedRoom, userID, modalMessageClick, setModalMessageClick, modalMessage, setModalMessage, modalStyle, classesStyle }) {
 
     // field that handle search field input
