@@ -99,14 +99,14 @@ function ModalNewMessage({ setOpenedRoom, userID, modalMessageClick, setModalMes
     const nextFunction = () => {
         setUserNewMessage(true)
 
-        console.log([userID.uid, userCheckBox.userId])
+        // console.log([userID.uid, userCheckBox.userId])
         let foundedRoom
         
         db.collection("rooms").where("usersIn", "==", [userID.uid, userCheckBox.userId]).get()
             .then(function(query) {
                 query.forEach(function(doc) {
                     foundedRoom = doc.id
-                    console.log(doc.id);
+                    // console.log(doc.id);
                 });
             })
             .then(function() {  
@@ -114,11 +114,23 @@ function ModalNewMessage({ setOpenedRoom, userID, modalMessageClick, setModalMes
                 .then(function(query) {
                     query.forEach(function(doc) {
                         foundedRoom = doc.id
-                        console.log(doc.id);
+                        // console.log(doc.id);
                     });
                 })
                 .then(function() {
-                    console.log('room', foundedRoom);
+                    if (foundedRoom) {
+                        console.log('room founded', foundedRoom);
+                        closeMessageModal() 
+                        setOpenedRoom({
+                            opened: true,
+                            openedRoom: foundedRoom,
+                            usersIn: [userID.uid, userCheckBox.userId],
+                            usersInNames: [userID.displayName, userCheckBox.userName]
+                        })
+                    } else {
+                        console.log('new room creating...');
+                        newRoom()
+                    }
                 })
                 .catch(function(error) {
                     console.log("[2] Error getting chat rooms: ", error);
