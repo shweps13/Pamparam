@@ -43,21 +43,21 @@ function ModalNewMessage({ setOpenedRoom, userID, modalMessageClick, setModalMes
 
     // request function 
     const makeRequest = () => {
-            setUserSearchLoading(true)
-            db.collection("users").where("displayName", "!=", false).get()
-                .then(function(querySnapshot) {
-                    setUserSearchData(
-                        querySnapshot.docs.map((user) => ({
-                            id: user.id,
-                            displayName: user.data().displayName,
-                            fullName: user.data().fullName
-                        }))
-                    )      
-                    setUserSearchLoading(false)
-                })
-          .catch(function(error) {
-              console.log("Error getting users data: ", error);
-          });
+        setUserSearchLoading(true)
+        db.collection("users").where("displayName", "!=", false).get()
+            .then(function(querySnapshot) {
+                setUserSearchData(
+                    querySnapshot.docs.map((user) => ({
+                        id: user.id,
+                        displayName: user.data().displayName,
+                        fullName: user.data().fullName
+                    }))
+                )      
+                setUserSearchLoading(false)
+            })
+        .catch(function(error) {
+            console.log("Error getting users data: ", error);
+        });
     }
 
     // request runner due to the modal opening
@@ -93,6 +93,43 @@ function ModalNewMessage({ setOpenedRoom, userID, modalMessageClick, setModalMes
            result += characters.charAt(Math.floor(Math.random() * charactersLength));
         }
         return result;
+    }
+
+    // check if room exist and continue actions with room
+    const nextFunction = () => {
+        setUserNewMessage(true)
+
+        console.log([userID.uid, userCheckBox.userId])
+        let foundedRoom
+        
+        db.collection("rooms").where("usersIn", "==", [userID.uid, userCheckBox.userId]).get()
+            .then(function(query) {
+                query.forEach(function(doc) {
+                    foundedRoom = doc.id
+                    console.log(doc.id);
+                });
+            })
+            .then(function() {  
+                db.collection("rooms").where("usersIn", "==", [userCheckBox.userId, userID.uid]).get()
+                .then(function(query) {
+                    query.forEach(function(doc) {
+                        foundedRoom = doc.id
+                        console.log(doc.id);
+                    });
+                })
+                .then(function() {
+                    console.log('room', foundedRoom);
+                })
+                .catch(function(error) {
+                    console.log("[2] Error getting chat rooms: ", error);
+                });
+            })
+
+            .catch(function(error) {
+                console.log("[1] Error getting chat rooms: ", error);
+            });
+        
+        setUserNewMessage(false)
     }
 
     const newRoom = () => {
@@ -146,7 +183,7 @@ function ModalNewMessage({ setOpenedRoom, userID, modalMessageClick, setModalMes
                         {userNewMessage === false ? (
                             <>
                                 {userCheckBox.checked === true ? (
-                                    <button className="modalMessage__body__header__next__activeBtn" onClick={() => newRoom()}>Next</button>
+                                    <button className="modalMessage__body__header__next__activeBtn" onClick={() => nextFunction()}>Next</button>
                                 ) : (
                                     <button className="modalMessage__body__header__next__Btn">Next</button>
                                 )}
