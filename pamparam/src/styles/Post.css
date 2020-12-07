@@ -1,8 +1,11 @@
 .post {
-    max-width: 500px;
+    max-width: 600px;
     background-color: white;
     border: 1px solid lightgrey;
     margin-bottom: 45px;
+    /* display: flex;
+    flex-direction: column;  */
+    margin: 0 auto;
 }
 
 .post__image {
