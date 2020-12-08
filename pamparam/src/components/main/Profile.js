@@ -1,6 +1,9 @@
 import React, {useEffect} from 'react';
 import { useLocation } from 'react-router-dom';
 
+import '../../styles/LikePage.css';
+import inDev from '../../materials/inDev.png';
+
 function Profile({ setLocal }) {
     let location = useLocation()
 
@@ -11,8 +14,9 @@ function Profile({ setLocal }) {
         },[])
 
     return (
-    <div className="profile">
-        <h3>Profile page under development</h3>
+    <div className="likes">
+        <img src={inDev} className='likes__ico' alt="Page in development"/>
+        <h3>Profile features under development...</h3>
     </div>
     )
 }
