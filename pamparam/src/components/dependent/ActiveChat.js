@@ -11,6 +11,10 @@ import Message from '../dependent/ActiveChatMessage.js';
 
 function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
 
+    // hook that allows to scroll to the last message
+    var bottomMessage = document.getElementById("activeChatUnit");
+    const scrollToRef = () => bottomMessage.scrollTo(0, 9999999)
+
     // id generator
     const makeid = (length) => {
         let result           = '';
@@ -34,6 +38,7 @@ function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
                 liked: false
             });
             setMessageTest('')
+            setTimeout(scrollToRef, 200);
         } 
         event.preventDefault();
     }
@@ -115,7 +120,7 @@ function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
             </div>
         </div>
 
-        <div className="messenger__window__rightColumn__activeChat__chatField">
+        <div id='activeChatUnit' className="messenger__window__rightColumn__activeChat__chatField">
             <div className="messenger__window__rightColumn__activeChat__chatField__content">
                 {roomMessages.length === 0 ? (
                     <div className="messenger__window__rightColumn__activeChat__chatField__content__noMessages">
