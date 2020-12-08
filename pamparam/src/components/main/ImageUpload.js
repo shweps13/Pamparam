@@ -185,7 +185,7 @@ function ImageUpload({ username }) {
                     </label>
                 </div>
             
-                <Button color="secondary" 
+                <Button color="primary" 
                     variant="contained" 
                     component="span" 
                     size="large"
