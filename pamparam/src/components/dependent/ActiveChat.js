@@ -13,7 +13,7 @@ function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
 
     // hook that allows to scroll to the last message
     var bottomMessage = document.getElementById("activeChatUnit");
-    const scrollToRef = () => bottomMessage.scrollTo(0, 9999999)
+    const scrollToRef = () => bottomMessage.scroll(0, 9999999)
 
     // id generator
     const makeid = (length) => {
@@ -133,8 +133,6 @@ function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
                         ))}
                     </>
                 )}
-                
-
             </div>
         </div>
         

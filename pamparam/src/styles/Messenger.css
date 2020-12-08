@@ -182,11 +182,16 @@
     flex: 1 1 auto;
     min-height: 0;
     min-width: 0;
+
 }
 
 .messenger__window__rightColumn__activeChat__chatField__content {
-    padding: 20px 20px 0;
-    /* background-color: khaki; */
+    padding: 20px 20px 0 20px;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* flex-wrap: nowrap; */
+    /* justify-content: flex-end; */
+    /* height: 100%; */
 }
 
 .messenger__window__rightColumn__activeChat__chatField__content__noMessages {
