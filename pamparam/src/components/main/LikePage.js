@@ -1,6 +1,9 @@
 import React, {useEffect} from 'react';
 import { useLocation } from 'react-router-dom';
 
+import '../../styles/LikePage.css';
+import inDev from '../../materials/inDev.png';
+
 function LikePage({ setLocal }) {
     let location = useLocation()
 
@@ -12,7 +15,8 @@ function LikePage({ setLocal }) {
 
     return (
     <div className="likes">
-        <h3>Likes feature under development</h3>
+        <img src={inDev} className='likes__ico' alt="Page in development"/>
+        <h3>Likes feature under development...</h3>
     </div>
     )
 }

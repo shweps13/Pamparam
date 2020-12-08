@@ -1,0 +1,13 @@
+.likes {
+    padding-top: 20vh;
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.likes__ico {
+    padding-bottom: 5vh;
+    width: 200px;
+}
