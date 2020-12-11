@@ -8,6 +8,7 @@ import firebase from 'firebase';
 
 import Message from '../dependent/ActiveChatMessage.js';
 
+
 function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
 
     // hook that allows to scroll to the last message
