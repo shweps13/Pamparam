@@ -1,5 +1,9 @@
-  .main__posts {
-    padding: 20px;
-    padding-top: 25px;
-    background-color: #FAFAFA;
-  }
+.main__posts {
+  padding: 20px;
+  padding-top: 25px;
+  background-color: #FAFAFA;
+}
+
+textarea:focus, input:focus{
+  outline: none;
+}
