@@ -10,6 +10,9 @@ function Post({ postId, username, user, caption, imageUrl }) {
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState('');
 
+    const [commentShow, setCommentShow] = useState(false);
+
+
     useEffect(() => {
         let unsubscribe;
         if (postId) {
@@ -61,11 +64,31 @@ function Post({ postId, username, user, caption, imageUrl }) {
         {comments.length === 0 ? (
             <div></div>
         ): (
-            <div className="post__comments">
-                {comments.map((comment) => (
-                    <Comment key={comment.id} username={comment.commentData.username} text={comment.commentData.text} />
-                ))}
-            </div>
+            <>
+                {comments.length < 3 ? (
+                    <div className="post__comments">
+                        {comments.map((comment) => (
+                            <Comment key={comment.id} username={comment.commentData.username} text={comment.commentData.text} />
+                        ))}
+                        {console.log(comments.length)}
+                    </div>
+                ): (
+                    <>
+                        {commentShow === false ? (
+                            <div>
+                                {/* // hided messeges here */}
+                            </div>
+                        ): (
+                            <div className="post__comments">
+                                {comments.map((comment) => (
+                                    <Comment key={comment.id} username={comment.commentData.username} text={comment.commentData.text} />
+                                ))}
+                                {console.log(comments.length)}
+                            </div>
+                        )}
+                    </>
+                )}
+            </>
         )}
 
         {user && (
