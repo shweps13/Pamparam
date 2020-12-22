@@ -94,7 +94,10 @@ function Post({ postId, username, user, caption, imageUrl, seconds }) {
                                 {comments.map((comment) => (
                                     <Comment key={comment.id} username={comment.commentData.username} text={comment.commentData.text} />
                                 ))}
-                                <p className="postedTime__comments">Posted {dateFrom(seconds)}</p>
+                                <div className="postedBlock__comments">
+                                    <p>Posted {dateFrom(seconds)}</p>
+                                    <p onClick={() => {setCommentShow(false)}} className="showShorted__comments">Hide comments</p>
+                                </div>
                             </div>
                         )}
                     </>
