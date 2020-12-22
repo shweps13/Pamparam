@@ -62,7 +62,9 @@ function Post({ postId, username, user, caption, imageUrl, seconds }) {
             <h4 className="post__text"><strong>{username}</strong> {caption}</h4>
 
         {comments.length === 0 ? (
-            <div></div>
+            <div className="post__comments">
+                <p className="postedTime__single__comments">Posted {dateFrom(seconds)}</p>
+            </div>
         ): (
             <>
                 {comments.length < 3 ? (
@@ -85,12 +87,14 @@ function Post({ postId, username, user, caption, imageUrl, seconds }) {
                                 {[comments[comments.length-2], comments[comments.length-1]].map((comment) => (
                                     <Comment key={comment.id} username={comment.commentData.username} text={comment.commentData.text} />
                                 ))}
+                                <p className="postedTime__comments">Posted {dateFrom(seconds)}</p>
                             </div>
                         ): (
                             <div className="post__comments">
                                 {comments.map((comment) => (
                                     <Comment key={comment.id} username={comment.commentData.username} text={comment.commentData.text} />
                                 ))}
+                                <p className="postedTime__comments">Posted {dateFrom(seconds)}</p>
                             </div>
                         )}
                     </>

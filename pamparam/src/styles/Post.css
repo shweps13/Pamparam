@@ -51,12 +51,15 @@
     cursor: pointer;
 }
 
-.postedTime__comments {
+.postedTime__comments, .postedTime__single__comments {
     margin: 10px 0 0 10px;
     color: gray;
     font-size: 14px;
 }
 
+.postedTime__single__comments {
+    margin: -5px 0 0 10px;
+}
 
 .post__input {
     flex: 1;
