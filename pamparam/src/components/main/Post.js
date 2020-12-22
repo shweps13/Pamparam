@@ -8,14 +8,9 @@ import Comment from './Comment.js'
 
 function Post({ postId, username, user, caption, imageUrl }) {
     const [comments, setComments] = useState([]);
-    const [comment, setComment] = useState('');
-    const [shortComments, setShortComments] = useState([]);
+    const [comment, setComment] = useState('');;
 
     const [commentShow, setCommentShow] = useState(false);
-
-    const shorted = () => {
-        setShortComments([comments[comments.length-1]])
-    }
 
     useEffect(() => {
         let unsubscribe;
@@ -82,8 +77,8 @@ function Post({ postId, username, user, caption, imageUrl }) {
                                 {[comments[0]].map((comment) => (
                                     <Comment key={comment.id} username={comment.commentData.username} text={comment.commentData.text} />
                                 ))}
-                                
-                                <p>Show all comments({comments.length})</p>
+
+                                <p onClick={() => {setCommentShow(true)}} className="showShorted__comments">Show all comments ({comments.length})</p>
 
                                 {[comments[comments.length-2], comments[comments.length-1]].map((comment) => (
                                     <Comment key={comment.id} username={comment.commentData.username} text={comment.commentData.text} />
