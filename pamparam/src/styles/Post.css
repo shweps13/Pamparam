@@ -36,8 +36,9 @@
 }
 
 .post__comments {
-    padding-left: 20px;
-    padding-bottom: 20px;
+    /* padding-left: 20px;
+    padding-bottom: 20px; */
+    padding: 0 20px 10px 20px;
 }
 
 .post__comments p{
@@ -62,8 +63,7 @@
     display: flex;
     justify-content: space-between;
     color: gray;
-    background-color: khaki;
-    margin: 10px 30px 0 10px;
+    margin: 10px 10px 0 10px;
 }
 
 .postedTime__single__comments {
