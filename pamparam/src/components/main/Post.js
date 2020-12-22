@@ -4,9 +4,10 @@ import Avatar from '@material-ui/core/Avatar';
 import { db } from '../../materials/firebase';
 import noAvatar from '../../materials/noAvatar.jpg';
 import firebase from 'firebase';
-import Comment from './Comment.js'
+import Comment from './Comment.js';
+import dateFrom from '../../materials/dateFrom.js';
 
-function Post({ postId, username, user, caption, imageUrl }) {
+function Post({ postId, username, user, caption, imageUrl, seconds }) {
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState('');;
 
@@ -69,6 +70,7 @@ function Post({ postId, username, user, caption, imageUrl }) {
                         {comments.map((comment) => (
                             <Comment key={comment.id} username={comment.commentData.username} text={comment.commentData.text} />
                         ))}
+                        <p className="postedTime__comments">Posted {dateFrom(seconds)}</p>
                     </div>
                 ): (
                     <>

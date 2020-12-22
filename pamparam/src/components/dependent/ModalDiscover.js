@@ -3,6 +3,7 @@ import '../../styles/Modal.css';
 import Modal from '@material-ui/core/Modal';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import noAvatar from '../../materials/noAvatar.jpg';
+import dateFrom from '../../materials/dateFrom.js';     // function for checking posting date
 
 import CommentDiscover from '../dependent/CommentDiscover.js'
 import { db } from '../../materials/firebase';
@@ -24,49 +25,6 @@ function ModalDiscover({ user, openPost, setOpenPost, modalStyle, classesStyle, 
     // hooks with all comments from db and new comment
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState('');
-
-    // function for checking posting date
-    const dateFrom = (seconds) => {
-        let localTimeStamp = Math.floor(Date.now() / 1000);
-        let result
-        if (seconds.timestamp) {
-            result = localTimeStamp - seconds.timestamp.seconds // in seconds
-        } else {
-            return null
-        }
-
-        let days = result/86400
-        let hours = result/3600
-        let minutes = result/60
-
-        if (days > 1) {
-            let showDays = Math.floor(days)
-                if (showDays === 1) {
-                    return (`${showDays} day ago`)
-                } else {
-                    return (`${showDays} days ago`)
-                }
-        } else 
-        if (days < 1 && hours > 1) {
-            let showHours = Math.floor(hours)
-                if (showHours === 1) {
-                    return (`${showHours} hour ago`)
-                } else {
-                    return (`${showHours} hours ago`)
-                }
-        } else 
-        if (hours < 1 && minutes > 1){
-            let showMinutes = Math.floor(minutes)
-                if (showMinutes === 1) {
-                    return (`${showMinutes} minute ago`)
-                } else {
-                    return (`${showMinutes} minutes ago`)
-                }
-        } else
-        if (minutes < 1){
-            return (`A few seconds ago`)
-        }
-    }
 
     // receiving all new comments from DB by snapshot and put into the hook
     useEffect(() => {

@@ -32,7 +32,7 @@ function Main({ user, setLocal }) {
       <div className="main__posts">
         {
           posts.map(({ id, post }) => (
-            <Post key={id} postId={id} username={post.username} user={user} caption={post.caption} imageUrl={post.imageUrl} />
+            <Post key={id} postId={id} username={post.username} user={user} caption={post.caption} imageUrl={post.imageUrl} seconds={post} />
           ))
         }
       </div>
