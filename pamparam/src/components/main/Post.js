@@ -7,7 +7,6 @@ import firebase from 'firebase';
 import Comment from './Comment.js';
 import dateFrom from '../../materials/dateFrom.js';
 
-
 function Post({ postId, username, user, caption, imageUrl, seconds }) {
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState('');;
