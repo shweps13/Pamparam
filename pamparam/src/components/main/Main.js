@@ -3,20 +3,16 @@ import '../../styles/Main.css';
 import Post from './Post.js';
 import { db } from '../../materials/firebase';
 import { useLocation } from 'react-router-dom';
+import InfiniteScroll from 'react-infinite-scroller';
 
 function Main({ user, setLocal }) {
 
-  const [page, setPage] = useState(3);
+  const [page, setPage] = useState(5);
   const [posts, setPosts] = useState([]);
   const [postLoading, setPostLoading] = useState(true);
 
-  const handleScroll = (event) => {
-    const { scrollTop, clientHeight, scrollHeigth } = event.currentTarget;
-    console.log('scrollTop', scrollTop)
-    console.log('clientHeight', clientHeight)
-    console.log('scrollHeigth', scrollHeigth)
-    console.log('here!')
-  }
+  const [more, setMore] = useState(true);
+  const [scrollerPage, setScrollerPage] = useState(0);
 
   let location = useLocation();
 
@@ -45,16 +41,52 @@ function Main({ user, setLocal }) {
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    // InfiniteScroll parameters
+    const nextPage = () => {
+      let pagepage = page + 5
+      setPage(pagepage)
+      setMore(true)
+    }
+
+    function delay(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+     
+    async function someFunction() {
+     await delay(1000);
+     await nextPage();
+    }
+
+    const loadFunc = (localpage) => {
+      setMore(false)
+      console.log('localpage', localpage)
+      someFunction()
+      return
+    }
+    // end of InfiniteScroll stuff
+
+
   return (
     <div className="main">
 
-      <div className="main__posts" onScroll={() => {handleScroll()}} >
-        {
-          posts.map(({ id, post }, index) => {
-            console.log(index)
+      <div className="main__posts">
+
+      <InfiniteScroll
+          pageStart={0}
+          loadMore={loadFunc}
+          hasMore={more}
+          initialLoad={false}
+          threshold={0}
+          loader={<div className="loader" key={0}>Loading ...</div>}
+      >
+          {
+          posts.map(({ id, post }) => {
             return <Post key={id} postId={id} username={post.username} user={user} caption={post.caption} imageUrl={post.imageUrl} seconds={post} />
           })
-        }
+        } 
+      </InfiniteScroll>
+
+        
       </div>
     </div>
   );
