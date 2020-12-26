@@ -13,6 +13,11 @@ function Main({ user, setLocal }) {
 
   const [more, setMore] = useState(true);
   const [scrollerPage, setScrollerPage] = useState(0);
+  
+  const [pageLen, setPageLen] = useState(page);
+  const [localPage, setLocalPage] = useState(0);
+
+  
 
   let location = useLocation();
 
@@ -41,11 +46,20 @@ function Main({ user, setLocal }) {
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+  // useEffect(
+  //   () => {
+  //     setLocal(location.pathname)
+  //     // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   }, [posts])
+
     // InfiniteScroll parameters
     const nextPage = () => {
       let pagepage = page + 5
       setPage(pagepage)
       setMore(true)
+      // if (posts.length) {
+      //   setMore(false)
+      // }
     }
 
     function delay(ms) {
@@ -53,15 +67,27 @@ function Main({ user, setLocal }) {
     }
      
     async function someFunction() {
-     await delay(1000);
+     await delay(200);
      await nextPage();
     }
 
     const loadFunc = (localpage) => {
       setMore(false)
-      console.log('localpage', localpage)
-      someFunction()
-      return
+      if (scrollerPage <= 3) {
+        console.log('localpage', localpage, 'posts', posts.length)
+        someFunction()
+        console.log("scrollerPage", scrollerPage)
+        if (localpage !== localPage && pageLen === posts.length) {
+          setScrollerPage(scrollerPage + 1)
+        } else {
+          setScrollerPage(1)
+        }
+        setLocalPage(localpage)
+        setPageLen(posts.length)
+        return
+      } else {
+        setMore(false)
+      }
     }
     // end of InfiniteScroll stuff
 
