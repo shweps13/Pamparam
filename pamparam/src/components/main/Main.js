@@ -3,7 +3,7 @@ import '../../styles/Main.css';
 import Post from './Post.js';
 import { db } from '../../materials/firebase';
 import { useLocation } from 'react-router-dom';
-import InfiniteScroll from 'react-infinite-scroller';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 function Main({ user, setLocal }) {
 
@@ -46,36 +46,19 @@ function Main({ user, setLocal }) {
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-  // useEffect(
-  //   () => {
-  //     setLocal(location.pathname)
-  //     // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   }, [posts])
 
     // InfiniteScroll parameters
     const nextPage = () => {
       let pagepage = page + 5
       setPage(pagepage)
       setMore(true)
-      // if (posts.length) {
-      //   setMore(false)
-      // }
-    }
-
-    function delay(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
-    }
-     
-    async function someFunction() {
-     await delay(200);
-     await nextPage();
     }
 
     const loadFunc = (localpage) => {
       setMore(false)
       if (scrollerPage <= 3) {
         console.log('localpage', localpage, 'posts', posts.length)
-        someFunction()
+        nextPage()
         console.log("scrollerPage", scrollerPage)
         if (localpage !== localPage && pageLen === posts.length) {
           setScrollerPage(scrollerPage + 1)
@@ -98,21 +81,24 @@ function Main({ user, setLocal }) {
       <div className="main__posts">
 
       <InfiniteScroll
-          pageStart={0}
-          loadMore={loadFunc}
-          hasMore={more}
-          initialLoad={false}
-          threshold={0}
-          loader={<div className="loader" key={0}>Loading ...</div>}
+        dataLength={posts.length}
+        next={loadFunc}
+        hasMore={more}
+        loader={<h4>Loading...</h4>}
+        endMessage={
+          <p style={{ textAlign: 'center' }}>
+            <b>Yay! You have seen it all</b>
+          </p>
+        }
       >
-          {
+        
+        {
           posts.map(({ id, post }) => {
             return <Post key={id} postId={id} username={post.username} user={user} caption={post.caption} imageUrl={post.imageUrl} seconds={post} />
           })
         } 
-      </InfiniteScroll>
-
-        
+      
+      </InfiniteScroll>        
       </div>
     </div>
   );
