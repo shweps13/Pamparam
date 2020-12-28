@@ -80,8 +80,8 @@ function Main({ user, setLocal }) {
         hasMore={more}
         loader={<h4 style={{ textAlign: 'center' }}>Loading...</h4>}
         endMessage={
-          <p style={{ textAlign: 'center' }} onClick={(e) => setSctollTop(!sctollTop)}>
-            <b>Yay! You have seen it all</b>
+          <p style={{ textAlign: 'center' }}>
+            <b style={{ cursor: 'pointer' }} onClick={(e) => setSctollTop(!sctollTop)}>Yay! You have seen it all</b>
           </p>
         }>
         
