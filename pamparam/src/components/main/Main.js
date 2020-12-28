@@ -12,10 +12,6 @@ function Main({ user, setLocal }) {
   const [postCounter, setPostCounter] = useState(0);
 
   const [more, setMore] = useState(true);
-  const [scrollerPage, setScrollerPage] = useState(0);
-  
-  const [pageLen, setPageLen] = useState(page);
-  const [localPage, setLocalPage] = useState(0);
   
 
   let location = useLocation();
@@ -60,17 +56,9 @@ function Main({ user, setLocal }) {
 
     const loadFunc = () => {
       setMore(false)
-      if (scrollerPage <= 3) {
-        console.log('posts', posts.length)
+      if (posts.length < postCounter) {
+        console.log('posts', posts.length, 'counter', postCounter)
         nextPage()
-        console.log("scrollerPage", scrollerPage)
-        if (pageLen === posts.length) {
-          setScrollerPage(scrollerPage + 1)
-        } else {
-          setScrollerPage(1)
-        }
-        setPageLen(posts.length)
-        return
       } else {
         setMore(false)
       }
@@ -87,7 +75,7 @@ function Main({ user, setLocal }) {
         dataLength={posts.length}
         next={loadFunc}
         hasMore={more}
-        loader={<h4>Loading...</h4>}
+        loader={<h4 style={{ textAlign: 'center' }}>Loading...</h4>}
         endMessage={
           <p style={{ textAlign: 'center' }}>
             <b>Yay! You have seen it all</b>
