@@ -27,3 +27,10 @@
 textarea:focus, input:focus{
   outline: none;
 }
+
+@media screen and (max-width: 660px) {
+
+  .main__scrolTop {
+    display: none;
+  }
+}
