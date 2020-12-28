@@ -14,8 +14,22 @@ function Main({ user, setLocal }) {
   const [more, setMore] = useState(true);
 
   const [sctollTop, setSctollTop] = useState(false);
+  const [currPosition, setCurrPosition] = useState(0);
   
   let location = useLocation();
+
+  const handleScroll = (event) => {
+    if (window.pageYOffset === 0) {
+      // move to saved position
+      console.log('to saved - position =>',window.pageYOffset)
+      window.scrollTo(0, currPosition)
+    } else {
+      // save current position and move to top
+      console.log('save position =>',window.pageYOffset)
+      setCurrPosition(window.pageYOffset);
+      window.scrollTo(0, 0);
+    }
+  }
 
   // Pool data from the Firebase DB
   useEffect(() => {
@@ -72,7 +86,7 @@ function Main({ user, setLocal }) {
 
   return (
     <div className="main">
-      <div className="main__scrolTop" />
+      <div className="main__scrolTop" onClick={handleScroll} />
       <div className="main__posts">
       <InfiniteScroll
         dataLength={posts.length}
