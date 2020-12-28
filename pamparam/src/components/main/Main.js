@@ -9,21 +9,19 @@ function Main({ user, setLocal }) {
 
   const [page, setPage] = useState(5);
   const [posts, setPosts] = useState([]);
-  const [postLoading, setPostLoading] = useState(true);
+  const [postCounter, setPostCounter] = useState(0);
 
   const [more, setMore] = useState(true);
   const [scrollerPage, setScrollerPage] = useState(0);
   
   const [pageLen, setPageLen] = useState(page);
   const [localPage, setLocalPage] = useState(0);
-
   
 
   let location = useLocation();
 
   // Pool data from the Firebase DB
   useEffect(() => {
-    setPostLoading(true);
     // sorting our images with .orderBy
     db.collection('posts')
       .orderBy('timestamp', 'desc')
@@ -36,16 +34,22 @@ function Main({ user, setLocal }) {
           post: doc.data()
         })));
       })
-
-    setPostLoading(false);
   }, [page]);
 
   useEffect(
     () => {
+      // location operations
       setLocal(location.pathname)
+
+      // getting count of posts from db
+      db.collection('posts')
+      .doc('counter')
+      .get()
+      .then(counter => {
+        setPostCounter(counter.data().counter)
+      })
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
 
     // InfiniteScroll parameters
     const nextPage = () => {
@@ -54,18 +58,17 @@ function Main({ user, setLocal }) {
       setMore(true)
     }
 
-    const loadFunc = (localpage) => {
+    const loadFunc = () => {
       setMore(false)
       if (scrollerPage <= 3) {
-        console.log('localpage', localpage, 'posts', posts.length)
+        console.log('posts', posts.length)
         nextPage()
         console.log("scrollerPage", scrollerPage)
-        if (localpage !== localPage && pageLen === posts.length) {
+        if (pageLen === posts.length) {
           setScrollerPage(scrollerPage + 1)
         } else {
           setScrollerPage(1)
         }
-        setLocalPage(localpage)
         setPageLen(posts.length)
         return
       } else {
