@@ -5,6 +5,8 @@ import { db } from '../../materials/firebase';
 import { useLocation } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
+import { BsArrowUpDown } from 'react-icons/bs';
+
 function Main({ user, setLocal }) {
 
   const [page, setPage] = useState(5);
@@ -21,11 +23,9 @@ function Main({ user, setLocal }) {
   const handleScroll = (event) => {
     if (window.pageYOffset === 0) {
       // move to saved position
-      console.log('to saved - position =>',window.pageYOffset)
       window.scrollTo(0, currPosition)
     } else {
       // save current position and move to top
-      console.log('save position =>',window.pageYOffset)
       setCurrPosition(window.pageYOffset);
       window.scrollTo(0, 0);
     }
@@ -86,8 +86,12 @@ function Main({ user, setLocal }) {
 
   return (
     <div className="main">
-      <div className="main__scrolTop" onClick={handleScroll} />
+      <div className="main__scrolTop" onClick={handleScroll}>
+        <BsArrowUpDown/>
+      </div>
+
       <div className="main__posts">
+        
       <InfiniteScroll
         dataLength={posts.length}
         next={loadFunc}

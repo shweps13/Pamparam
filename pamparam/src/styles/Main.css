@@ -5,11 +5,23 @@
 }
 
 .main__scrolTop {
-  background-color: lightcoral;
+  background-color: #FAFAFA;
   height: 110vh;
   width: 30px;
   position: fixed;
   margin-top: -60px;
+  transition: 0.5s;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.main__scrolTop svg{
+  margin-bottom: 10vh;
+  margin-left: 5px;
+}
+
+.main__scrolTop:hover {
+  background-color: #c7c7c7;
 }
 
 textarea:focus, input:focus{
