@@ -46,6 +46,10 @@ function Main({ user, setLocal }) {
       })
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+  useEffect(
+    () => {
+      console.log('here', postCounter)
+    }, [postCounter])
 
     // InfiniteScroll parameters
     const nextPage = () => {

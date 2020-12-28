@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import firebase from 'firebase';
 import { Button } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
@@ -19,11 +19,27 @@ function ImageUpload({ username }) {
     const [loading, setLoading] = useState(false);
     const [done, setDone] = useState(false);
 
+    const [postCounter, setPostCounter] = useState(0);
+
+    useEffect(
+        () => {
+          // receiving counter data of posts from db
+          db.collection('posts').doc('counter').get()
+          .then(counter => {
+            setPostCounter(counter.data().counter)
+          })
+    }, [])
+
     // redirect function to main component after image posting
     let history = useHistory();
     const redirect = () => {
         return history.push("/feed");
     }
+
+    useEffect(
+        () => {
+          console.log('here', postCounter)
+        }, [postCounter])
 
     // file verification block
     const fileMaxSize = 25000000; // in bytes
@@ -112,6 +128,13 @@ function ImageUpload({ username }) {
                             imageUrl: url,
                             username: username
                         })
+                    .then(() => {
+                        // getting counter data from db
+                        db.collection('posts').doc('counter').set({
+                            counter: (postCounter + 1)
+                        })
+                    })
+
                     .then(() => {
                         setDone(true)
                     })
