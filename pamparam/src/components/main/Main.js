@@ -12,6 +12,8 @@ function Main({ user, setLocal }) {
   const [postCounter, setPostCounter] = useState(0);
 
   const [more, setMore] = useState(true);
+
+  const [sctollTop, setSctollTop] = useState(false);
   
   let location = useLocation();
 
@@ -31,6 +33,11 @@ function Main({ user, setLocal }) {
       })
   }, [page]);
 
+  // Scroller element
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [sctollTop]);
+
   useEffect(
     () => {
       // location operations
@@ -48,8 +55,7 @@ function Main({ user, setLocal }) {
 
     // InfiniteScroll parameters
     const nextPage = () => {
-      let pagepage = page + 5
-      setPage(pagepage)
+      setPage(page + 5)
       setMore(true)
     }
 
@@ -74,7 +80,7 @@ function Main({ user, setLocal }) {
         hasMore={more}
         loader={<h4 style={{ textAlign: 'center' }}>Loading...</h4>}
         endMessage={
-          <p style={{ textAlign: 'center' }}>
+          <p style={{ textAlign: 'center' }} onClick={(e) => setSctollTop(!sctollTop)}>
             <b>Yay! You have seen it all</b>
           </p>
         }>
