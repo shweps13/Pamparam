@@ -13,7 +13,6 @@ function Main({ user, setLocal }) {
 
   const [more, setMore] = useState(true);
   
-
   let location = useLocation();
 
   // Pool data from the Firebase DB
@@ -46,10 +45,6 @@ function Main({ user, setLocal }) {
       })
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-  useEffect(
-    () => {
-      console.log('here', postCounter)
-    }, [postCounter])
 
     // InfiniteScroll parameters
     const nextPage = () => {
@@ -61,7 +56,7 @@ function Main({ user, setLocal }) {
     const loadFunc = () => {
       setMore(false)
       if (posts.length < postCounter) {
-        console.log('posts', posts.length, 'counter', postCounter)
+        // console.log('posts', posts.length, 'counter', postCounter)
         nextPage()
       } else {
         setMore(false)
@@ -69,10 +64,8 @@ function Main({ user, setLocal }) {
     }
     // end of InfiniteScroll stuff
 
-
   return (
     <div className="main">
-
       <div className="main__posts">
 
       <InfiniteScroll
@@ -84,14 +77,11 @@ function Main({ user, setLocal }) {
           <p style={{ textAlign: 'center' }}>
             <b>Yay! You have seen it all</b>
           </p>
-        }
-      >
+        }>
         
-        {
-          posts.map(({ id, post }) => {
+        {posts.map(({ id, post }) => {
             return <Post key={id} postId={id} username={post.username} user={user} caption={post.caption} imageUrl={post.imageUrl} seconds={post} />
-          })
-        } 
+        })} 
       
       </InfiniteScroll>        
       </div>
