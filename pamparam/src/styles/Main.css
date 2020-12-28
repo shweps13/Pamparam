@@ -4,6 +4,14 @@
   background-color: #FAFAFA;
 }
 
+.main__scrolTop {
+  background-color: lightcoral;
+  height: 110vh;
+  width: 30px;
+  position: fixed;
+  margin-top: -60px;
+}
+
 textarea:focus, input:focus{
   outline: none;
 }

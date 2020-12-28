@@ -72,8 +72,8 @@ function Main({ user, setLocal }) {
 
   return (
     <div className="main">
+      <div className="main__scrolTop" />
       <div className="main__posts">
-
       <InfiniteScroll
         dataLength={posts.length}
         next={loadFunc}
