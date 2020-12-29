@@ -58,8 +58,8 @@ function Main({ user, setLocal }) {
       setLocal(location.pathname)
 
       // getting count of posts from db
-      db.collection('posts')
-      .doc('counter')
+      db.collection('counters')
+      .doc('postsCounter')
       .get()
       .then(counter => {
         setPostCounter(counter.data().counter)

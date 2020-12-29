@@ -24,7 +24,7 @@ function ImageUpload({ username }) {
     useEffect(
         () => {
           // receiving counter data of posts from db
-          db.collection('posts').doc('counter').get()
+          db.collection('counters').doc('postsCounter').get()
           .then(counter => {
             setPostCounter(counter.data().counter)
           })
@@ -123,7 +123,7 @@ function ImageUpload({ username }) {
                         })
                     .then(() => {
                         // getting counter data from db
-                        db.collection('posts').doc('counter').set({
+                        db.collection('counters').doc('postsCounter').set({
                             counter: (postCounter + 1)
                         })
                     })

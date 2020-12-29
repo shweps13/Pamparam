@@ -51,8 +51,7 @@ function Discover({ user, setLocal }) {
         setTotalPosts(totalPosts.concat(shuffle(posts)))
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[posts])
-
-
+    
     const classes = useDiscoverStyles();
     const [modalStyle] = useState(getModalStyle);
     const [openPost, setOpenPost] = useState(false);
