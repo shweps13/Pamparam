@@ -13,11 +13,12 @@
   transition: 0.5s;
   display: flex;
   flex-direction: column-reverse;
+  cursor: pointer;
 }
 
 .main__scrolTop svg{
   margin-bottom: 10vh;
-  margin-left: 5px;
+  margin-left: 7px;
 }
 
 .main__scrolTop:hover {
