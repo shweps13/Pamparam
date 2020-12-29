@@ -174,7 +174,7 @@ function ImageUpload({ username }) {
                 <div className='imageupload__input'>
                     <TextField
                         id="outlined-multiline-static"
-                        label="Enter a caption"
+                        label="Enter a caption!"
                         multiline
                         fullWidth={true}
                         color='primary'
