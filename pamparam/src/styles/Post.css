@@ -85,6 +85,7 @@
     .post {
         border-left: 0px;
         border-right: 0px;
+        margin-bottom: 20px;
     }
     
     .post:first-child {
@@ -97,4 +98,4 @@
     .post__comments {
         padding-top: 0;
     }
-  }
+}
