@@ -104,9 +104,9 @@ function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
         }
     }, [openedRoom])
 
-    useEffect(() => {
-        console.log('roomMessages', roomMessages)
-    }, [roomMessages])
+    // useEffect(() => {
+    //     console.log('roomMessages', roomMessages)
+    // }, [roomMessages])
 
     return (
     <div className="messenger__window__rightColumn__activeChat">
