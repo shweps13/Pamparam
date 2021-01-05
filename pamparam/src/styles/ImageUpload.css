@@ -17,7 +17,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    /* padding: 10vh 0; */
+    padding: 50px 0;
     margin: 1vh 0;
     /* background-color: gray; */
 }
@@ -29,7 +29,6 @@
 
 .imageupload__input, .imageupload__file {
     width: 100%;
-    /* background-color: gray; */
 }
 
 .imageupload__file {
@@ -52,14 +51,11 @@
 .imageupload__bottomBlock {
     display: flex;
     flex-direction: column;
-    /* background-color: teal; */
     width: 100%;
     max-width: 35vh;
     position: absolute;
     bottom: 0;
     padding: 5vh;
-    /* border: 1px solid grey; */
-
 }
 
 .loader_loginMessageCat {
@@ -106,4 +102,11 @@
     margin: auto;
     color: green;
     padding-bottom: 5px;
+}
+
+@media screen and (max-width: 600px) {
+
+    .imageupload__bottomBlock {
+        padding-bottom: 10px;
+    }
 }
