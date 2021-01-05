@@ -17,6 +17,8 @@ function ImageUpload({ username }) {
     const [preview, setPreview] = useState(null);
     const [loading, setLoading] = useState(false);
     const [done, setDone] = useState(false);
+    
+    const [hideField, setHideField] = useState(false);
 
     const [postCounter, setPostCounter] = useState(0);
 
@@ -89,6 +91,7 @@ function ImageUpload({ username }) {
         } else
 
         setLoading(true)
+        setHideField(true)
         // get reference from firebase and put there image
         const uploadTask = storage.ref(`images/${image.name}`).put(image);
 
@@ -169,7 +172,7 @@ function ImageUpload({ username }) {
                 </div>
                     : ''}
             
-            {loading === true || done === true ? (
+            {hideField === true ? (
                 <></>
                     ) : (
                 <div className='imageupload__bottomBlock'>
