@@ -10,7 +10,6 @@ import { useHistory } from "react-router-dom";
 
 import ProgressBar from '../dependent/ProgressBar.js';
 
-
 function ImageUpload({ username }) {
     const [caption, setCaption] = useState('');
     const [progress, setProgress] = useState(0);
