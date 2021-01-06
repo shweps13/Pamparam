@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import noAvatar from '../../materials/noAvatar.jpg'; 
 import { AiOutlineInfoCircle, AiOutlineHeart } from 'react-icons/ai';
 import { VscSmiley } from 'react-icons/vsc';
+import { IoIosArrowDropleft } from 'react-icons/io';
 
 import { db } from '../../materials/firebase.js';
 import firebase from 'firebase';
@@ -113,6 +114,7 @@ function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
         <div className="messenger__window__rightColumn__activeChat__header">
             <div className="messenger__window__rightColumn__activeChat__header__content">
                 <div>
+                    <IoIosArrowDropleft size={24} className="messenger__mobile__back"/>
                     <img src={noAvatar} alt='user avatar' />
                     <p>{opponentName()}</p>
                 </div>

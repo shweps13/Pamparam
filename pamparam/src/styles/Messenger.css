@@ -433,6 +433,10 @@
     overflow-y: scroll;
 }
 
+.messenger__mobile__back {
+    display: none;
+}
+
 @media screen and (max-width: 935px) {
     .messenger {
         padding-top: 0;
@@ -450,3 +454,11 @@
     }    
 }
 
+@media screen and (max-width: 660px) {
+
+    .messenger__mobile__back {
+        display: block;
+        margin-right: 15px;
+    }
+
+}
