@@ -474,12 +474,7 @@
         display: none;
     }
     .messenger__window__leftColumn__header, .messenger__window__rightColumn__activeChat__header{
-        height: 40px;
-    }
-    .messenger__window__rightColumn__activeChat__footer {
-        position: absolute;
-        bottom: -15px;
-        background-color: white;
+        height: 45px;
     }
     .messenger__window__rightColumn__activeChat__footer__preline {
         padding-top: 15px;

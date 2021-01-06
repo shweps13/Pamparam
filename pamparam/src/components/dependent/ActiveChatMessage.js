@@ -24,12 +24,12 @@ function ActiveChatMessage({ currentUser, message, userId, timestamp, liked, ope
                     id: doc.id,
                     liked: doc.data().liked
                 }
-                console.log('likeValue', likeValue);
+                // console.log('likeValue', likeValue);
             });
         })
         .then(function() {
             let likedDoc = db.collection('rooms').doc(openedRoom).collection('messages').doc(likeValue.id)
-            console.log('like feature operation works!')
+            // console.log('like feature operation works!')
             return likedDoc.update({
                 liked: !likeValue.liked
             })
