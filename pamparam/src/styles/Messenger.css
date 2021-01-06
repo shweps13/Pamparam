@@ -459,8 +459,10 @@
 }
 
 @media screen and (max-width: 660px) {
+    
     .messenger{
         position: fixed;
+        overflow: hidden;
     }
     .messenger__mobile__back {
         display: block;
