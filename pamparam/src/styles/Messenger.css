@@ -196,11 +196,6 @@
 
 .messenger__window__rightColumn__activeChat__chatField__content {
     padding: 20px 20px 0 20px;
-    /* display: flex; */
-    /* flex-direction: column; */
-    /* flex-wrap: nowrap; */
-    /* justify-content: flex-end; */
-    /* height: 100%; */
 }
 
 .messenger__window__rightColumn__activeChat__chatField__content__noMessages {
@@ -464,7 +459,9 @@
 }
 
 @media screen and (max-width: 660px) {
-
+    .messenger{
+        position: fixed;
+    }
     .messenger__mobile__back {
         display: block;
         margin-right: 15px;
@@ -473,11 +470,19 @@
         border-right: none;
         width: 100%;
     }
-    .mess__mobile__hidden {
+    .mess__mobile__hidden, .messenger__window__rightColumn__cover__content {
         display: none;
     }
-    .messenger__window__rightColumn__cover__content{
-        display: none;
+    .messenger__window__leftColumn__header, .messenger__window__rightColumn__activeChat__header{
+        height: 40px;
+    }
+    .messenger__window__rightColumn__activeChat__footer {
+        position: absolute;
+        bottom: -15px;
+        background-color: white;
+    }
+    .messenger__window__rightColumn__activeChat__footer__preline {
+        padding-top: 15px;
     }
 
 }
