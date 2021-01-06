@@ -10,7 +10,7 @@ import firebase from 'firebase';
 import Message from '../dependent/ActiveChatMessage.js';
 
 
-function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
+function ActiveChat({ user, openedRoom, setOpenedRoom, messageText, setMessageTest }) {
 
     // hook that allows to scroll to the last message
     var bottomMessage = document.getElementById("activeChatUnit");
@@ -109,12 +109,22 @@ function ActiveChat({ user, openedRoom, messageText, setMessageTest }) {
     //     console.log('roomMessages', roomMessages)
     // }, [roomMessages])
 
+    // closing room (for mobile)
+    const closeRoom = () => {
+        setOpenedRoom({
+            opened: false,
+            openedRoom: '',
+            usersIn: [],
+            usersInNames: []
+        })
+    }
+
     return (
     <div className="messenger__window__rightColumn__activeChat">
         <div className="messenger__window__rightColumn__activeChat__header">
             <div className="messenger__window__rightColumn__activeChat__header__content">
                 <div>
-                    <IoIosArrowDropleft size={24} className="messenger__mobile__back"/>
+                    <IoIosArrowDropleft onClick={() => {closeRoom()}} size={24} className="messenger__mobile__back"/>
                     <img src={noAvatar} alt='user avatar' />
                     <p>{opponentName()}</p>
                 </div>
