@@ -23,6 +23,15 @@
     overflow: hidden;
 }
 
+.messenger__window__leftColumn__chats{
+    height: 93%;
+}
+.messenger__window__leftColumn__chats__scroll {
+    height: 100%;
+    overflow: auto;
+}
+
+
 .messenger__window__leftColumn__header, .messenger__window__rightColumn__activeChat__header{
     border-bottom: 1px solid #dbdbdb;
     height: 60px;

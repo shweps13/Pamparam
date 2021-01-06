@@ -104,11 +104,11 @@ function Messenger({ setLocal, user }) {
                     </div>
                 </div>
             ):(
-              <>
+              <div className="messenger__window__leftColumn__chats__scroll">
                 {rooms.map((room) => (
                   <MessageElement openedRoom={openedRoom} setOpenedRoom={setOpenedRoom} user={user} key={room.id} id={room.id} usersIn={room.data.usersIn} room={room} />
                 ))}
-              </>
+              </div>
             )}
           </div>
         </div>
