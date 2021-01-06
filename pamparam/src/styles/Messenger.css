@@ -460,13 +460,16 @@
         display: block;
         margin-right: 15px;
     }
-
-    .messenger__window__rightColumn {
-        display: none;
-    }
     .messenger__window__leftColumn {
         border-right: none;
         width: 100%;
+    }
+    .mess__mobile__hidden {
+        display: none;
+    }
+
+    .messenger__window__rightColumn {
+        /* display: none; */
     }
 
 }

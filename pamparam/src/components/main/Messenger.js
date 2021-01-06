@@ -87,7 +87,7 @@ function Messenger({ setLocal, user }) {
   return (
     <div className="messenger">
       <div className="messenger__window">
-        <div className="messenger__window__leftColumn">
+        <div className={`messenger__window__leftColumn ${openedRoom.opened === false ? "" : "mess__mobile__hidden"}`}>
           <div className="messenger__window__leftColumn__header">
             <div className="messenger__window__leftColumn__header__content">
               <div/>
