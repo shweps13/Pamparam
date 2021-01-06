@@ -467,9 +467,8 @@
     .mess__mobile__hidden {
         display: none;
     }
-
-    .messenger__window__rightColumn {
-        /* display: none; */
+    .messenger__window__rightColumn__cover__content{
+        display: none;
     }
 
 }
