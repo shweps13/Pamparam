@@ -12,6 +12,7 @@ import MessageElement from '../dependent/MessengerElement.js';
 import ModalNewMessage from '../../components/dependent/ModalNewMessage.js';
 import { getModalStyle, useMessageStyles } from '../../materials/modalStyles.js';
 
+import loginPic from '../../materials/loginPlease.jpg';
 
 function Messenger({ setLocal, user }) {
   let location = useLocation()
@@ -86,41 +87,52 @@ function Messenger({ setLocal, user }) {
 
   return (
     <div className="messenger">
-      <div className="messenger__window">
-        <div className={`messenger__window__leftColumn ${openedRoom.opened === false ? "" : "mess__mobile__hidden"}`}>
-          <div className="messenger__window__leftColumn__header">
-            <div className="messenger__window__leftColumn__header__content">
-              <div/>
-              <div>Direct</div>
-              <BsPencilSquare size={26} onClick={() => {modalOpener()}}/>
+      {user?.displayName ? (
+        <>
+        <div className="messenger__window">
+          <div className={`messenger__window__leftColumn ${openedRoom.opened === false ? "" : "mess__mobile__hidden"}`}>
+            <div className="messenger__window__leftColumn__header">
+              <div className="messenger__window__leftColumn__header__content">
+                <div/>
+                <div>Direct</div>
+                <BsPencilSquare size={26} onClick={() => {modalOpener()}}/>
+              </div>
+            </div>
+            <div className="messenger__window__leftColumn__chats">
+              {rooms.length === 0 ? (
+                  <div className="messenger__window__leftColumn__chats__element">
+                      <img src={messageCover} alt='create a message plane'></img>
+                      <div className="lonely__messenger__div">
+                          <p>Start your messaging</p>
+                      </div>
+                  </div>
+              ):(
+                <div className="messenger__window__leftColumn__chats__scroll">
+                  {rooms.map((room) => (
+                    <MessageElement openedRoom={openedRoom} setOpenedRoom={setOpenedRoom} user={user} key={room.id} id={room.id} usersIn={room.data.usersIn} room={room} />
+                  ))}
+                </div>
+              )}
             </div>
           </div>
-          <div className="messenger__window__leftColumn__chats">
-            {rooms.length === 0 ? (
-                <div className="messenger__window__leftColumn__chats__element">
-                    <img src={messageCover} alt='create a message plane'></img>
-                    <div className="lonely__messenger__div">
-                        <p>Start your messaging</p>
-                    </div>
-                </div>
+          <div className="messenger__window__rightColumn">
+            { openedRoom.opened === false ? (
+              <Cover modalOpener={modalOpener} />
             ):(
-              <div className="messenger__window__leftColumn__chats__scroll">
-                {rooms.map((room) => (
-                  <MessageElement openedRoom={openedRoom} setOpenedRoom={setOpenedRoom} user={user} key={room.id} id={room.id} usersIn={room.data.usersIn} room={room} />
-                ))}
-              </div>
+              <ActiveChat user={user} openedRoom={openedRoom} setOpenedRoom={setOpenedRoom} messageText={messageText} setMessageTest={setMessageTest} />
             )}
           </div>
         </div>
-        <div className="messenger__window__rightColumn">
-          { openedRoom.opened === false ? (
-            <Cover modalOpener={modalOpener} />
-          ):(
-            <ActiveChat user={user} openedRoom={openedRoom} setOpenedRoom={setOpenedRoom} messageText={messageText} setMessageTest={setMessageTest} />
-          )}
+        <ModalNewMessage setOpenedRoom={setOpenedRoom} userID={user} setModalMessageClick={setModalMessageClick} modalMessageClick={modalMessageClick} modalMessage={modalMessage} setModalMessage={setModalMessage} modalStyle={modalStyle} classesStyle={classes.paper} />
+        </>
+      ): (
+        <div className="loader_loginMessage"> 
+            <img src={loginPic} className="loader_loginMessageCat" alt="Cat asking you to login"/>
+            <h2>Login to post your pics</h2>
         </div>
-      </div>
-      <ModalNewMessage setOpenedRoom={setOpenedRoom} userID={user} setModalMessageClick={setModalMessageClick} modalMessageClick={modalMessageClick} modalMessage={modalMessage} setModalMessage={setModalMessage} modalStyle={modalStyle} classesStyle={classes.paper} />
+      )}
+
+      
     </div>
   );
 }

@@ -467,6 +467,7 @@
     .messenger__mobile__back {
         display: block;
         margin-right: 15px;
+        cursor: pointer;
     }
     .messenger__window__leftColumn {
         border-right: none;
