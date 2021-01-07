@@ -67,23 +67,38 @@ function Discover({ user, setLocal }) {
         }
     });
 
+    // random style chose generator
+    const randomStyle = () => {
+        let x = Math.ceil(Math.random()*101);
+        if (x >= 95) {
+            let y = Math.ceil(Math.random()*16);
+            if (y <= 6) {
+                return "discover__full__zoom"
+            } else {
+                return "discover__half__zoom"
+            }
+        } else {
+            return "discover__image"
+        }
+    }
+
     return (
     <div className="discover">
         {totalPosts.length === 0 ? (
-                <div className="discover__loading">
-                    <CircularProgress size={100} />
+            <div className="discover__loading">
+                <CircularProgress size={100} />
+            </div>
+        ): (
+            <>
+                <div className="discover__grid">
+                    {
+                        totalPosts.map(({ id, post }) => (
+                            <DiscoverElement randomStyle={randomStyle} setModalID={setModalID} setOpenPost={setOpenPost} key={id} id={id} post={post}/>
+                        ))
+                    }
                 </div>
-            ): (
-                <>
-                    <div className="discover__grid">
-                        {
-                            totalPosts.map(({ id, post }) => (
-                                <DiscoverElement setModalID={setModalID} setOpenPost={setOpenPost} key={id} id={id} post={post}/>
-                            ))
-                        }
-                    </div>
-                    <ModalDiscover user={user} modalID={modalID} openPost={openPost} setOpenPost={setOpenPost} modalStyle={modalStyle} classesStyle={classes.paper} />
-                </>
+                <ModalDiscover user={user} modalID={modalID} openPost={openPost} setOpenPost={setOpenPost} modalStyle={modalStyle} classesStyle={classes.paper} />
+            </>
         )}
     </div>
     )
