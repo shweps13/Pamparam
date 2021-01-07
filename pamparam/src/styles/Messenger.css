@@ -182,6 +182,10 @@
     border-radius: 50%;
 }
 
+/* .messenger__window__rightColumn__activeChat__header__content svg {
+    display: none;
+} */
+
 .messenger__window__rightColumn__activeChat__chatField {
     width: 100%;
     height: 100%;

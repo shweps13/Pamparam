@@ -42,12 +42,12 @@ function MessageElement({ openedRoom, setOpenedRoom, id, usersIn, user, room}) {
         {typeof room.data.roomName === 'string' ? (
             <div>
                 <p>{room.data.roomName}</p>
-                <p>Some last message</p>
+                <p>✎...</p>
             </div>
             ):(
             <div>
                 <p>{opponentName()}</p>
-                <p>Some last message</p>
+                <p>✎...</p>
             </div>
         )}
         
