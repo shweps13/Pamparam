@@ -126,7 +126,7 @@ function Messenger({ setLocal, user }) {
         <ModalNewMessage setOpenedRoom={setOpenedRoom} userID={user} setModalMessageClick={setModalMessageClick} modalMessageClick={modalMessageClick} modalMessage={modalMessage} setModalMessage={setModalMessage} modalStyle={modalStyle} classesStyle={classes.paper} />
         </>
       ): (
-        <div className="loader_loginMessage"> 
+        <div className="loader_loginMessage mess_correction"> 
             <img src={loginPic} className="loader_loginMessageCat" alt="Cat asking you to login"/>
             <h2>Login to post your pics</h2>
         </div>

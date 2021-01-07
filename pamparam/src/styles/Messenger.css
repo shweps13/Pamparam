@@ -441,6 +441,10 @@
     display: none;
 }
 
+.mess_correction {
+    margin-top: -20px !important;
+}
+
 @media screen and (max-width: 935px) {
     .messenger {
         padding-top: 0;
