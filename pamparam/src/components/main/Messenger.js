@@ -12,7 +12,7 @@ import MessageElement from '../dependent/MessengerElement.js';
 import ModalNewMessage from '../../components/dependent/ModalNewMessage.js';
 import { getModalStyle, useMessageStyles } from '../../materials/modalStyles.js';
 
-import loginPic from '../../materials/loginPlease.jpg';
+import loginPic from '../../materials/passDone.jpg';
 
 function Messenger({ setLocal, user }) {
   let location = useLocation()
@@ -128,7 +128,7 @@ function Messenger({ setLocal, user }) {
       ): (
         <div className="loader_loginMessage mess_correction"> 
             <img src={loginPic} className="loader_loginMessageCat" alt="Cat asking you to login"/>
-            <h2>Login to post your pics</h2>
+            <h2>Login to start messaging</h2>
         </div>
       )}
 
