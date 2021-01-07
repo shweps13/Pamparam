@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-function DiscoverElement({ id, post, setOpenPost, setModalID, randomStyle }) {
+function DiscoverElement({ id, post, setOpenPost, setModalID }) {
 
     const styles = {
         backgroundImage: `url(${post.imageUrl})`
@@ -16,7 +16,7 @@ function DiscoverElement({ id, post, setOpenPost, setModalID, randomStyle }) {
     }
 
     return (
-    <div className={randomStyle()}>
+    <div className="discover__image">
         <div style={styles} className="discover__sideCrop" onClick={() => {pushData()}}>
             {/* <img src={imageUrl} alt={`${alt}'s post`} /> */}
         </div>

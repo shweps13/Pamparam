@@ -47,17 +47,13 @@
     opacity: 0.4;
 }
 
-.discover__image:nth-child(1) {
-    grid-column: span 1;
-    grid-row: span 1;
-}
 
-.discover__full__zoom, .discover__image:nth-child(2) {
+.discover__full__zoom, .discover__image:nth-child(2), .discover__image:nth-child(25) {
     grid-column: span 2;
     grid-row: span 2;
 }
 
-.discover__half__zoom, .discover__image:nth-child(10) {
+.discover__half__zoom, .discover__image:nth-child(10), .discover__image:nth-child(45) {
     grid-row: span 2;
 }
 

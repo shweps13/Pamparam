@@ -9,11 +9,6 @@ import { getModalStyle, useDiscoverStyles } from '../../materials/modalStyles.js
 
 import { db } from '../../materials/firebase';
 
-// All next parts for [Discover] feature 
-// ==> Shuffle mixed styles alorithm
-// ==> lazy load
-
-
 function Discover({ user, setLocal }) {
     let location = useLocation();
     const [posts, setPosts] = useState([]);
@@ -29,7 +24,7 @@ function Discover({ user, setLocal }) {
             }
         return array;
     }
-    
+
     useEffect(
     () => {
         setLocal(location.pathname)  
@@ -68,19 +63,19 @@ function Discover({ user, setLocal }) {
     });
 
     // random style chose generator
-    const randomStyle = () => {
-        let x = Math.ceil(Math.random()*101);
-        if (x >= 95) {
-            let y = Math.ceil(Math.random()*16);
-            if (y <= 6) {
-                return "discover__full__zoom"
-            } else {
-                return "discover__half__zoom"
-            }
-        } else {
-            return "discover__image"
-        }
-    }
+    // const randomStyle = () => {
+    //     let x = Math.ceil(Math.random()*101);
+    //     if (x >= 95) {
+    //         let y = Math.ceil(Math.random()*16);
+    //         if (y <= 6) {
+    //             return "discover__full__zoom"
+    //         } else {
+    //             return "discover__half__zoom"
+    //         }
+    //     } else {
+    //         return "discover__image"
+    //     }
+    // }
 
     return (
     <div className="discover">
@@ -93,7 +88,7 @@ function Discover({ user, setLocal }) {
                 <div className="discover__grid">
                     {
                         totalPosts.map(({ id, post }) => (
-                            <DiscoverElement randomStyle={randomStyle} setModalID={setModalID} setOpenPost={setOpenPost} key={id} id={id} post={post}/>
+                            <DiscoverElement setModalID={setModalID} setOpenPost={setOpenPost} key={id} id={id} post={post}/>
                         ))
                     }
                 </div>
