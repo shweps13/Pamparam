@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { BsArrowUpDown } from 'react-icons/bs';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 function Main({ user, setLocal }) {
 
@@ -96,7 +97,7 @@ function Main({ user, setLocal }) {
         dataLength={posts.length}
         next={loadFunc}
         hasMore={more}
-        loader={<h4 style={{ textAlign: 'center' }}>Loading...</h4>}
+        loader={<div className="main__loading"><CircularProgress size={40} /></div>}
         endMessage={
           <p style={{ textAlign: 'center' }}>
             <b style={{ cursor: 'pointer' }} onClick={(e) => setSctollTop(!sctollTop)}>Yay! You have seen it all</b>

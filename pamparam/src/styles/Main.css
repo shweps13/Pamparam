@@ -29,13 +29,20 @@ textarea:focus, input:focus{
   outline: none;
 }
 
+.main__loading {
+  display: grid;
+  place-items: center;
+}
+
 @media screen and (max-width: 660px) {
 
   .main__scrolTop {
     display: none;
   }
-
   .main__posts {
     padding: 0;
+  }
+  .main__loading {
+    padding-top: 15px;
   }
 }
