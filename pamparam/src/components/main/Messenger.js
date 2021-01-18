@@ -14,7 +14,6 @@ import { getModalStyle, useMessageStyles } from '../../materials/modalStyles.js'
 
 import loginPic from '../../materials/passDone.jpg';
 
-
 function Messenger({ setLocal, user }) {
   let location = useLocation()
 
