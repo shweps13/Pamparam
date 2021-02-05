@@ -459,7 +459,6 @@
         border-top: 0;
         border-bottom: 0;
         border-radius: 0;
-        background-color: yellow !important;
     }
     .messenger__window__leftColumn{
         width: 300px;
@@ -481,9 +480,6 @@
     .messenger__window__leftColumn {
         border-right: none;
         width: 100%;
-    }
-    .messenger__window {
-        background-color: green !important;
     }
     .mess__mobile__hidden, .messenger__window__rightColumn__cover__content {
         display: none;
