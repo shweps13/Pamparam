@@ -30,6 +30,10 @@
   </p>
 </p>
 
+<!-- ABOUT THE PROJECT -->
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/52670061/106990770-c9174e80-6729-11eb-8729-e18419a2429e.png" alt="Screenshot" width="700" height="750">
+</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
@@ -43,3 +47,4 @@
 [issues-url]: https://github.com/shweps13/Pamparam/issues
 [size-shield]:https://img.shields.io/github/repo-size/shweps13/Pamparam?style=for-the-badge
 [size-url]:#
+[product-screenshot]:https://user-images.githubusercontent.com/52670061/106990770-c9174e80-6729-11eb-8729-e18419a2429e.png
