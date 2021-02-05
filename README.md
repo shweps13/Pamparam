@@ -51,6 +51,7 @@ In development:
 * Likes feature
 * Saved pages
 * User pages feature
+* Deletion feature
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
